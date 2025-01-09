@@ -35,98 +35,50 @@ If this case, unfortunately and undesirebly, happens with your equipment setup t
 # Man-In-The-Middle (MITM) software pattern<br>
 <img src="https://github.com/Berg0162/simcline/blob/master/images/FTMS_Man_in_the_Middle02.jpg" align="left" width="1000" height="500" alt="Man in the Middle"><br>
 <b>Man-In-The-Middle</b> is a powerful software engineering pattern that is applied in many software designs. Unfortunately it is also known for a negative application in communication traffic: MITM is a common type of cybersecurity attack that allows attackers to eavesdrop on the communication between two targets.
-We have applied the very principle: the Simcline is strategicly positioned in between the BLE communication of the FTMS enabled Trainer and the training App (like Zwift) running on the PC/Laptop, all communication traffic can be inspected in that MITM position, when it is passed on from one to the other, in both directions. When Zwift sends resistance information (like the road inclination) to the FTMS enabled trainer, this information can be intercepted and applied to determine the up/down positioning of the Simcline. <br>
+We have applied the very principle: the Simcline is strategicly positioned in between the BLE communication of the Bluetooth Smart FTMS Trainer and the training App (like Zwift) running on the PC/Laptop, all communication traffic can be inspected in that MITM position, when it is passed on from one to the other, in both directions. When Zwift sends resistance information (like the road inclination) to the Bluetooth Smart FTMS trainer, this information can be intercepted and applied to determine the up/down positioning of the Simcline. <br>
 
-# Choose a Development board: nRF52840 or ESP32?<br>
-Until early 2023 the Simcline project (a.o.) solely worked with the <b>Feather nRF52840 Express</b> development board and the Bluefruit/Adafruit libraries. This is a very stable platform and gave reliable results during development and what's more during many indoor seasons of 5 hours per week operation! However, the MITM application and actuator control (a.k.a. Simcline) is at the capacity limits of the nRF52840 processor. 
-See for a reliable and <b>proven</b> solution: [Adafruit Feather nRF52840 Express](https://learn.adafruit.com/introducing-the-adafruit-nrf52840-feather) <br>
-
-So the question was raised why not use the <b>ESP32</b>, a series of low-cost and low-power System on a Chip (SoC) microcontrollers developed by Espressif that include Wi-Fi and Bluetooth wireless capabilities and dual-core processor? See for an introduction: [Random Nerds Tutorials](https://randomnerdtutorials.com/getting-started-with-esp32/). Particularly the multiprocessing capabilities of the dual-core processor make the ESP32 a very tempting option in this project!
-To benefit of the same formfactor (fit with the Simcline 2.0 component box!), I decided to (re)produce the Simcline code with the [Adafruit Feather ESP32 V2](https://learn.adafruit.com/adafruit-esp32-feather-v2) for the <b>ESP32</b> platform. Just comparing the overal specs (on paper) of both processor platforms is not sufficient... one needs to take into account the (quality of the) available libraries as well to reach success. The 'standard' ESP32 Arduino <b>Bluedroid</b> library (for BLE support) turned out to be buggy! Fortunately [H2Zero](https://github.com/h2zero/NimBLE-Arduino) has created a more or less compatible replacement for Bluedroid, called <b>NimBLE-Arduino</b>! The application of <b>NimBLE</b> saved the porting of the software to the ESP32 platform! 
-In week 7 of 2023 the ESP32 code reached a stable level and became publicly available for testing with FTMS-enabled trainer brands.
+# Simcline-V2 is optimised for use with an ESP32 processor board?<br>
+The <b>ESP32</b> family has a series of low-cost and low-power System on a Chip (SoC) microcontrollers developed by Espressif that include Wi-Fi and Bluetooth wireless capabilities and dual-core processor? See for an introduction: [Random Nerds Tutorials](https://randomnerdtutorials.com/getting-started-with-esp32/). Particularly the multiprocessing capabilities of the dual-core processor make the ESP32 a very tempting option in this project!
+To benefit of the same formfactor (fit with the Simcline 2.0 component box!), I decided to (re)produce the Simcline code with the [Adafruit Feather ESP32 V2](https://learn.adafruit.com/adafruit-esp32-feather-v2) for the <b>ESP32</b> platform. The 'standard' ESP32 Arduino <b>Bluedroid</b> library (for BLE support) turned out to be buggy! Fortunately [H2Zero](https://github.com/h2zero/NimBLE-Arduino) has created a more or less compatible replacement for Bluedroid, called <b>NimBLE-Arduino</b>! The application of <b>NimBLE-Arduino Version 2</b> saved the porting of the software to the ESP32 platform!
 
 # How to start?<br>
 + Install the [Arduino IDE](https://www.arduino.cc/en/Main/Software) and all the libraries on a PC/Mac.
-+ If you are using an ESP32 board then also download the ESP32 NimBLE library (<b>Version 1.4.3</b>), see [Arduino Installation NimBLE](https://github.com/h2zero/NimBLE-Arduino#arduino-installation)
-+ Download all the code from [Github](https://github.com/Berg0162/simcline/tree/master/FTMS%20Enabled) and install. <br>
++ Install your ESP32 board and then download the ESP32 NimBLE library (<b>Version 2</b>), see [Arduino Installation NimBLE](https://github.com/h2zero/NimBLE-Arduino#arduino-installation)
++ Download all the code from [Github](https://github.com/Berg0162/simcline/tree/master/Simcline-V2) and install the Simcline-V2 library in the Arduino IDE. <br>
 
 # How to make it work?<br>
 The requirements in this phase are simple: 
 + running Zwift, Rouvy or myWhoosh app or alike, 
 + working Feather ESP32-V2 development board and 
-+ a FTMS enabled Trainer.<br>
++ a Bluetooth FTMS Smart Trainer.<br>
 
 # Testing is Knowing!<br>
 I can understand and respect that you have some reserve: Is this really working in my situation? Better test if it is working, before buying all components and start building.
-In the Github repository (see above) you will find the appropriate files with code: <b>FTMS_Client</b> and <b>FTMS_Server</b>. It is coded with the only intention to check if the MITM solution is delivering in your specific situation.<br>
+In the Simcline-V2 Library (see <b>examples</b>) you will find the appropriate code: <b>FTMS_MITM</b>. It is coded with the only intention to check if the MITM solution is delivering in your specific situation.<br>
 
 <b>What it does in short:</b><br>
 <img src="https://github.com/Berg0162/simcline/blob/master/images/FTMS_Feather_Zwift_BLE_02.jpg" align="middle" width="1000" height="500" alt="Simcline in the Middle"><br>
 A working <b>MITM</b> implementation links a bike trainer (BLE Server FTMS) and a PC/Laptop (BLE Client running Zwift) with the Feather nRF52/ESP32, like a <b>bridge</b> in between. The MITM bridge can pass on, control, filter and alter the interchanged trafic data! The <b>MITM</b> code is fully ignorant of mechanical or electronic components that drive the Simcline construction.<br>
 ```
-It simply estabishes a virtual BLE bridge and allows you to ride the bike on the FTMS enabled Trainer and 
+It simply estabishes a virtual BLE bridge and allows you to ride the bike on the Bluetooth Smart FTMS Trainer and 
 feel the resistance that comes with the route you have choosen, thanks to Zwift.
-The experience should not differ from a normal direct one-to-one connection, Zwift - FTMS enabled Trainer!
+The experience should not differ from a normal direct one-to-one connection, Zwift - Bluetooth Smart FTMS Trainer!
 ```
-All FTMS enabled indoor trainers expose your efforts on the bike in 2 additional BLE services: Cyling Power (CPS) and Speed & Cadence (CSC). These services are detected and applied by many training app's and are therefore an integral part of the present design of the MITM bridge. Training app's simply expect, when they connect to the FTMS enabled trainer, that the CPS and CSC services are available in one go! The Zwift pairing screen is a good example: it expects Power (CPS), Cadence (CSC) and a "Controllable" (with FTMS) to be connected...
-+ The client-side (Feather nRF52/ESP32) scans for (a trainer) and connects with <b>FTMS, CPS and CSC</b> and collects cyling power, speed and cadence data like Zwift would do! The code with the name: <b>FTMS_Client</b> is doing just that at the left side of the "bridge"!
-+ The Server-side (Feather nRF52/ESP32) advertises and enables connection with training/cycling/game apps like Zwift and collects relevant resistance data, it simulates as if an active <b>FTMS</b> enabled trainer is connected to Zwift or alike! Notice that the Server-side also exposes active <b>CPS</b> and <b>CSC</b> services. The code with the name: <b>FTMS_Server</b> is doing just at the right side of the "bridge"!
-+ The <b>MITM</b> code is connecting both sides at the same time: a full-blown working bridge, <b>FTMS_Bridge</b><br clear="left">
+All Bluetooth Smart FTMS indoor trainers expose your efforts on the bike in 2 additional BLE services: Cyling Power (CPS) and Speed & Cadence (CSC). These services are detected and applied by many training app's and are therefore an integral part of the present design of the MITM bridge. Training app's simply expect, when they connect to the Bluetooth Smart FTMS trainer, that the CPS and CSC services are available in one go! The Zwift pairing screen is a good example: it expects Power (CPS), Cadence (CSC) and a "Controllable" (with FTMS) to be connected...
++ The client-side (Feather ESP32) scans for (a trainer) and connects with <b>FTMS, CPS and optional CSC</b> and collects cyling power, speed and cadence data like Zwift would do! The <b>Simcline Client</b> is doing just that at the left side of the "bridge"!
++ The Server-side (Feather ESP32) advertises and enables connection with training/cycling/game apps like Zwift and collects relevant resistance data, it simulates as if an active <b>FTMS</b> enabled trainer is connected to Zwift or alike! Notice that the Server-side also exposes active <b>CPS</b> and <b>CSC</b> services. The <b>Simcline Server</b> is doing just at the right side of the "bridge"!
++ The <b>Simcline MITM</b> code is connecting both sides at the same time: a full-blown working bridge<br clear="left">
 
 <i>The test programs (FTMS Client, FTMS Server and FTMS-Zwift-Bridge) are only using Serial Monitor (screen output) to show what is happening!</i><br>
 ```
-Please write down the MAC/Device Addresses of a) your FTMS enabled trainer and b) your Desktop/Laptop with Zwift. 
+Please write down the MAC/Device Addresses of a) your Bluetooth Smart FTMS trainer and b) your Desktop/Laptop with Zwift. 
 These are presented in the Serial Monitor log file when running the Client and Server test code.
 ```
 <b>Use the code for reconnaissance and testing!</b><br>
 Please follow <b>ALWAYS</b> the different usage instructions at the first part of the respective program codes!
-+ Start your reconnaissance with running <b>FTMS_Client</b> and experience how your development board is controlling the resistance of your FTMS enabled trainer. Notice that this piece of code is highly dependent on the type and brand of FTMS enabled Trainer and therefore most critical!
++ Start your reconnaissance with running <b>FTMS_Client</b> and experience how your development board is controlling the resistance of your Bluetooth Smart FTMS trainer. Notice that this piece of code is highly dependent on the type and brand of Bluetooth Smart FTMS Trainer and therefore most critical!
 + Be aware of undesirebly <b>autoconnect</b> with your standard equipment setup using ANT+ or FTMS. The FTMS Client (or FTMS-Zwift-Bridge) will reach an error state that does not help you getting representative results during the reconnaisance! Once again: 2 captains on one ship is a recipe for disaster!
-```
-/* 
- *  This Feather nRF52840/ESP32 tested code scans for the CPS, CSC and FTMS
- *  that the trainer is advertising, it tries to connect and then 
- *  enables .....
- *  
- *  Requirements: FTMS trainer and Feather nRF52/ESP32 board
- *  1) Upload and Run this code on the Feather nRF5/ESP322
- *  2) Start the Serial Monitor to catch verbose debugging and data info
- *  3) Power ON and Wake UP trainer -> do NOT connect with other devices
- *  4) Trainer and Feather should successfully pair or disconnect...
- *  5) Keep the Serial Monitor visible on top of all windows 
- *  6) Move the trainer pedals and notice/feel changes in resistance...
- *     The Client sends Resistance Parameters to the Trainer that mimic 
- *     the riding of a road on rolling hills (max 6% grade)!
- *  7) Inspect the info presented by Serial Monitor.....
- *  
- */
-
-```
-+ Next step is running <b>FTMS_Server</b>, pairing with Zwift and then notice how your avatar is moving effortless in the Zwift world controlled by the Feather nRF52/ESP32. Notice that this particular piece of code is tested intensively by the author with the Zwift app.<br>
-```
-/* 
- *  This Feather nRF52/ESP32 tested code advertises and enables the relevant 
- *  Cycling Trainer Services: CPS, CSC and FTMS.
- *  It allows to connect to Cycling apps like Zwift (aka Client or Central)!
- *  It simulates a connected Cycling Trainer and in BLE terms it is a Server or 
- *  or in BlueFruit BLE library terms it is a Peripheral
- *  Requirements: Zwift app or alike and Feather nRF52/ESP32 board
- *  1) Upload and Run this code on the Feather nRF52/ESP32
- *  2) Start the Serial Monitor to catch debugging info
- *  3) Start Zwift and wait for the Devices Pairing Screen
- *  4) Unpair all previously paired devices
- *  5) Search on Zwift pairing screens for the Feather nRF52/ESP32: <SIM52>, resp. <SIM32>
- *  6) Pair: Power, Cadence, Heart Rate and Controllable with <SIM52>, resp. <SIM32>
- *  7) Start a default Zwift ride or any ride you wish
- *     No need for you to do work on the trainer!
- *  8) Make Serial Monitor visible on top of the Zwift window 
- *  9) Inspect the info presented by Serial Monitor
- * 10) Notice how your avatar is riding the route all by itself...
- *  
- *
-```
-+ After two smoothly runs of the FTMS Client and Server, it is time to test the FTMS bridge!<br>
-The <b>FTMS_Bridge</b> code needs the "hardware" addresses to unmistakingly establish a BLE connection with the targeted devices. I know it can be implemented differently but this is to avoid unwanted BLE connection(s) with an additional power meter, another fitness device or a second computer/laptop, etcetera.<br>
+The <b>FTMS_MITM</b> code needs the "hardware" addresses to unmistakingly establish a BLE connection with the targeted devices. I know it can be implemented differently but this is to avoid unwanted BLE connection(s) with an additional power meter, another fitness device or a second computer/laptop, etcetera.<br>
 ```
 /* -----------------------------------------------------------------------------------------------------
  *             This code should work with all indoor cycling trainers that fully support,
@@ -173,7 +125,7 @@ Look in the Bridge code for the following snippet and fill in the required addre
 // Laptop/Desktop Device Address that runs Zwift, printed as: [00:01:02:03:04:05]
 // Little Endian: in reversed order !!!!
 #define LAPTOPADDRESS {0x05,0x04,0x03,0x02,0x01,0x00}
-// FTMS enabled Trainer Device Address, printed as: [00:01:02:03:04:05]
+// Bluetooth Smart FTMS Trainer Device Address, printed as: [00:01:02:03:04:05]
 // Little Endian: in reversed order !!!!
 #define TRAINERADDRESS {0x05,0x04,0x03,0x02,0x01,0x00}
 // -----------------------------------------------------------------
@@ -198,7 +150,7 @@ There is an excellent review available [DCRainmaker Zwift Hub review](https://ww
 **– Unique Party Trick: Can rebroadcast your heart rate sensor within a single channel, ideal for Apple TV Zwift users (who are Bluetooth channel limited)**<br>
 **– App Compatibility:** Every app out there basically (Zwift, TrainerRoad, Rouvy, RGT, The Sufferfest, Kinomap, etc…)<br>
 
-The latest code versions for FTMS enabled trainers **fully** support this proprietary Zwift function for your heart rate sensor connection. The Simcline code supports the same features as you would have had with only Zwift App connected to Zwift Hub trainer! Use your heart rate band the way you are used too before the Simcline came in between your Zwift Hub trainer and the Zwift App! It should be fully transparent with respect to this feature! Please test yourself!
+The latest code versions for Bluetooth Smart FTMS trainers **fully** support this proprietary Zwift function for your heart rate sensor connection. The Simcline code supports the same features as you would have had with only Zwift App connected to Zwift Hub trainer! Use your heart rate band the way you are used too before the Simcline came in between your Zwift Hub trainer and the Zwift App! It should be fully transparent with respect to this feature! Please test yourself!
 
 # Cleanup Zwift devices from the past<br>
 Zwift can sometimes hang onto the wrong info, such as trainers or sensors that were paired to the game in the past. Zwift uses Mac Addresses from previous connections to identify devices. So when device names change Zwift hangs on to the unique Mac Addresses rather than the names that you see in the pairing screens! This can be rather confusing and lead to misunderstandings when you connect devices having only their original names shown and not the actual names....<br>
