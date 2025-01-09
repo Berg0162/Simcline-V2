@@ -33,7 +33,7 @@ We have applied the very principle: the Simcline is strategicly positioned in be
 # Simcline-V2 is optimised for use with an ESP32 processor board and NimBLE-Arduino Version 2!<br>
 The <b>ESP32</b> family has a series of low-cost and low-power System on a Chip (SoC) microcontrollers developed by Espressif that include Wi-Fi and Bluetooth wireless capabilities and dual-core processor? See for an introduction: [Random Nerds Tutorials](https://randomnerdtutorials.com/getting-started-with-esp32/). Particularly the multiprocessing capabilities of the dual-core processor make the ESP32 a very attractive option in this project!
 To benefit of the same formfactor (fit with the Mechanical Simcline 2.0 component box!), I used the [Adafruit Feather ESP32 V2](https://learn.adafruit.com/adafruit-esp32-feather-v2) board. Notice that other members of the ESP32 will do the job perfectly. For example I have worked successfully with the Lilygo esp32s3_T-Display, however that MCU needs another size component box!
-Fortunately [H2Zero](https://github.com/h2zero/NimBLE-Arduino) has created a more or less compatible replacement for <i>Bluedroid</i>, called <b>NimBLE-Arduino</b>! Simcline-V2 works with <b>NimBLE-Arduino Version 2</b>!
+Fortunately [H2Zero](https://github.com/h2zero/NimBLE-Arduino) has created the <b>NimBLE library</b> structured for compilation with Arduino and for use with ESP32, full name: <b>NimBLE-Arduino</b>! Simcline-V2 works with the latest version, <b>NimBLE-Arduino Version 2</b>!
 
 # How to start?<br>
 + Install the [Arduino IDE](https://www.arduino.cc/en/Main/Software) and all the libraries on a PC/Mac.
