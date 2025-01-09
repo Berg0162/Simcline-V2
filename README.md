@@ -1,6 +1,6 @@
-# <img src="https://github.com/Berg0162/simcline/blob/master/images/SC_logo.png" width="64" height="64" alt="SIMCLINE Icon"> &nbsp; SIMCLINE-V2 for Bluetooth Smart FTMS Trainers
+# <img src="./images/SC_logo.png" width="64" height="64" alt="SIMCLINE Icon"> &nbsp; SIMCLINE-V2 for Bluetooth Smart FTMS Trainers
 # Simulation of Changing Road Inclination for Indoor Cycling<br>
-<img src="https://github.com/Berg0162/simcline/blob/master/images/Simcline_2_0.jpg" width="300" height="300" ALIGN="left" alt="SIMCLINE 2">
+<img src="./images/Simcline_2_0.jpg" width="300" height="300" ALIGN="left" alt="Mechanical SIMCLINE 2">
 The SIMCLINE physically adjusts the bike position to mimic hilly roads, climbing and descending. This allows the rider to naturally change position on the bike, engage climbing muscles, and improve pedaling technique to become a more efficient and powerful climber.<br>
 Without user intervention the SIMCLINE will replicate inclines and declines depicted in (online & offline) training programs (like <b>Zwift, Rouvy, VeloReality, myWhoosh</b> and many others) that adjust accordingly the resistance of the indoor trainer.<br>
 The SIMCLINE auto connects at power up with a Bluetooth Smart FTMS trainer and let's relive the ascents and descents from favorite rides or routes while training indoors.<br>
@@ -26,12 +26,13 @@ From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetoot
 |Zwift|ANT+ FE-C and Bluetooth Smart FTMS on Zwift Hub smart trainer.|
 
 # Who is in control?<br>
-+ When a training app (like Zwift) has connected to your trainer using the FTMS protocol: is it possible to connect multiple devices via FTMS? As FTMS enables control of a physical device there can only be one <b>“controller”</b> to avoid safety issues. This means that you will not be able to connect multiple devices directly to the indoor bike trainer or treadmill using FTMS. If the trainer does not appear in an app’s (e.g. Zwift's) device list (on the Zwift pairing screen) it generally means the trainer is (still) connected to another controlling app or device. It is virtually impossible to connect the trainer to Zwift using FTMS, have a nice indoor ride and at the same time to connect for example the Simcline to the trainer or Zwift for simulating road incline..... A working solution is a Bluetooth Man-In-The-Middle (MITM)!
-+ Notice that a fully working Simcline (acting as a MITM), is up for grabs. Many trainers of very different brands have been tested successfuly by now, and you are invited to test the Simcline library with your Bluetooth Smart FTMS Trainer.
-# What about ANT+ (FE-C) and FTMS at the same time<br>
++ When a training app (like Zwift on your laptop) has connected to your trainer using the FTMS protocol: is it possible to connect multiple devices via FTMS? As FTMS enables control of a physical device there can only be one <b>“controller”</b> to avoid safety issues. This means that you will not be able to connect multiple devices directly to the indoor bike trainer or treadmill using FTMS. If the trainer does not appear in an app’s (e.g. Zwift's) device list (on the Zwift pairing screen) it generally means the trainer is (still) connected to another controlling app or device. It is virtually impossible to connect the trainer to Zwift using FTMS, have a nice indoor ride and at the same time to connect for example the Simcline to the trainer or Zwift for simulating road incline... This means that other active cycling App's (installed on your telephone and/or tablet) are in competition with your Zwift App on the latop to connect with the trainer! Be carefull with devices with active cycling Apps near your setup during the connection phase!
+
+# What about ANT+ (FE-C) and FTMS at the same time?<br>
 + When a training app (like Zwift) has connected to your trainer using the ANT+ protocol: is it possible to connect other devices via FTMS?<br>
 Since this ANT+ connection enables control of the physical device (trainer) there can NOT be connected another <b>“controller”</b> at the same time over FTMS to avoid safety issues. Only one (1) controlling app is allowed to connect and drive the Trainer at any time. You know, 2 captains on one ship is a recipe for disaster!
-If this case, unfortunately and undesirebly, happens with your equipment setup the controlling Client-side code will not connect or disconnect with an error message! So keep these worlds separated! If you intend to use devices with BLE and FTMS: mechanically disconnect the ANT+ dongle to avoid your controller App (like Zwift) to (auto)connect over ANT+.
+If this case, unfortunately and undesirebly, happens with your equipment setup, the controlling Client-side code will not connect or disconnect with an error message! So keep these worlds separated! If you intend to use devices with BLE and FTMS: mechanically disconnect the ANT+ dongle to avoid your controller App (like Zwift) to (auto)connect over ANT+.
+
 # Man-In-The-Middle (MITM) software pattern<br>
 <img src= "./images/FTMS_MITM.jpg" align="left" width="1000" height="500" alt="Man in the Middle"><br>
 <b>Man-In-The-Middle</b> is a powerful software engineering pattern that is applied in many software designs. Unfortunately it is also known for a negative application in communication traffic: MITM is a common type of cybersecurity attack that allows attackers to eavesdrop on the communication between two targets.
@@ -43,13 +44,14 @@ To benefit of the same formfactor (fit with the Simcline 2.0 component box!), I 
 
 # How to start?<br>
 + Install the [Arduino IDE](https://www.arduino.cc/en/Main/Software) and all the libraries on a PC/Mac.
-+ Install your ESP32 board and then download the ESP32 NimBLE library (<b>Version 2</b>), see [Arduino Installation NimBLE](https://github.com/h2zero/NimBLE-Arduino#arduino-installation)
++ Install your ESP32 board in the Arduino environment
++ download the ESP32 NimBLE-Arduino library (<b>Latest Version 2.#.#</b>), see [Arduino Installation NimBLE](https://github.com/h2zero/NimBLE-Arduino#arduino-installation)
 + Download all the code from [Github](https://github.com/Berg0162/simcline/tree/master/Simcline-V2) and install the Simcline-V2 library in the Arduino IDE. <br>
 
 # How to make it work?<br>
 The requirements in this phase are simple: 
 + running Zwift, Rouvy or myWhoosh app or alike, 
-+ working Feather ESP32-V2 development board and 
++ working Feather ESP32-V2 (or other ESP32S2/ESP32S3) development board and 
 + a Bluetooth FTMS Smart Trainer.<br>
 
 # Testing is Knowing!<br>
@@ -57,14 +59,14 @@ I can understand and respect that you have some reserve: Is this really working 
 In the Simcline-V2 Library (see <b>examples</b>) you will find the appropriate code: <b>FTMS_MITM</b>. It is coded with the only intention to check if the MITM solution is delivering in your specific situation.<br>
 
 <b>What it does in short:</b><br>
-<img src="https://github.com/Berg0162/simcline/blob/master/images/FTMS_Feather_Zwift_BLE_02.jpg" align="middle" width="1000" height="500" alt="Simcline in the Middle"><br>
-A working <b>MITM</b> implementation links a bike trainer (BLE Server FTMS) and a PC/Laptop (BLE Client running Zwift) with the Feather nRF52/ESP32, like a <b>bridge</b> in between. The MITM bridge can pass on, control, filter and alter the interchanged trafic data! The <b>MITM</b> code is fully ignorant of mechanical or electronic components that drive the Simcline construction.<br>
+<img src="./images/FTMS_Feather_Zwift_BLE_02.jpg" align="middle" width="1000" height="500" alt="Simcline in the Middle"><br>
+A working <b>MITM</b> implementation links a bike trainer (BLE Server FTMS) and a PC/Laptop (BLE Client running Zwift) with the Feather ESP32, like a <b>bridge</b> in between. The MITM bridge can pass on, control, filter and alter the interchanged trafic data! The <b>MITM</b> code is fully ignorant of mechanical or electronic components that drive the Simcline construction.<br>
 ```
 It simply estabishes a virtual BLE bridge and allows you to ride the bike on the Bluetooth Smart FTMS Trainer and 
 feel the resistance that comes with the route you have choosen, thanks to Zwift.
 The experience should not differ from a normal direct one-to-one connection, Zwift - Bluetooth Smart FTMS Trainer!
 ```
-All Bluetooth Smart FTMS indoor trainers expose your efforts on the bike in 2 additional BLE services: Cyling Power (CPS) and Speed & Cadence (CSC). These services are detected and applied by many training app's and are therefore an integral part of the present design of the MITM bridge. Training app's simply expect, when they connect to the Bluetooth Smart FTMS trainer, that the CPS and CSC services are available in one go! The Zwift pairing screen is a good example: it expects Power (CPS), Cadence (CSC) and a "Controllable" (with FTMS) to be connected...
+All Bluetooth Smart FTMS indoor trainers expose your efforts on the bike in 2 additional BLE services: Cyling Power (CPS) and Speed & Cadence (CSC). These services are detected and applied by many training app's and are therefore an integral part of the present design of the MITM bridge. Training app's simply expect, when they connect to the Bluetooth Smart FTMS trainer, that the CPS and CSC services are available in one go! The Zwift pairing screen is a good example: it expects Power Souce (CPS), Resistance and Cadence (CSC) (with FTMS) to be connected...
 + The client-side (Feather ESP32) scans for (a trainer) and connects with <b>FTMS, CPS and optional CSC</b> and collects cyling power, speed and cadence data like Zwift would do! The <b>Simcline Client</b> is doing just that at the left side of the "bridge"!
 + The Server-side (Feather ESP32) advertises and enables connection with training/cycling/game apps like Zwift and collects relevant resistance data, it simulates as if an active <b>FTMS</b> enabled trainer is connected to Zwift or alike! Notice that the Server-side also exposes active <b>CPS</b> and <b>CSC</b> services. The <b>Simcline Server</b> is doing just at the right side of the "bridge"!
 + The <b>Simcline MITM</b> code is connecting both sides at the same time: a full-blown working bridge<br clear="left">
@@ -72,7 +74,7 @@ All Bluetooth Smart FTMS indoor trainers expose your efforts on the bike in 2 ad
 <i>The test programs (FTMS Client, FTMS Server and FTMS-Zwift-Bridge) are only using Serial Monitor (screen output) to show what is happening!</i><br>
 ```
 Please write down the MAC/Device Addresses of a) your Bluetooth Smart FTMS trainer and b) your Desktop/Laptop with Zwift. 
-These are presented in the Serial Monitor log file when running the Client and Server test code.
+These are presented in the Serial Monitor log file when running the MITM test code.
 ```
 <b>Use the code for reconnaissance and testing!</b><br>
 Please follow <b>ALWAYS</b> the different usage instructions at the first part of the respective program codes!
