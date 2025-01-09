@@ -30,13 +30,13 @@ From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetoot
 <b>Man-In-The-Middle</b> is a powerful software engineering pattern that is applied in many software designs. Unfortunately it is also known for a negative application in communication traffic: MITM is a common type of cybersecurity attack that allows attackers to eavesdrop on the communication between two targets.
 We have applied the very principle: the Simcline is strategicly positioned in between the BLE communication of the Bluetooth Smart FTMS Trainer and the training App (like Zwift) running on the PC/Laptop, all communication traffic can be inspected in that MITM position, when it is passed on from one to the other, in both directions. When Zwift sends resistance information (like the road inclination) to the Bluetooth Smart FTMS trainer, this information can be intercepted and applied to determine the up/down positioning of the Simcline. <br>
 
-# Simcline-V2 is optimised for use with an ESP32 processor board and NimBLE-Arduino Version 2!<br>
+# Simcline-V2 Library is optimised for use with ESP32 and NimBLE-Arduino Version 2!<br>
 The <b>ESP32</b> family has a series of low-cost and low-power System on a Chip (SoC) microcontrollers developed by Espressif that include Wi-Fi and Bluetooth wireless capabilities and dual-core processor? See for an introduction: [Random Nerds Tutorials](https://randomnerdtutorials.com/getting-started-with-esp32/). Particularly the multiprocessing capabilities of the dual-core processor make the ESP32 a very attractive option in this project!
-To benefit of the same formfactor (fit with the Mechanical Simcline 2.0 component box!), I used the [Adafruit Feather ESP32 V2](https://learn.adafruit.com/adafruit-esp32-feather-v2) board. Notice that other members of the ESP32 will do the job perfectly. For example I have worked successfully with the Lilygo esp32s3_T-Display, however that MCU needs another size component box!
-Fortunately [H2Zero](https://github.com/h2zero/NimBLE-Arduino) has created the <b>NimBLE library</b> structured for compilation with Arduino and for use with ESP32, full name: <b>NimBLE-Arduino</b>! Simcline-V2 works with the latest version, <b>NimBLE-Arduino Version 2</b>!
+To benefit of the same formfactor (fit with the Mechanical Simcline 2.0 component box!), I used the [Adafruit Feather ESP32 V2](https://learn.adafruit.com/adafruit-esp32-feather-v2) board. Notice that other members of the ESP32 will do the job perfectly. For example I have worked successfully with the <b>Lilygo esp32s3 T-Display</b>, however that MCU needs another size component box!
+Fortunately [H2Zero](https://github.com/h2zero/NimBLE-Arduino) has created the <b>NimBLE</b> library structured for compilation with Arduino and for use with ESP32, full name: <b>NimBLE-Arduino</b>! Simcline-V2 works with the latest version, <b>NimBLE-Arduino Version 2</b>!
 
 # How to start?<br>
-+ Install the [Arduino IDE](https://www.arduino.cc/en/Main/Software) and all the libraries on a PC/Mac.
++ Install the [Arduino IDE 2](https://www.arduino.cc/en/Main/Software) and all the libraries on a PC/Mac.
 + Install your ESP32 board in the Arduino environment
 + download the ESP32 NimBLE-Arduino library (<b>Latest Version 2.#.#</b>), see [Arduino Installation NimBLE](https://github.com/h2zero/NimBLE-Arduino#arduino-installation)
 + Download all the code from [Github](https://github.com/Berg0162/Simcline-V2/tree/master/Simcline-V2) and install the Simcline-V2 library in the Arduino IDE. <br>
