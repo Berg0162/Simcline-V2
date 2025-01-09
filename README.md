@@ -21,10 +21,9 @@ From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetoot
 |Minoura |ANT+ FE-C and Bluetooth Smart FTMS on all 2020 smart trainers.|
 |Saris |ANT+ FE-C and Bluetooth Smart FTMS on all 2020 smart trainers.|
 |STAC |ANT+ FE-C and Bluetooth Smart FTMS on all 2020 smart trainers.|
-|Tacx |ANT+ FE-C on all ‘Smart’ branded trainers (except Satori). FTMS on all non-NEO models.|
+|Tacx |ANT+ FE-C on all ‘Smart’ branded trainers (except Satori). Bluetooth Smart FTMS on all post-2021 direct drive models.|
 |Wahoo |ANT+ FE-C on all smart trainers, proprietary Wahoo Bluetooth Smart Control and all post-2020 models have Bluetooth Smart FTMS.|
 |Zwift|ANT+ FE-C and Bluetooth Smart FTMS on Zwift Hub smart trainer.|
-| | cf: [DCRainmaker](https://www.dcrainmaker.com/2020/11/smart-cycle-trainer-recommendations-guide-winter.html)|
 
 # Sofar the good news!<br>
 + When a training app (like Zwift) has connected to your trainer using the FTMS protocol: is it possible to connect multiple devices via FTMS? As FTMS enables control of a physical device there can only be one <b>“controller”</b> to avoid safety issues. This means that you will not be able to connect multiple devices directly to the indoor bike trainer or treadmill using FTMS. If the trainer does not appear in an app’s (e.g. Zwift's) device list (on the Zwift pairing screen) it generally means the trainer is (still) connected to another controlling app or device. It is virtually impossible to connect the trainer to Zwift using FTMS, have a nice indoor ride and at the same time to connect for example the Simcline to the trainer or Zwift for simulating road incline..... A working solution is a Man-In-The-Middle (MITM)!
