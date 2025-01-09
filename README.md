@@ -25,9 +25,9 @@ From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetoot
 |Wahoo |ANT+ FE-C on all smart trainers, proprietary Wahoo Bluetooth Smart Control and all post-2020 models have Bluetooth Smart FTMS.|
 |Zwift|ANT+ FE-C and Bluetooth Smart FTMS on Zwift Hub smart trainer.|
 
-# Sofar the good news!<br>
-+ When a training app (like Zwift) has connected to your trainer using the FTMS protocol: is it possible to connect multiple devices via FTMS? As FTMS enables control of a physical device there can only be one <b>“controller”</b> to avoid safety issues. This means that you will not be able to connect multiple devices directly to the indoor bike trainer or treadmill using FTMS. If the trainer does not appear in an app’s (e.g. Zwift's) device list (on the Zwift pairing screen) it generally means the trainer is (still) connected to another controlling app or device. It is virtually impossible to connect the trainer to Zwift using FTMS, have a nice indoor ride and at the same time to connect for example the Simcline to the trainer or Zwift for simulating road incline..... A working solution is a Man-In-The-Middle (MITM)!
-+ Notice that a fully working Simcline (acting as a MITM), supporting FTMS enabled Trainers, is up for grabs. Several trainers of very different brands have been tested successfuly by now, and you are invited to test the available code with your FTMS enabled Trainer.
+# Who is in control?<br>
++ When a training app (like Zwift) has connected to your trainer using the FTMS protocol: is it possible to connect multiple devices via FTMS? As FTMS enables control of a physical device there can only be one <b>“controller”</b> to avoid safety issues. This means that you will not be able to connect multiple devices directly to the indoor bike trainer or treadmill using FTMS. If the trainer does not appear in an app’s (e.g. Zwift's) device list (on the Zwift pairing screen) it generally means the trainer is (still) connected to another controlling app or device. It is virtually impossible to connect the trainer to Zwift using FTMS, have a nice indoor ride and at the same time to connect for example the Simcline to the trainer or Zwift for simulating road incline..... A working solution is a Bluetooth Man-In-The-Middle (MITM)!
++ Notice that a fully working Simcline (acting as a MITM), is up for grabs. Many trainers of very different brands have been tested successfuly by now, and you are invited to test the Simcline library with your Bluetooth Smart FTMS Trainer.
 # What about ANT+ (FE-C) and FTMS at the same time<br>
 + When a training app (like Zwift) has connected to your trainer using the ANT+ protocol: is it possible to connect other devices via FTMS?<br>
 Since this ANT+ connection enables control of the physical device (trainer) there can NOT be connected another <b>“controller”</b> at the same time over FTMS to avoid safety issues. Only one (1) controlling app is allowed to connect and drive the Trainer at any time. You know, 2 captains on one ship is a recipe for disaster!
@@ -53,7 +53,7 @@ In week 7 of 2023 the ESP32 code reached a stable level and became publicly avai
 # How to make it work?<br>
 The requirements in this phase are simple: 
 + running Zwift, Rouvy or myWhoosh app or alike, 
-+ working Feather nRF52840/ESP32-V2 development board and 
++ working Feather ESP32-V2 development board and 
 + a FTMS enabled Trainer.<br>
 
 # Testing is Knowing!<br>
