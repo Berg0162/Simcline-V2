@@ -46,7 +46,7 @@ To benefit of the same formfactor (fit with the Simcline 2.0 component box!), I 
 + Install the [Arduino IDE](https://www.arduino.cc/en/Main/Software) and all the libraries on a PC/Mac.
 + Install your ESP32 board in the Arduino environment
 + download the ESP32 NimBLE-Arduino library (<b>Latest Version 2.#.#</b>), see [Arduino Installation NimBLE](https://github.com/h2zero/NimBLE-Arduino#arduino-installation)
-+ Download all the code from [Github](https://github.com/Berg0162/simcline/tree/master/Simcline-V2) and install the Simcline-V2 library in the Arduino IDE. <br>
++ Download all the code from [Github](https://github.com/Berg0162/Simcline-V2/tree/master/Simcline-V2) and install the Simcline-V2 library in the Arduino IDE. <br>
 
 # How to make it work?<br>
 The requirements in this phase are simple: 
