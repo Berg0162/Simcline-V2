@@ -71,81 +71,66 @@ All Bluetooth Smart FTMS indoor trainers expose your efforts on the bike in 2 ad
 + The Server-side (Feather ESP32) advertises and enables connection with training/cycling/game apps like Zwift and collects relevant resistance data, it simulates as if an active <b>FTMS</b> enabled trainer is connected to Zwift or alike! Notice that the Server-side also exposes active <b>CPS</b> and <b>CSC</b> services. The <b>Simcline Server</b> is doing just at the right side of the "bridge"!
 + The <b>Simcline MITM</b> code is connecting both sides at the same time: a full-blown working bridge<br clear="left">
 
-<i>The test programs (FTMS Client, FTMS Server and FTMS-Zwift-Bridge) are only using Serial Monitor (screen output) to show what is happening!</i><br>
+<i>The test program <b>FTMS-MITM</b> is only using Serial Monitor (screen output) to show what is happening!</i><br>
 ```
 Please write down the MAC/Device Addresses of a) your Bluetooth Smart FTMS trainer and b) your Desktop/Laptop with Zwift. 
 These are presented in the Serial Monitor log file when running the MITM test code.
 ```
-<b>Use the code for reconnaissance and testing!</b><br>
+<b>Use <b>FTMS-MITM</b> for reconnaissance and testing!</b><br>
 Please follow <b>ALWAYS</b> the different usage instructions at the first part of the respective program codes!
-+ Start your reconnaissance with running <b>FTMS_Client</b> and experience how your development board is controlling the resistance of your Bluetooth Smart FTMS trainer. Notice that this piece of code is highly dependent on the type and brand of Bluetooth Smart FTMS Trainer and therefore most critical!
-+ Be aware of undesirebly <b>autoconnect</b> with your standard equipment setup using ANT+ or FTMS. The FTMS Client (or FTMS-Zwift-Bridge) will reach an error state that does not help you getting representative results during the reconnaisance! Once again: 2 captains on one ship is a recipe for disaster!
-The <b>FTMS_MITM</b> code needs the "hardware" addresses to unmistakingly establish a BLE connection with the targeted devices. I know it can be implemented differently but this is to avoid unwanted BLE connection(s) with an additional power meter, another fitness device or a second computer/laptop, etcetera.<br>
++ Be aware of undesirebly <b>autoconnect</b> with your standard equipment setup using ANT+ or FTMS. The <b>FTMS-MITM</b> code will reach an error state that does not help you getting representative results during the reconnaisance! Once again: 2 captains on one ship is a recipe for disaster!
+The <b>FTMS_MITM</b> detects the Mac addresses and stores these in ESP32 NVS (Non-Volatile-Storage) for later use to unmistakingly establish a BLE connection with the targeted devices.<br>
 ```
 /* -----------------------------------------------------------------------------------------------------
  *             This code should work with all indoor cycling trainers that fully support,
  *        Fitness Machine Service, Cycling Power Service and Cycling Speed & Cadence Service
  * ------------------------------------------------------------------------------------------------------
+ * NOTICE: that you need to have set first all config file settings in accordance with your specific setup!
+ *         see: ../Documents/Arduino/libraries/FTMS-Simcline/src/config
  *
- *  The code links a BLE Server (a peripheral to Zwift) and a BLE Client (a central to the Trainer) with a bridge 
- *  in between, the Feather nRF52/ESP32 being man-in-the-middle (MITM). 
- *  The bridge can control, filter and alter the bi-directional interchanged data!
- *  The client-side (central) scans and connects with the trainer relevant services: FTMS, CPS and CSC. It collects 
+ *  The code links a BLE Server (a Peripheral to Zwift) and a BLE Client (a Central to the Trainer) with a bridge 
+ *  in between, the ESP32 being man-in-the-middle (MITM). The ESP32 is an integral part of the Simcline design,
+ *  that interprets the exchanged road grade and moves the front wheel up and down with the change in inclination.
+ *  The ESP32-bridge can control, filter and alter the bi-directional interchanged data!
+ *  The client-side (central) scans and connects with the Trainer relevant services: CPS and FTMS. It collects 
  *  all cyling data of the services and passes these on to the server-side....  
- *  The client-side supplies the indoor trainer with target and resistance control data.
+ *  The client-side supplies the Indoor Trainer with target and resistance control data.
  *  The server-side (peripheral) advertises and enables connection with cycling apps like Zwift and collects the app's  
  *  control commands, target and resistance data. It passes these on to the client-side....  
  *  The server-side supplies the app with the generated cycling data in return. 
  *  
- *  The client plus server (MITM) is transparent to the indoor trainer as well as to the training app Zwift or alike!
+ *  The client plus server (MITM) are transparent to the Indoor Trainer as well as to the training app Zwift or alike!
  *  
- *  Requirements: Zwift app or alike, Feather nRF52/ESP32 board and a FTMS/CPS/CSC supporting indoor trainer
- *  1) Upload and Run this code on the Feather nRF52/ESP32
- *  2) Start the Serial Monitor to catch debugging info
- *  3) Start/Power On the indoor trainer  
- *  4) Feather nRF52/ESP32 and trainer (with <name>) will pair as reported in the output
+ *  Requirements: Zwift app or alike, ESP32 board (NO display required) and a FTMS supporting Indoor Trainer
+ *  0) Upload and Run this code on your ESP32 board
+ *  1) Start the Serial Monitor to catch debugging info
+ *  2) The code will do basic testing of electronic parts and settings
+ *  3) Start/Power On the Indoor Trainer  
+ *  4) Your ESP32 and Trainer will pair as reported in the output
  *  5) Start Zwift on your computer or tablet and wait....
- *  6) Search on the Zwift pairing screens for the Feather nRF52/ESP32 a.k.a. <SIM52>, resp. <SIM32>
- *  7) Pair: Power, Cadence and Controllable one after another with <SIM52> resp. <SIM32>
+ *  6) Search on the Zwift pairing screens for your ESP32 a.k.a. <SIM32>
+ *  7) Pair: Power Source, Resistance and Cadence one after another with <SIM32>
  *  8) Optionally one can pair as well devices for heartrate and/or steering (Sterzo)
  *  9) Start the default Zwift ride or any ride you wish
  * 10) Make Serial Monitor output window visible on top of the Zwift window 
  * 11) Hop on the bike: do the work and feel resistance change with the road
  * 12) Inspect the info presented by Serial Monitor.....
  *  
- *  This device is identified with the name <SIM52>, resp. <SIM32>. You will see this only when connecting to Zwift on the 
- *  pairing screens! Notice: Zwift extends device names with additional numbers for identification!
+ *   This device is identified with the name <SIM32>. You will see this only when connecting to Zwift on the 
+ *   pairing screens! Notice: Zwift extends device names with additional numbers for identification!
  *  
- */
+ *
+Major redesign of the SIMCLINE code -- version 2.0
+*/ 
+
 ```
 
 Look in the Bridge code for the following snippet and fill in the required addresses:
 ```C++
-.
-// -----------------------------------------------------------------
-// Your hardware MAC/DEVICE ADDRESSES
-// Laptop/Desktop Device Address that runs Zwift, printed as: [00:01:02:03:04:05]
-// Little Endian: in reversed order !!!!
-#define LAPTOPADDRESS {0x05,0x04,0x03,0x02,0x01,0x00}
-// Bluetooth Smart FTMS Trainer Device Address, printed as: [00:01:02:03:04:05]
-// Little Endian: in reversed order !!!!
-#define TRAINERADDRESS {0x05,0x04,0x03,0x02,0x01,0x00}
-// -----------------------------------------------------------------
-.
+
 ```
 The two precise device addresses are critical to assure a reliable test run! You have to insert the values in the program code before uploading the code to the Feather nRF52/ESP32!<br><br>
 
-# Become a testing partner<br>
-
-|Trainer brand/type  |Testing parter|FTMS_Client|FTMS_Server|FTMS_Bridge|Simcline_FTMS|Dev.Board|
-|--------------------|--------------|-----------|-----------|-----------|-------------|---------|
-|Elite Direto XR |[cherryphilip74](https://github.com/cherryphilip74)|Working|Working|Working|Working|nRF52840|
-|Elite Suito |[Macrcd](https://github.com/macrocd)|Working|Working|Working|Working|nRF52840|
-|Zwift Hub |[le-joebar](https://github.com/le-joebar)|Working|Working|Working|Working|nRF52840|
-|Zwift Hub |[le-joebar](https://github.com/le-joebar)|Working|Working|Working|Working|ESP32|
-
-When you are ready for testing a trainer brand/type that is <b>NOT</b> yet shown in the above list: Please supply me with the Serial Monitor output (Copy-Paste) when pairing and/or connection processes are not successful or when error messages appear... 
-Please supply me with detailed info about the trainer and your setup, preferably with screen shots of the [nRF Connect by Nordic](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp&hl=en&gl=US&pli=1) showing which Services and Characteristics your trainer is exposing. If you have collected all trainer and setup detailing information: Open [Issues](https://github.com/Berg0162/simcline/issues), click the green button: <b>New issue</b> and paste the relevant info in your <b>Issues</b> post to detail what went wrong! The community will be very gratefull with your help and feedback!<br>
 # Zwift Hub users<br>
 There is an excellent review available [DCRainmaker Zwift Hub review](https://www.dcrainmaker.com/2022/10/zwift-hub-smart-trainer-in-depth-review-the-best-bang-for-your-buck.html), that describes o.a. a special goodie that comes with the Zwift Hub:
 >**– Protocol Compatibility:** ANT+ FE-C, ANT+ Power, Bluetooth Smart Trainer Control, Bluetooth Smart Power (everything you need)<br>
@@ -176,109 +161,19 @@ The following code snippets show how this is achieved for controlling the actuat
 
 At the start the major players are defined
 ```C++
-.
-// ----------------------xControlUpDownMovement task definitions ------------------
-SemaphoreHandle_t xSemaphore = NULL;
-TaskHandle_t ControlTaskHandle = NULL;
-// Set Arduino IDE Tools Menu --> Events Run On: "Core 1"
-// Set Arduino IDE Tools Menu --> Arduino Runs On: "Core 1"
-// Run xControlUpDownMovement on "Core 0"
-const BaseType_t xControlCoreID = 0;
-void xControlUpDownMovement(void* arg); 
-// --------------------------------------------------------------------------------
-.
+
 ```
 In the setup() routine the variables are instantiated (after checking the mechanics of the motor function) and the <b>xControlUpDownMovement</b> task is pinned to processor <b>core 0</b>, with a priority of 10. Most of the Simcline program and Events are running on <b>core 1</b>.
 ```C++
-.
-  } else {
-    ShowOnOledLarge("Testing", "Functions", "Done!", 500);
-    // Is working properly --> Start Motor Control Task
-    xSemaphore = xSemaphoreCreateBinary();
-    xTaskCreatePinnedToCore(xControlUpDownMovement, "xControlUpDownMovement", 4096, NULL, 10, &ControlTaskHandle, xControlCoreID);
-    xSemaphoreGive(xSemaphore);
-    DEBUG_PRINTLN("Motor Control Task Created and Active!");        
-    IsBasicMotorFunctions = true;
-    DEBUG_PRINTLN("Simcline Basic Motor Funtions are working!!");
-    // Put Simcline in neutral: flat road position
-#ifdef EMA_ALPHA
-    // Init EMA filter at first call with flat road position as reference
-    TargetPosition = EMA_TargetPositionFilter(TargetPosition); 
-#endif
-    SetNewActuatorPosition();
-  }
-.
+
 ```
 Whenever new values for the road grade are received these are translated to a physical actuator position (level above ground) and the <b>TargetPosition</b> is set during Semaphore protection. When the new position has been set, the protection is cancelled, and the motor control task can access the new setting.
 ```C++
-.
-void SetNewActuatorPosition(void) {
-  // Handle mechanical movement i.e. wheel position in accordance with Road Inclination
-  // Map RawgradeValue ranging from 0 to 40.000 on the
-  // TargetPosition (between MINPOSITION and MAXPOSITION) of the Lifter
-  // Notice 22000 is equivalent to +20% incline and 19000 to -10% incline
-  RawgradeValue = constrain(RawgradeValue, RGVMIN, RGVMAX); // Keep values within the safe range
-  TargetPosition = map(RawgradeValue, RGVMIN, RGVMAX, MAXPOSITION, MINPOSITION);
-  // EMA filter for smoothing quickly fluctuating Target Position values see: Zwift Titan Grove
-#ifdef EMA_ALPHA
-  TargetPosition = EMA_TargetPositionFilter(TargetPosition);
-#endif
-  if(IsBasicMotorFunctions) {  
-    xSemaphoreTake(xSemaphore, portMAX_DELAY); 
-    lift.SetTargetPosition(TargetPosition);
-    xSemaphoreGive(xSemaphore);
-#ifdef MOVEMENTDEBUG
-    DEBUG_PRINTF("RawgradeValue: %05d Grade percent: %03.1f%% ", RawgradeValue, gradePercentValue);
-    DEBUG_PRINTF("TargetPosition: %03d\n", TargetPosition, DEC);
-#endif
-  }  
-}
-.
+
 ```
 The motor control task regularly checks how far off the actuator position is from its target position and if it should be braked yet. However, it happens all the time that the road grade changed from upward to flat or to downward. The actuator should follow these changes and therefore the motor is switched many times to brake or to reverse its movement. When the motor control task is accessing the relevant variables the semaphore is protecting these against updates!
 ```C++
-void xControlUpDownMovement(void *arg) {
-  // Check "continuously" the Actuator Position and move Motor Up/Down until target position is reached
-  int OnOffsetAction = 0;
-  const TickType_t xDelay = 110 / portTICK_PERIOD_MS; // Block for 110ms < 10Hz sample rate of VL6180X
-  while(1) {
-    if(xSemaphoreTake(xSemaphore, portMAX_DELAY)) {
-        // BLE channels can interrupt and consequently target position changes on-the-fly !!
-        // We do not want changes in TargetPosition during one of the following actions!!!
-        OnOffsetAction = lift.GetOffsetPosition(); // calculate offset to target and determine action
-        switch (OnOffsetAction)
-            {
-              case 0 :
-                lift.brakeActuator();
-                #ifdef MOVEMENTDEBUG
-                DEBUG_PRINTLN(F(" -> Brake"));
-                #endif
-                break;
-              case 1 :
-                lift.moveActuatorUp();
-                #ifdef MOVEMENTDEBUG
-                DEBUG_PRINTLN(F(" -> Upward"));
-                #endif
-                break;
-              case 2 :
-                lift.moveActuatorDown();
-                #ifdef MOVEMENTDEBUG
-                DEBUG_PRINTLN(F(" -> Downward"));
-                #endif
-                break;
-              case 3 :
-                // Timeout --> OffsetPosition is undetermined --> do nothing and brake
-                lift.brakeActuator();
-                #ifdef MOVEMENTDEBUG
-                DEBUG_PRINTLN(F(" -> Timeout"));
-                #endif
-                break;
-            } // switch 
-        xSemaphoreGive(xSemaphore);    
-    }      
-    vTaskDelay(xDelay);
-  } // while
-} // end
+
 ```
 # Question: Why is my Trainer (Bluetooth Smart FTMS) variably successful in connecting with the Simcline 2.0 (with ESP32 board) and Zwift?
 + <b>Answer</b>: In most cases this behavior can be attributed to <b>NOT</b> following the critical sequence for starting and connecting of Trainer, Simcline and Zwift.<br>
