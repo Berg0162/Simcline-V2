@@ -1,5 +1,6 @@
 # <img src="https://github.com/Berg0162/simcline/blob/master/images/SC_logo.png" width="64" height="64" alt="SIMCLINE Icon"> &nbsp; SIMCLINE for Bluetooth Smart FTMS trainers <br> based on the Adafruit Feather ESP32 V2 board with OLED display.
 
+# Simcline-V2
 
 # Electronic Components and Circuitry used in version 2.0<br>
 <img src="../images/FeatherESP32V2.jpg"  alt="Circuitry version 2.0">
