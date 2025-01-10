@@ -1,8 +1,6 @@
 # <img src="https://github.com/Berg0162/simcline/blob/master/images/SC_logo.png" width="64" height="64" alt="SIMCLINE Icon"> &nbsp; SIMCLINE for Bluetooth Smart FTMS trainers
+# based on the Adafruit Feather ESP32 V2 board with OLED display.
 
-# SIMCLINE 2.0<br>
-See: <img src="https://www.instructables.com/assets/img/instructables-logo-v2.png" width="32" height="48" align="left" alt="Instructables"> [SIMCLINE 2.0 Instructables](https://www.instructables.com/SIMCLINE-20-Easy-Simulation-of-Road-Incline/)
-<br clear="left">
 
 # Electronic Components and Circuitry used in version 2.0<br>
 <img src="../images/FeatherESP32V2.jpg"  alt="Circuitry version 2.0">
