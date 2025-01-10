@@ -5,8 +5,8 @@ See: <img src="https://www.instructables.com/assets/img/instructables-logo-v2.pn
 <br clear="left">
 
 # Electronic Components and Circuitry used in version 2.0<br>
-<img src="https://github.com/Berg0162/simcline/blob/master/images/Simcline_Light_Components_Wiring.png"  alt="Circuitry version 2.0">
-I have chosen for the following 5 compact active components that are slightly different from the earlier SIMCLINE project and that can finally all be mounted inside the components box:<br>
+<img src="./images/FeatherESP32V2.jpg"  alt="Circuitry version 2.0">
+In this project is choosen for the following 5 compact active components that are slightly different from the earlier SIMCLINE project and that can finally all be mounted inside the components box:<br>
 
 <b>Adafruit DRV8871 DC Motor Driver</b><br>
 A small one channel motor driver for 12 V (6.5 - 48 V) and 3,6 Amperes max. This board enables the processor to set the Actuator motor in up or down movement. It transforms logical digital levels (Go Up, Go Down and Stop) from the Feather ESP32 to switching of 12 Volt at 3,6 Amperes max., the levels at which the Actuator works. Notice that default the board comes limited to 2,6 Amperes and you need to add a resistor to set for max current level. Install Vertical Through Hole Male PCB Header Pins on the board; this will allow correct mounting of the board inside the components box!<br>
