@@ -13,6 +13,7 @@ If you select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for 
 <img src="https://github.com/Berg0162/s3-switch/blob/main/images/LilyGO_ESP32S3_Tools_Settings.png" width="350" height="400" alt="S3-Switch">
 </p>
 <br clear="left">
+
 # Feather ESP32 V2 pinout
 
 <img src="../images/adafruit_products_Adafruit_ESP32_Feather_V2_Pinout.png"  alt="Feather ESP32 V2 pinout">
