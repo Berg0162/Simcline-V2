@@ -2,8 +2,12 @@
 
 # Simcline-V2
 This board and display can be selected ... see Simcline-V2/src/config
+# Feather ESP32 V2 pinout
+
+<img src="../images/adafruit_products_Adafruit_ESP32_Feather_V2_Pinout.png"  alt="Feather ESP32 V2 pinout">
 
 # Electronic Components and Circuitry used in version 2.0<br>
+
 <img src="../images/FeatherESP32V2.jpg"  alt="Circuitry version 2.0">
 In this project is choosen for the following 5 compact active components that are slightly different from the earlier SIMCLINE project and that can finally all be mounted inside the components box:<br>
 
