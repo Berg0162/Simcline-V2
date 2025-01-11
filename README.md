@@ -18,9 +18,9 @@ The present Github repository
 
 # Simcline-V2 Library is optimised for ESP32 and NimBLE-Arduino 2!<br>
 The <b>ESP32</b> family has a series of low-cost and low-power System on a Chip (SoC) microcontrollers developed by Espressif that include Wi-Fi and Bluetooth wireless capabilities and dual-core processor. See for an introduction: [Random Nerds Tutorials](https://randomnerdtutorials.com/getting-started-with-esp32/). Particularly the multiprocessing capabilities of the dual-core processor make the ESP32 a very attractive choice for the project!
-To benefit of the same formfactor (fit with the Mechanical SIMCLINE 2.0 component box!), I used the [Adafruit Feather ESP32 V2](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Adafruit%20Feather%20ESP32-V2.md) board. Notice that other members of the ESP32 (particularly ESP32S3) will do the job perfectly, when the boards come with extra flash and psram memory. For example SIMCLINE works successfully with the [Lilygo esp32s3 T-Display](https://github.com/Berg0162/Simcline-V2/blob/main/docs/LILYGO%20ESP32S3%20T-Display.md), however that board needs another size component box!
-Simcline-V2 library builds on the knowledge and code fragments of my earlier Simcline projects. The original Simcline code has been redesigned completely and was transformed to a C++ Object model that handles the many BLE services and hides most of the Simcline's operation. As a result the Arduino ino-files that the user will load and compile are very concise.
-The Simcline project heavily leans on the <b>NimBLE-Arduino</b> library for Bluetooth handling, see: [H2Zero](https://github.com/h2zero/NimBLE-Arduino). NimBLE-Arduino is structured for compilation with Arduino and for use with ESP32! Simcline-V2 works only (!) with the latest version: <b>NimBLE-Arduino Version 2</b>!<br>
+To benefit of the same formfactor (fit with the Mechanical SIMCLINE 2.0 component box!), I used the [Adafruit Feather ESP32 V2](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Adafruit%20Feather%20ESP32-V2.md) board. Notice that other members of the ESP32 (particularly <b>ESP32S3</b>) will do the job perfectly, when the development boards come with extra flash and psram memory! For example SIMCLINE works successfully with the [Lilygo esp32s3 T-Display](https://github.com/Berg0162/Simcline-V2/blob/main/docs/LILYGO%20ESP32S3%20T-Display.md), however that Lilygo-board needs another size component box!
+Simcline-V2 library builds on the knowledge and code of my earlier Simcline projects. The original Simcline code has been redesigned completely and was transformed to a C++ Object model that handles the many BLE services and hides most of the Simcline's operation. As a result the Arduino ino-files that the user will see/load and compile are very concise.
+The Simcline project heavily leans on the <b>NimBLE-Arduino</b> library for Bluetooth handling, see: [H2Zero](https://github.com/h2zero/NimBLE-Arduino). <b>NimBLE-Arduino</b> is structured for compilation with Arduino and for use with ESP32! Simcline-V2 works only (!) with the latest version: <b>NimBLE-Arduino Version 2</b>!<br>
 
 # FiTness Machine Service a Bluetooth Service Specification
 From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetooth Service specification. This service exposes training-related data in the sports and fitness environment, which allows a Server (e.g., a fitness machine) to send training-related data to a Client. In Februari 2017 the service specification reached a stable version: [Fitness Machine Service 1.0](https://www.bluetooth.com/specifications/specs/fitness-machine-service-1-0/) when it was adopted by the Bluetooth SIG Board of Directors. Have a look at the document to appreciate the effort of all the contributors and the companies they represented!<br>
@@ -47,17 +47,17 @@ We have applied the very principle: the Simcline is strategicly positioned in be
 + Install the [Arduino IDE 2](https://www.arduino.cc/en/Main/Software) and all the libraries on a PC/Mac.
 + Install your ESP32 board in the Arduino environment
 + download the ESP32 NimBLE-Arduino library (<b>Latest Version 2.#.#</b>), see [Arduino Installation NimBLE](https://github.com/h2zero/NimBLE-Arduino#arduino-installation)
-+ Download all the code from [Github](https://github.com/Berg0162/Simcline-V2/tree/master/Simcline-V2) and install the Simcline-V2 library in the Arduino IDE. <br>
++ Download all the library from [Github](https://github.com/Berg0162/Simcline-V2/tree/master/Simcline-V2) and install the Simcline-V2 library in the Arduino IDE. <br>
 
 # How to make it work?<br>
 The requirements in this phase are simple: 
 + running Zwift, Rouvy or myWhoosh app or alike, 
-+ working Feather ESP32-V2 (or other ESP32S2/ESP32S3) development board and 
-+ a Bluetooth FTMS Smart Trainer.<br>
++ working Feather ESP32-V2 (or other ESP32S3) development board and 
++ a Bluetooth Smart FTMS Trainer.<br>
 
 # Testing is Knowing!<br>
 I can understand and respect that you have some reserve: Is this really working in my situation? Better test if it is working, before buying all components and start building.
-In the Simcline-V2 Library (see <b>examples</b>) you will find the appropriate code: <b>FTMS_MITM</b>. It is coded with the only intention to check if the MITM solution is delivering in your specific situation.<br>
+In the Simcline-V2 Library (see <b>/arduino/Simcline-V2/examples</b>) you will find the appropriate code: <b>FTMS_MITM</b>. It is coded with the only intention to check if the MITM solution is delivering in your specific situation.<br>
 
 <b>What it does in short:</b><br>
 <img src="./images/Feather_FTMS.jpg" align="middle" width="1000" height="500" alt="Simcline in the Middle"><br>
