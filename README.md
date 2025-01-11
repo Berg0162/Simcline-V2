@@ -142,6 +142,6 @@ Strictly follow <b>ALWAYS</b> the different usage instructions at the first part
  *  
 */ 
 ```
-Be aware of undesirebly <b>autoconnect</b> of Zwift with your trainer using ANT+ or BLE FTMS before <b>FTMS_MITM</b> can establish a connection: always start Zwift <b>AFTER</b> <b>FTMS-MITM</b> and <b>trainer</b> have connected successfully! The <b>FTMS-MITM</b> code will than fail to connect, that does not help you getting representative results during the reconnaisance! Only one client can control at the same time: 2 captains on one ship is a recipe for disaster! See for more info [Frequently Asked Questions](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md)
+Be aware of undesirebly <b>autoconnect</b> of Zwift with your trainer using ANT+ or BLE FTMS before <b>FTMS_MITM</b> can establish a connection: always start Zwift <b>AFTER</b> FTMS-MITM and trainer have connected successfully! The <b>FTMS-MITM</b> code will than fail to connect, that does not help you getting representative results during the reconnaisance! Only one client can control at the same time: 2 captains on one ship is a recipe for disaster! See for more info [Frequently Asked Questions](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md)
 
 
