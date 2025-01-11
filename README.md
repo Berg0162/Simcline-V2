@@ -5,15 +5,33 @@ The SIMCLINE physically adjusts the bike position to mimic hilly roads, climbing
 Without user intervention the SIMCLINE will replicate inclines and declines depicted in (online & offline) training programs (like <b>Zwift, Rouvy, VeloReality, myWhoosh</b> and many others) that adjust accordingly the resistance of the indoor trainer.<br>
 The SIMCLINE auto connects at power up with a Bluetooth Smart FTMS trainer and let's relive the ascents and descents from favorite rides or routes while training indoors.<br>
 The physical reach is: 20% maximum incline and -10% maximum decline. However, the reach that the rider is comfortable with can be adjusted!<br>
-The SIMCLINE pairs directly to the Bluetooth Smart FTMS trainer and with your PC/Laptop/Tablet with (Zwift) training App for a connection that notifies the SIMCLINE to simulate autonomous the (change in) physical grade of the road during an indoor ride.<br>
-During operation an OLED display shows the road grade in digits and in graphics.<br>
-The SIMCLINE Companion App (for Android smartphones) can be paired, only when the training App is disconnected, for adjusting operational settings, like Ascent Grade Limit (between 0-20%), Descent Grade Limit (between 0-10%), Road Grade Change Factor (between 0-100%) and manual Up and Down control. <br clear="left">
+The SIMCLINE pairs directly to the Bluetooth Smart FTMS trainer and with your PC/Laptop/Tablet with (Zwift) training App for a connection that notifies the SIMCLINE to simulate autonomous the (change in) physical grade of the road during an indoor ride. During operation an OLED display shows the road grade in digits and in graphics. The SIMCLINE Companion App (for Android smartphones) can be paired, only when the training App is disconnected, for adjusting operational settings, like Ascent Grade Limit (between 0-20%), Descent Grade Limit (between 0-10%), Road Grade Change Factor (between 0-100%) and manual Up and Down control.<br clear="left"> 
+<br>
+Notice that the description on how to build SIMCLINE consists of two parts:
 
-# Simcline-V2 Library is optimised for use with ESP32 and NimBLE-Arduino Version 2!<br>
-The <b>ESP32</b> family has a series of low-cost and low-power System on a Chip (SoC) microcontrollers developed by Espressif that include Wi-Fi and Bluetooth wireless capabilities and dual-core processor. See for an introduction: [Random Nerds Tutorials](https://randomnerdtutorials.com/getting-started-with-esp32/). Particularly the multiprocessing capabilities of the dual-core processor make the ESP32 a very attractive option in this project!
-To benefit of the same formfactor (fit with the Mechanical Simcline 2.0 component box!), I used the [Adafruit Feather ESP32 V2](https://learn.adafruit.com/adafruit-esp32-feather-v2) board. Notice that other members of the ESP32 (particularly ESP32S3) will do the job perfectly, when the boards come with extra flash and psram memory. For example I have worked successfully with the <b>Lilygo esp32s3 T-Display</b> [see here](https://github.com/Berg0162/simcline/tree/master/FTMS%20Enabled/FTMS_Simcline/EXPERIMENTAL_esp32s3_T-Display), however that MCU needs another size component box!
-Fortunately [H2Zero](https://github.com/h2zero/NimBLE-Arduino) has created the <b>NimBLE</b> library structured for compilation with Arduino and for use with ESP32, full name: <b>NimBLE-Arduino</b>! Simcline-V2 works only (!) with the latest version, <b>NimBLE-Arduino Version 2</b>!<br>
-Simcline-V2 library builds on the knowledge and code fragments of my earlier Simcline projects. The original Simcline code has been redesigned completely and was transformed to a C++ Object model that handles the many BLE services and hides most of the Simcline's operation. As a result the Arduino ino-files that the user will load and compile are very concise.  
++ <b>Mechanical SIMCLINE 2.0</b><br>
+<img src="https://www.instructables.com/assets/img/instructables-logo-v2.png" width="32" height="48" align="left" alt="Instructables"> &nbsp; [SIMCLINE 2.0 Instructables](https://www.instructables.com/SIMCLINE-20-Easy-Simulation-of-Road-Incline/) 
+<br clear="left">
+
++ <b>Simcline-V2 Library</b><br>
+The present Github repository
+
+# Simcline-V2 Library is optimised for ESP32 and NimBLE-Arduino 2!<br>
+The <b>ESP32</b> family has a series of low-cost and low-power System on a Chip (SoC) microcontrollers developed by Espressif that include Wi-Fi and Bluetooth wireless capabilities and dual-core processor. See for an introduction: [Random Nerds Tutorials](https://randomnerdtutorials.com/getting-started-with-esp32/). Particularly the multiprocessing capabilities of the dual-core processor make the ESP32 a very attractive choice for the project!
+To benefit of the same formfactor (fit with the Mechanical SIMCLINE 2.0 component box!), I used the [Adafruit Feather ESP32 V2](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Adafruit%20Feather%20ESP32-V2.md) board. Notice that other members of the ESP32 (particularly <b>ESP32S3</b>) will do the job perfectly, when the development boards come with extra flash and psram memory! For example SIMCLINE works successfully with the [Lilygo esp32s3 T-Display](https://github.com/Berg0162/Simcline-V2/blob/main/docs/LILYGO%20ESP32S3%20T-Display.md), however that Lilygo-board needs another size component box!
+Simcline-V2 library builds on the knowledge and code of my earlier Simcline projects. The original Simcline code has been redesigned completely and was transformed to a C++ Object model that handles the many BLE services and hides most of the Simcline's operation. The Simcline-V2 design separates completely:
++ presentation (display types/properties)
++ specific ESP32 board properties (pinout and initialization)
++ BLE operation
+
+To achieve this the design has implemented Abstract Base Classes for ESP32 board and Display. As a consequence the naive user only has to change config settings to select between existing board- and display-types. However, a proficient user (with coding skills) can implement Concrete Classes for ESP32-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code.
+Benefits of this Approach
++ Scalability: Easily add new display types by creating new concrete classes implementing the IDisplay interface.
++ Maintainability: Changes to one display type do not affect others.
++ Flexibility: Change the display type used by the Presentation class without modifying its implementation.
+
+As a result the Arduino ino-files that the user will access, compile and upload are very concise. All settings have been gathered in one config directory (../documents/arduino/libaries/Simcline-V2/src/config) for Board-, Debug-, Display-, NimBLE- and Simcline-configurations.<br>
+The Simcline project heavily leans on the <b>NimBLE-Arduino</b> library for Bluetooth handling, see: [Github:H2Zero/NimBE-Arduino](https://github.com/h2zero/NimBLE-Arduino). <b>NimBLE-Arduino</b> is structured for compilation with Arduino and for use with ESP32! Simcline-V2 works only (!) with the latest version: <b>NimBLE-Arduino Version 2</b>!<br>
 
 # FiTness Machine Service a Bluetooth Service Specification
 From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetooth Service specification. This service exposes training-related data in the sports and fitness environment, which allows a Server (e.g., a fitness machine) to send training-related data to a Client. In Februari 2017 the service specification reached a stable version: [Fitness Machine Service 1.0](https://www.bluetooth.com/specifications/specs/fitness-machine-service-1-0/) when it was adopted by the Bluetooth SIG Board of Directors. Have a look at the document to appreciate the effort of all the contributors and the companies they represented!<br>
@@ -40,17 +58,18 @@ We have applied the very principle: the Simcline is strategicly positioned in be
 + Install the [Arduino IDE 2](https://www.arduino.cc/en/Main/Software) and all the libraries on a PC/Mac.
 + Install your ESP32 board in the Arduino environment
 + download the ESP32 NimBLE-Arduino library (<b>Latest Version 2.#.#</b>), see [Arduino Installation NimBLE](https://github.com/h2zero/NimBLE-Arduino#arduino-installation)
-+ Download all the code from [Github](https://github.com/Berg0162/Simcline-V2/tree/master/Simcline-V2) and install the Simcline-V2 library in the Arduino IDE. <br>
++ Download the Simcline-V2 library from [Github](https://github.com/Berg0162/Simcline-V2/tree/master/Simcline-V2) and install the library in the Arduino IDE following the rules that apply to this. <br>
 
 # How to make it work?<br>
 The requirements in this phase are simple: 
 + running Zwift, Rouvy or myWhoosh app or alike, 
-+ working Feather ESP32-V2 (or other ESP32S2/ESP32S3) development board and 
-+ a Bluetooth FTMS Smart Trainer.<br>
++ working Feather ESP32-V2 (or other ESP32S3) development board and 
++ working Bluetooth Smart FTMS Trainer
++ running Simcline-V2 library application.<br>
 
 # Testing is Knowing!<br>
 I can understand and respect that you have some reserve: Is this really working in my situation? Better test if it is working, before buying all components and start building.
-In the Simcline-V2 Library (see <b>examples</b>) you will find the appropriate code: <b>FTMS_MITM</b>. It is coded with the only intention to check if the MITM solution is delivering in your specific situation.<br>
+In the Simcline-V2 Library <b>Examples</b> section (see <b>..documents/arduino/libraries/Simcline-V2/examples</b>) you will find the appropriate applications for testing and running SIMCLINE that come with the library. The one you should start with in this stage is <b>FTMS-MITM</b> It is developed with the only intention to allow you to check if the MITM solution is delivering in your specific situation. Within the Arduino IDE 2 select on the top bar menu: File > Examples > Simcline-V2 > FTMS-MITM<br>
 
 <b>What it does in short:</b><br>
 <img src="./images/Feather_FTMS.jpg" align="middle" width="1000" height="500" alt="Simcline in the Middle"><br>
@@ -60,7 +79,7 @@ It simply estabishes a virtual BLE bridge and allows you to ride the bike on the
 feel the resistance that comes with the route you have choosen, thanks to Zwift.
 The experience should not differ from a normal direct one-to-one connection, Zwift - Bluetooth Smart FTMS Trainer!
 ```
-All Bluetooth Smart FTMS indoor trainers expose your efforts on the bike in 2 additional BLE services: Cyling Power (CPS) and Speed & Cadence (CSC). These services are detected and applied by many training app's and are therefore an integral part of the present design of the MITM bridge. Training app's simply expect, when they connect to the Bluetooth Smart FTMS trainer, that the CPS and CSC services are available in one go! The Zwift pairing screen is a good example: it expects Power Souce (CPS), Resistance and Cadence (CSC) (with FTMS) to be connected...
+All Bluetooth Smart FTMS indoor trainers expose your efforts on the bike in 2 additional BLE services: Cyling Power (CPS) and Speed & Cadence (CSC). These services are detected and applied by many training app's and are therefore an integral part of the present design of the MITM bridge. Training app's simply expect, when they connect to the Bluetooth Smart FTMS trainer, that the CPS and CSC services are available in one go! The Zwift pairing screen is a good example: it expects Power Souce (CPS), Resistance (FTMS) and Cadence (CSC) to be connected...
 + The client-side (Feather ESP32) scans for (a trainer) and connects with <b>FTMS, CPS and optional CSC</b> and collects cyling power, speed and cadence data like Zwift would do! The <b>Simcline Client</b> is doing just that at the left side of the "bridge"!
 + The Server-side (Feather ESP32) advertises and enables connection with training/cycling/game apps like Zwift and collects relevant resistance data, it simulates as if an active <b>FTMS</b> enabled trainer is connected to Zwift or alike! Notice that the Server-side also exposes active <b>CPS</b> and <b>CSC</b> services. The <b>Simcline Server</b> is doing just at the right side of the "bridge"!
 + The <b>Simcline MITM</b> code is connecting both sides at the same time: a full-blown working bridge<br clear="left">
