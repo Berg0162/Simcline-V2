@@ -139,8 +139,8 @@ A recipe for success: follow <b>ALWAYS</b> the usage instructions at the top of 
 Be aware of undesirebly <b>autoconnect</b> of Zwift with your trainer using ANT+ or BLE FTMS before <b>FTMS-MITM</b> can establish a connection: always start Zwift <b>AFTER</b> FTMS-MITM and trainer have connected successfully! The <b>FTMS-MITM</b> code will than fail to connect, that does not help you getting representative results during the reconnaisance! Only one client can control at the same time: 2 captains on one ship is a recipe for disaster! See for more info [Frequently Asked Questions](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md)
 ```
 Please write down the MAC/Device Addresses of a) your Bluetooth Smart FTMS trainer and b) your Desktop/Laptop with Zwift.
-These are presented in the Serial Monitor log file when running the FTMS-MITM test code. This is for your own convenience since
-it helps you to identify later both devices! The FTMS-MITM detects the Mac addresses and stores these in ESP32 NVS
+These are presented in the Serial Monitor log file when running the FTMS-MITM test code. This is for your own convenience
+since it helps you to identify later both devices! The FTMS-MITM detects the Mac addresses and stores these in ESP32 NVS
 (Non-Volatile-Storage) for later use to unmistakingly establish a BLE connection with the targeted devices.
 ```
 
