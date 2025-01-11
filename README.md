@@ -53,11 +53,12 @@ We have applied the very principle: the Simcline is strategicly positioned in be
 The requirements in this phase are simple: 
 + running Zwift, Rouvy or myWhoosh app or alike, 
 + working Feather ESP32-V2 (or other ESP32S3) development board and 
-+ a Bluetooth Smart FTMS Trainer.<br>
++ a Bluetooth Smart FTMS Trainer
++ running Simcline-V2 library.<br>
 
 # Testing is Knowing!<br>
 I can understand and respect that you have some reserve: Is this really working in my situation? Better test if it is working, before buying all components and start building.
-In the Simcline-V2 Library (see <b>/arduino/Simcline-V2/examples</b>) you will find the appropriate code: <b>FTMS_MITM</b>. It is coded with the only intention to check if the MITM solution is delivering in your specific situation.<br>
+In the Simcline-V2 Library (see <b>..documents/arduino/libraries/Simcline-V2/examples</b>) you will find the appropriate code: <b>FTMS_MITM</b>. It is developed with the only intention to check if the MITM solution is delivering in your specific situation. Within the Arduino IDE 2 select on the top bar menu: File > Examples > Simcline-V2 > FTMS-MITM<br>
 
 <b>What it does in short:</b><br>
 <img src="./images/Feather_FTMS.jpg" align="middle" width="1000" height="500" alt="Simcline in the Middle"><br>
@@ -67,7 +68,7 @@ It simply estabishes a virtual BLE bridge and allows you to ride the bike on the
 feel the resistance that comes with the route you have choosen, thanks to Zwift.
 The experience should not differ from a normal direct one-to-one connection, Zwift - Bluetooth Smart FTMS Trainer!
 ```
-All Bluetooth Smart FTMS indoor trainers expose your efforts on the bike in 2 additional BLE services: Cyling Power (CPS) and Speed & Cadence (CSC). These services are detected and applied by many training app's and are therefore an integral part of the present design of the MITM bridge. Training app's simply expect, when they connect to the Bluetooth Smart FTMS trainer, that the CPS and CSC services are available in one go! The Zwift pairing screen is a good example: it expects Power Souce (CPS), Resistance and Cadence (CSC) (with FTMS) to be connected...
+All Bluetooth Smart FTMS indoor trainers expose your efforts on the bike in 2 additional BLE services: Cyling Power (CPS) and Speed & Cadence (CSC). These services are detected and applied by many training app's and are therefore an integral part of the present design of the MITM bridge. Training app's simply expect, when they connect to the Bluetooth Smart FTMS trainer, that the CPS and CSC services are available in one go! The Zwift pairing screen is a good example: it expects Power Souce (CPS), Resistance (FTMS) and Cadence (CSC) to be connected...
 + The client-side (Feather ESP32) scans for (a trainer) and connects with <b>FTMS, CPS and optional CSC</b> and collects cyling power, speed and cadence data like Zwift would do! The <b>Simcline Client</b> is doing just that at the left side of the "bridge"!
 + The Server-side (Feather ESP32) advertises and enables connection with training/cycling/game apps like Zwift and collects relevant resistance data, it simulates as if an active <b>FTMS</b> enabled trainer is connected to Zwift or alike! Notice that the Server-side also exposes active <b>CPS</b> and <b>CSC</b> services. The <b>Simcline Server</b> is doing just at the right side of the "bridge"!
 + The <b>Simcline MITM</b> code is connecting both sides at the same time: a full-blown working bridge<br clear="left">
