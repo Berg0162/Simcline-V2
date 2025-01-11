@@ -91,15 +91,15 @@ The default Simcline-V2 configuration settings for FTMS-MITM are:
 + NimBLE: <b>FTMS</b> and <b>CSC</b>
 + Debug:  <b>On</b>
   
-<b>FTMS-MITM</b> is using Serial Monitor (logging on the screen) to show you what is happening!<br>
+<b>FTMS-MITM</b> is default in Debug mode: using Serial Monitor (logging on the PC-screen) to show you what is happening!<br>
 
 ```
 Please write down the MAC/Device Addresses of a) your Bluetooth Smart FTMS trainer and b) your Desktop/Laptop with Zwift.
 These are presented in the Serial Monitor log file when running the MITM test code. This is for you own convenience since
-it helps you to identify later both devices! The <b>FTMS_MITM</b> detects the Mac addresses and stores these in ESP32 NVS
+it helps you to identify later both devices! The FTMS_MITM detects the Mac addresses and stores these in ESP32 NVS
 (Non-Volatile-Storage) for later use to unmistakingly establish a BLE connection with the targeted devices.
 ```
-Strictly follow <b>ALWAYS</b> the different usage instructions at the first part of the respective program codes!
+A recipe for success: follow <b>ALWAYS</b> the usage instructions at the top of the respective program codes!
 
 ```
 /* -----------------------------------------------------------------------------------------------------
