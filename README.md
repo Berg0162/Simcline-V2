@@ -53,12 +53,12 @@ We have applied the very principle: the Simcline is strategicly positioned in be
 The requirements in this phase are simple: 
 + running Zwift, Rouvy or myWhoosh app or alike, 
 + working Feather ESP32-V2 (or other ESP32S3) development board and 
-+ a Bluetooth Smart FTMS Trainer
-+ running Simcline-V2 library.<br>
++ a working Bluetooth Smart FTMS Trainer
++ running Simcline-V2 library application.<br>
 
 # Testing is Knowing!<br>
 I can understand and respect that you have some reserve: Is this really working in my situation? Better test if it is working, before buying all components and start building.
-In the Simcline-V2 Library (see <b>..documents/arduino/libraries/Simcline-V2/examples</b>) you will find the appropriate code: <b>FTMS_MITM</b>. It is developed with the only intention to check if the MITM solution is delivering in your specific situation. Within the Arduino IDE 2 select on the top bar menu: File > Examples > Simcline-V2 > FTMS-MITM<br>
+In the Simcline-V2 Library Examples section (see <b>..documents/arduino/libraries/Simcline-V2/examples</b>) you will find the appropriate applications for testing and running SIMCLINE. The one you should start with in this stage is <b>FTMS-MITM</b> It is developed with the only intention to allow you to check if the MITM solution is delivering in your specific situation. Within the Arduino IDE 2 select on the top bar menu: File > Examples > Simcline-V2 > FTMS-MITM<br>
 
 <b>What it does in short:</b><br>
 <img src="./images/Feather_FTMS.jpg" align="middle" width="1000" height="500" alt="Simcline in the Middle"><br>
