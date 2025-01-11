@@ -84,11 +84,19 @@ All Bluetooth Smart FTMS indoor trainers expose your efforts on the bike in 2 ad
 + The Server-side (Feather ESP32) advertises and enables connection with training/cycling/game apps like Zwift and collects relevant resistance data, it simulates as if an active <b>FTMS</b> enabled trainer is connected to Zwift or alike! Notice that the Server-side also exposes active <b>CPS</b> and <b>CSC</b> services. The <b>Simcline Server</b> is doing just at the right side of the "bridge"!
 + The <b>Simcline MITM</b> code is connecting both sides at the same time: a full-blown working bridge<br clear="left">
 
-<i>The test program <b>FTMS-MITM</b> is only using Serial Monitor (screen output) to show what is happening!</i><br>
+# Load FTMS-MITM application
+The default Simcline-V2 configuration settings for FTMS-MITM are: 
++ Display:     <b>None</b>
++ ESP32 board: <b>Default</b>
++ NimBLE:      <b>FTMS</b> and <b>CSC</b>
++ Debug:       <b>On</b>
+  
+<b>FTMS-MITM</b> is using Serial Monitor (logging on the screen) to show you what is happening!<br>
+
 ```
-Please write down the MAC/Device Addresses of a) your Bluetooth Smart FTMS trainer and
-b) your Desktop/Laptop with Zwift. These are presented in the Serial Monitor log file
-when running the MITM test code. This helps you to identify later both devices!!
+Please write down the MAC/Device Addresses of a) your Bluetooth Smart FTMS trainer and b) your Desktop/Laptop with Zwift.
+These are presented in the Serial Monitor log file when running the MITM test code. This is for you own convenience since
+it helps you to identify later both devices!
 ```
 <b>Use <b>FTMS-MITM</b> for reconnaissance and testing!</b><br>
 Please follow <b>ALWAYS</b> the different usage instructions at the first part of the respective program codes!
