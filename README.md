@@ -65,7 +65,7 @@ The requirements in this phase are simple:
 + running Zwift, Rouvy or myWhoosh app or alike, 
 + working Feather ESP32-V2 (or other ESP32S3) development board and 
 + working Bluetooth Smart FTMS Trainer
-+ running Simcline-V2 library application.<br>
++ running Simcline-V2 library and File > Examples > Simcline-V2 > FTMS-MITM.<br>
 
 # Testing is Knowing!<br>
 I can understand and respect that you have some reserve: Is this really working in my situation? Better test if it is working, before buying all components and start building.
