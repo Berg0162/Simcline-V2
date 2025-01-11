@@ -85,6 +85,7 @@ All Bluetooth Smart FTMS indoor trainers expose your efforts on the bike in 2 ad
 + The <b>Simcline MITM</b> code is connecting both sides at the same time: a full-blown working bridge<br clear="left">
 
 # Load FTMS-MITM application
+Within the Arduino IDE 2 select on the top bar menu: File > Examples > Simcline-V2 > FTMS-MITM<br>
 The default Simcline-V2 configuration settings for FTMS-MITM are: 
 + Display: <b>None</b>
 + ESP32 board: <b>Default</b>
