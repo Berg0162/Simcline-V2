@@ -30,7 +30,7 @@ Benefits of this Approach
 + Maintainability: Changes to one display type do not affect others.
 + Flexibility: Change the display type used by the Presentation class without modifying its implementation.
 
-As a result the Arduino ino-files that the user will access, compile and upload are very concise. All settings have been gathered in one config directory (../documents/arduino/libaries/Simcline-V2/src/config) for Board, Debug, Display, NimBLE and Simcline.<br>
+As a result the Arduino ino-files that the user will access, compile and upload are very concise. All settings have been gathered in one config directory (../documents/arduino/libaries/Simcline-V2/src/config) for Board-, Debug-, Display-, NimBLE- and Simcline-configurations.<br>
 The Simcline project heavily leans on the <b>NimBLE-Arduino</b> library for Bluetooth handling, see: [H2Zero](https://github.com/h2zero/NimBLE-Arduino). <b>NimBLE-Arduino</b> is structured for compilation with Arduino and for use with ESP32! Simcline-V2 works only (!) with the latest version: <b>NimBLE-Arduino Version 2</b>!<br>
 
 # FiTness Machine Service a Bluetooth Service Specification
