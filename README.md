@@ -99,7 +99,7 @@ These are presented in the Serial Monitor log file when running the MITM test co
 it helps you to identify later both devices! The <b>FTMS_MITM</b> detects the Mac addresses and stores these in ESP32 NVS
 (Non-Volatile-Storage) for later use to unmistakingly establish a BLE connection with the targeted devices.
 ```
-Please follow <b>ALWAYS</b> the different usage instructions at the first part of the respective program codes!
+Strictly follow <b>ALWAYS</b> the different usage instructions at the first part of the respective program codes!
 
 ```
 /* -----------------------------------------------------------------------------------------------------
@@ -141,9 +141,7 @@ Please follow <b>ALWAYS</b> the different usage instructions at the first part o
  *   pairing screens! Notice: Zwift extends device names with additional numbers for identification!
  *  
 */ 
-
 ```
-
-+ Be aware of undesirebly <b>autoconnect</b> with your standard equipment setup using ANT+ or FTMS. The <b>FTMS-MITM</b> code will reach an error state that does not help you getting representative results during the reconnaisance! Only one client can control at the same time: 2 captains on one ship is a recipe for disaster! See for more info [Frequently Asked Questions](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md)
+Be aware of undesirebly <b>autoconnect</b> of Zwift with your trainer using ANT+ or BLE FTMS before <b>FTMS_MITM</b> can establish a connection: always start Zwift <b>AFTER</b> <b>FTMS-MITM</b> and <b>trainer</b> have connected successfully! The <b>FTMS-MITM</b> code will than fail to connect, that does not help you getting representative results during the reconnaisance! Only one client can control at the same time: 2 captains on one ship is a recipe for disaster! See for more info [Frequently Asked Questions](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md)
 
 
