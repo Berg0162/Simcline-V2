@@ -6,6 +6,7 @@ Without user intervention the SIMCLINE will replicate inclines and declines depi
 The SIMCLINE auto connects at power up with a Bluetooth Smart FTMS trainer and let's relive the ascents and descents from favorite rides or routes while training indoors.<br>
 The physical reach is: 20% maximum incline and -10% maximum decline. However, the reach that the rider is comfortable with can be adjusted!<br>
 The SIMCLINE pairs directly to the Bluetooth Smart FTMS trainer and with your PC/Laptop/Tablet with (Zwift) training App for a connection that notifies the SIMCLINE to simulate autonomous the (change in) physical grade of the road during an indoor ride. During operation an OLED display shows the road grade in digits and in graphics. The SIMCLINE Companion App (for Android smartphones) can be paired, only when the training App is disconnected, for adjusting operational settings, like Ascent Grade Limit (between 0-20%), Descent Grade Limit (between 0-10%), Road Grade Change Factor (between 0-100%) and manual Up and Down control.  <br clear="left"> 
+
 Notice that the description on how to build SIMCLINE consists of two parts:
 
 + <b>Mechanical SIMCLINE 2.0</b><br>
