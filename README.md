@@ -96,7 +96,8 @@ The default Simcline-V2 configuration settings for FTMS-MITM are:
 ```
 Please write down the MAC/Device Addresses of a) your Bluetooth Smart FTMS trainer and b) your Desktop/Laptop with Zwift.
 These are presented in the Serial Monitor log file when running the MITM test code. This is for you own convenience since
-it helps you to identify later both devices!
+it helps you to identify later both devices! The <b>FTMS_MITM</b> detects the Mac addresses and stores these in ESP32 NVS
+(Non-Volatile-Storage) for later use to unmistakingly establish a BLE connection with the targeted devices.
 ```
 Please follow <b>ALWAYS</b> the different usage instructions at the first part of the respective program codes!
 
@@ -139,12 +140,10 @@ Please follow <b>ALWAYS</b> the different usage instructions at the first part o
  *   This device is identified with the name <SIM32>. You will see this only when connecting to Zwift on the 
  *   pairing screens! Notice: Zwift extends device names with additional numbers for identification!
  *  
- *
-Major redesign of the SIMCLINE code -- version 2.0
 */ 
 
 ```
 
 + Be aware of undesirebly <b>autoconnect</b> with your standard equipment setup using ANT+ or FTMS. The <b>FTMS-MITM</b> code will reach an error state that does not help you getting representative results during the reconnaisance! Only one client can control at the same time: 2 captains on one ship is a recipe for disaster! See for more info [Frequently Asked Questions](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md)
 
-The <b>FTMS_MITM</b> detects the Mac addresses and stores these in ESP32 NVS (Non-Volatile-Storage) for later use to unmistakingly establish a BLE connection with the targeted devices.<br>
+
