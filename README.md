@@ -145,6 +145,6 @@ Major redesign of the SIMCLINE code -- version 2.0
 
 ```
 
-+ Be aware of undesirebly <b>autoconnect</b> with your standard equipment setup using ANT+ or FTMS. The <b>FTMS-MITM</b> code will reach an error state that does not help you getting representative results during the reconnaisance! Only one client can control at the same time: 2 captains on one ship is a recipe for disaster! See for more info [Frequently Asked Questions]((https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md))
++ Be aware of undesirebly <b>autoconnect</b> with your standard equipment setup using ANT+ or FTMS. The <b>FTMS-MITM</b> code will reach an error state that does not help you getting representative results during the reconnaisance! Only one client can control at the same time: 2 captains on one ship is a recipe for disaster! See for more info [Frequently Asked Questions](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md)
 
 The <b>FTMS_MITM</b> detects the Mac addresses and stores these in ESP32 NVS (Non-Volatile-Storage) for later use to unmistakingly establish a BLE connection with the targeted devices.<br>
