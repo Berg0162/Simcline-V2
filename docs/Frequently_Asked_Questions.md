@@ -1,18 +1,19 @@
 
-# Who is in control?<br>
+# [1] Who is in control?<br>
 + When a training app (like Zwift on your laptop) has connected to your trainer using the FTMS protocol: is it possible to connect multiple devices via FTMS? As FTMS enables control of a physical device there can only be one <b>“controller”</b> to avoid safety issues. This means that you will not be able to connect multiple devices directly to the indoor bike trainer or treadmill using FTMS. If the trainer does not appear in an app’s (e.g. Zwift's) device list (on the Zwift pairing screen) it generally means the trainer is (still) connected to another controlling app or device. It is virtually impossible to connect the trainer to Zwift using FTMS, have a nice indoor ride and at the same time to connect for example the Simcline to the trainer or Zwift for simulating road incline... This means that other active cycling App's (installed on your telephone and/or tablet) are in competition with your Zwift App on the latop to connect with the trainer! Be carefull with devices with active cycling Apps near your setup during the connection phase! Notice that modern smartphones are notorious jammers that have a BLE reach of 6-10 meters!
 
 # What about ANT+ (FE-C) and FTMS at the same time?<br>
 + When a training app (like Zwift) has connected to your trainer using the ANT+ protocol: is it possible to connect other devices via FTMS?<br>
 Since this ANT+ connection enables control of the physical device (trainer) there can NOT be connected another <b>“controller”</b> at the same time over FTMS to avoid safety issues. Only one (1) controlling app is allowed to connect and drive the Trainer at any time. You know, 2 captains on one ship is a recipe for disaster!
 If this case, unfortunately and undesirebly, happens with your equipment setup, the controlling Client-side code will not connect or disconnect with an error message! So keep these worlds separated! If you intend to use devices with BLE and FTMS: mechanically disconnect the ANT+ dongle to avoid your controller App (like Zwift) to (auto)connect over ANT+.
-# Zwift Hub users<br>
-There is an excellent review available [DCRainmaker Zwift Hub review](https://www.dcrainmaker.com/2022/10/zwift-hub-smart-trainer-in-depth-review-the-best-bang-for-your-buck.html), that describes o.a. a special goodie that comes with the Zwift Hub:
+
+# Zwift Hub and Jetblack users<br>
+There is an excellent review available [DCRainmaker Zwift Hub review](https://www.dcrainmaker.com/2022/10/zwift-hub-smart-trainer-in-depth-review-the-best-bang-for-your-buck.html), that describes o.a. a special goodie that comes with the Zwift Hub and Jetblack:
 >**– Protocol Compatibility:** ANT+ FE-C, ANT+ Power, Bluetooth Smart Trainer Control, Bluetooth Smart Power (everything you need)<br>
 **– Unique Party Trick: Can rebroadcast your heart rate sensor within a single channel, ideal for Apple TV Zwift users (who are Bluetooth channel limited)**<br>
 **– App Compatibility:** Every app out there basically (Zwift, TrainerRoad, Rouvy, RGT, The Sufferfest, Kinomap, etc…)<br>
 
-The latest code versions for Bluetooth Smart FTMS trainers **fully** support this proprietary Zwift function for your heart rate sensor connection. The Simcline code supports the same features as you would have had with only Zwift App connected to Zwift Hub trainer! Use your heart rate band the way you are used too before the Simcline came in between your Zwift Hub trainer and the Zwift App! It should be fully transparent with respect to this feature! Please test yourself!
+Simcline-V2 **fully** supports this proprietary Zwift function for your heart rate sensor connection. The code supports the same features as you would have had with only Zwift App connected to Zwift Hub or JetBlack trainer! Use your heart rate band the way you are used too before the Simcline-V2 came in between your Zwift Hub/Jetblack trainer and the Zwift App! It should be fully transparent with respect to this feature! Please test yourself!
 
 # Cleanup Zwift devices from the past<br>
 Zwift can sometimes hang onto the wrong info, such as trainers or sensors that were paired to the game in the past. Zwift uses Mac Addresses from previous connections to identify devices. So when device names change Zwift hangs on to the unique Mac Addresses rather than the names that you see in the pairing screens! This can be rather confusing and lead to misunderstandings when you connect devices having only their original names shown and not the actual names....<br>
