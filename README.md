@@ -47,7 +47,7 @@ We have applied the very principle: the Simcline is strategicly positioned in be
 + Install the [Arduino IDE 2](https://www.arduino.cc/en/Main/Software) and all the libraries on a PC/Mac.
 + Install your ESP32 board in the Arduino environment
 + download the ESP32 NimBLE-Arduino library (<b>Latest Version 2.#.#</b>), see [Arduino Installation NimBLE](https://github.com/h2zero/NimBLE-Arduino#arduino-installation)
-+ Download all the library from [Github](https://github.com/Berg0162/Simcline-V2/tree/master/Simcline-V2) and install the Simcline-V2 library in the Arduino IDE. <br>
++ Download the Simcline-V2 library from [Github](https://github.com/Berg0162/Simcline-V2/tree/master/Simcline-V2) and install the library in the Arduino IDE following the rules that apply to this. <br>
 
 # How to make it work?<br>
 The requirements in this phase are simple: 
