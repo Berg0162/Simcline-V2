@@ -1,13 +1,9 @@
 
-Follow these steps:
+# Setup SIMCLINE following these steps:
 
+1) Completely independent of the Simcline-V2 library: test first the ESP32 board of your choice with the display attached to it, after you have installed Arduino IDE 2 and the appropriate graphics libraries (like Adafruit GFX and/or TFT_eSPI). Notice that you have to install the original libraries and not the modified versions that product suppliers like to include! All graphics libraries come with code examples and test these. For TFT_eSPI you need to set your display in "User_Setup_Select.h" <b>first</b> to comply with the board/display type you use. Read and study the instructions that come with the sites of these libraries! Only when you have a working combination continue...
 
-
-1) Test the board with display attached to it, after you have installed the appropriate graphics libraries (like Adafruit GFX and/or TFT_eSPI). Notice that you have to install the original libraries and not the modified versions that product suppliers like to include! All graphics graphics libraries come with code examples. For TFT_eSPI you need to set "your user settings" to comply with the board type you use. Read and study the instructions that come with the sites of these libraries!
-
-
-
-2) Test BLE connection with FTMS_Client code (Trainer) and FTMS_Server code (Laptop + Zwift) to see if things are working with your hardware and equipment! Note down the Mac Addresses of your Trainer and Laptop (Zwift). Test the FTMS_Bride code to see if with your equipment MITM is working properly.
+2) Select the ESP32 board and Display from the predefined 
 
 
 
