@@ -1,9 +1,30 @@
 
 # Setup SIMCLINE following these steps:
 
-1) Completely independent of the Simcline-V2 library: test first the ESP32 board of your choice with the display attached to it, after you have installed Arduino IDE 2 and the appropriate graphics libraries (like Adafruit GFX and/or TFT_eSPI). Notice that you have to install the original libraries and not the modified versions that product suppliers like to include! All graphics libraries come with code examples and test these. For TFT_eSPI you need to set your display in "User_Setup_Select.h" <b>first</b> to comply with the board/display type you use. Read and study the instructions that come with the sites of these libraries! Only when you have a working combination continue...
+# Completely independent of the Simcline-V2 library 
+First test the ESP32 board of your choice with the display attached to it, after you have installed Arduino IDE 2 and the appropriate graphics libraries (like Adafruit GFX and/or TFT_eSPI). Notice that you have to install the original libraries and not the modified versions that product suppliers like to include! All graphics libraries come with code examples and test these. For TFT_eSPI you need to set your display in "User_Setup_Select.h" <b>first</b> to comply with the board/display type you use. Read and study the instructions that come with the sites of these libraries! Only when you have a working combination continue...
 
-2) Select the ESP32 board and Display from the predefined 
+# Setup your board for Simcline-V2
+The board and display to work with can be activated in Simcline-V2 with the right settings, see folder: <b>/Simcline-V2/src/config</b><br>
++ Open file, edit and save(!): <b>/documents/arduino/libraries/Simcline-V2/src/config/configBoard.h</b>
+```C++
+// ------------------------------------------------------------------------------------------------
+// Define the board here, that is part of your system setup
+//#define LILYGO_T_DISPLAY_S3
+#define ADAFRUIT_FEATHER_ESP32_V2
+//#define YOUR_ESP32_BOARD
+```
++ Open file, edit and save(!): <b>/documents/arduino/libraries/Simcline-V2/src/config/configDisplay.h</b><br>
+```C++
+// ------------------------------------------------------------------------------------------------
+// Define the display, that is part of your system setup
+//#define NODISPLAY
+#define OLEDSSD1306_128x64
+//#define LILYGO_T_DISPLAY_S3
+//#define YOURDISPLAY
+//#define SERIALDISPLAY
+// ------------------------------------------------------------------------------------------------
+```
 
 
 
