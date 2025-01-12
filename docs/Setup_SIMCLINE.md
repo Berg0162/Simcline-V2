@@ -80,7 +80,7 @@ Insert <b>RGVMIN</b>, <b>RGVMAX</b>, <b>MINPOSITION</b> and <b>MAXPOSITION</b> v
 #define MAXPOSITION 195 // VL6180X lowest value bottom microswitch activated to mechanically stop operation
 ```
 Now you should have a fully equiped and operational SIMCLINE 2 (TOF-sensor/display/driver/Actuator) with hardware components tested separately!<br>
-It is time to run /Simcline-V2/examples/<b>Test_Fully_Equiped_Setup</b><br>.
+It is time to run /Simcline-V2/examples/<b>Test_Fully_Equiped_Setup</b>.<br>
 During operation of this Full-Setup test-program you will have most probably to finetune the <b>MINPOSITION</b> and <b>MAXPOSITION</b>. Repeat, if necessary, by editing /documents/arduino/libraries/Simcline-V2/src/config/<b>configSimcline.h</b>... Don't forget to save the file before (!) you run the Full-Setup test-program again, otherwise the new values will not be effective!!
 
 # Open Simcline program, compile and run! 
