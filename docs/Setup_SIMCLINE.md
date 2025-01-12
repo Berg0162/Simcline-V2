@@ -46,7 +46,7 @@ Actuator attached to the body
 # Add the TOF-sensor to the mechanic setup (in the component box)
 Check it can measure the distance correctly using /Simcline-V2/examples/<b>Test_Board_plus_VL6180X</b><br>
 
-<b>Note down the provisional MAXPOSITION and MINPOSITION values of the TOF-sensor reaching the top position and lowest position!</b><br>
+Note down the provisional <b>MAXPOSITION</b> and <b>MINPOSITION</b> values of the TOF-sensor reaching the <b>top</b> position and <b>lowest</b> position!<br>
 
 Open file, edit and save(!): <b>/documents/arduino/libraries/Simcline-V2/src/config/configSimcline.h</b><br>
 
