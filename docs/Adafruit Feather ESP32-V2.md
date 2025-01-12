@@ -10,7 +10,7 @@ The present code is developed on Arduino IDE 2.2. Notice that you will need an A
 Please follow the installation instructions for the [Adafruit Feather ESP32 V2](https://learn.adafruit.com/adafruit-esp32-feather-v2/arduino-ide-setup)<br>
 If you select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for the <b>Adafruit Feather ESP32 V2</b> processor and the project are the following:
 <p align=center>
-<img src="../images/Arduino_IDE_2_Tools_Menu.jpg" width="350" height="300" alt="Tools Menu">
+<img src="../images/Menu_Tools_Feather_ESP32_V2.jpg" align="left" width="300" height="450" alt="Feather ESP32 V2 Tools Menu">
 </p>
 <br clear="left">
 
