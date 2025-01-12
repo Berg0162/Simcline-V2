@@ -6,6 +6,7 @@ First test the ESP32 board of your choice with the display attached to it, after
 
 # Setup your board for Simcline-V2
 The board and display to work with can be activated in Simcline-V2 with the right settings, see folder: <b>/Simcline-V2/src/config</b><br>
+
 + Open file, edit and save(!): <b>/documents/arduino/libraries/Simcline-V2/src/config/configBoard.h</b>
 ```C++
 // ------------------------------------------------------------------------------------------------
@@ -15,6 +16,7 @@ The board and display to work with can be activated in Simcline-V2 with the righ
 //#define YOUR_ESP32_BOARD
 ```
 + Open file, edit and save(!): <b>/documents/arduino/libraries/Simcline-V2/src/config/configDisplay.h</b><br>
+
 ```C++
 // ------------------------------------------------------------------------------------------------
 // Define the display, that is part of your system setup
@@ -43,7 +45,7 @@ Actuator attached to the body
 
 # Add the TOF-sensor to the mechanic setup (in the component box)
 Check it can measure the distance correctly using /Simcline-V2/examples/<b>Test_Board_plus_VL6180X</b>
-<b>Note down the provisional MAXPOSITION and MINPOSITION values of the TOF-sensor reaching the top position and lowest position!</b>
+<b>Note down the provisional MAXPOSITION and MINPOSITION values of the TOF-sensor reaching the top position and lowest position!</b><br>
 
 Open file, edit and save(!): <b>/documents/arduino/libraries/Simcline-V2/src/config/configSimcline.h</b><br>
 
