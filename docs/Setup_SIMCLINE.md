@@ -27,12 +27,8 @@ The board and display to work with can be activated in Simcline-V2 with the righ
 ```
 + When you want another board or display than is supplied as standard with Simcline-V2, a proficient programmer/user can implement Concrete Classes for ESP32-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code. A dedicated program for creating "YOURDISPLAY" is offered in /Simcline-V2/examples/Test_Board_plus_Display to help you with the task!
 
-
-3) Download relevant code and install the Simcline critical libraries.
-
-
-
-4) Attach the TOF-sensor and test. First load the library that comes with it. Test with supplier code examples and the Simcline test samples in the Arduino folder.
+# Attach the TOF-sensor to your ESP32 board and test
+First install the <b>VL6180X</b> library in Arduino IDE 2 and the example programs that come with it. Connect using the prescribed wiring scheme depending on the board that you earlier selected. Test with supplier code examples and the Simcline test samples in the Arduino folder.
 
 
 
