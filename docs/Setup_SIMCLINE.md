@@ -79,8 +79,11 @@ Insert RGVMIN, RGVMAX, MINPOSITION and MAXPOSITION in <b>configSimcline.h</b>
 #define MINPOSITION 10  // VL6180X highest value top microswitch activated to mechanically stop operation
 #define MAXPOSITION 195 // VL6180X lowest value bottom microswitch activated to mechanically stop operation
 ```
-Now you should have a fully equiped and operational Simcline (TOF-sensor/display/driver/Actuator) with hardware components tested separately!
+Now you should have a fully equiped and operational SIMCLINE 2 (TOF-sensor/display/driver/Actuator) with hardware components tested separately!<br>
 It is time to run /Simcline-V2/examples/<b>Test_Fully_Equiped_Setup</b><br>
+During operation of this Full-Setup test-program you will have most probably to finetune the MINPOSITION and MAXPOSITION. Repeat editing /documents/arduino/libraries/Simcline-V2/src/config/<b>configSimcline.h</b>... Don't forget to save the file before (!) you run the Full-Setup test-program again, otherwise the new values will not be effective!!
 
-10) Insert the settings that you have noted down before in the FTMS_Simcline code, compile and upload! Simcline should recognise the TOF-sensor, motor driver board and test the actuator movements + TOF-sensor readings. If successful, it will scan for the trainer (+ connect) and advertise/connect with the Laptop (Zwift).
+# Open Simcline code, compile and upload! 
+SIMCLINE should recognise the TOF-sensor, motor driver board and test the actuator movements with help of the TOF-sensor. It will scan for your trainer and advertise its server-side to be connected to Zwift... from now on it will handle the Bluetooth MITM and translate changing road grades to actuator movements.
+
 
