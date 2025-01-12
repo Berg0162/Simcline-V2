@@ -87,10 +87,10 @@ All Bluetooth Smart FTMS indoor trainers expose your efforts on the bike in 2 ad
 # Load FTMS-MITM application
 Within the Arduino IDE 2 select on the top bar menu: File > Examples > Simcline-V2 > FTMS-MITM<br>
 The default Simcline-V2 configuration settings for FTMS-MITM are: 
-+ Display: <b>None</b>
-+ ESP32 board: <b>Default</b>
++ Display: <b>NODISPLAY</b>
++ ESP32 board: <b>YOUR_ESP32_BOARD</b>
 + NimBLE: <b>FTMS</b> and <b>CSC</b>
-+ Debug:  <b>On</b>
++ Debug:  <b>Defined</b>
   
 <b>FTMS-MITM</b> is default in Debug mode: using Serial Monitor (logging on the PC-screen) to show you what is happening!<br>
 
