@@ -50,7 +50,7 @@ Check it can measure the distance correctly using /Simcline-V2/examples/<b>Test_
 
 Open file, edit and save(!): <b>/documents/arduino/libraries/Simcline-V2/src/config/configSimcline.h</b><br>
 
-Insert RGVMIN, RGVMAX, MINPOSITION and MAXPOSITION in <b>configSimcline.h</b>
+Insert RGVMIN, RGVMAX, MINPOSITION and MAXPOSITION in <b>configSimcline.h</b> in accordance with your mechanical setup.
 
 ```C++
 //----------- Global variable definitions for high level movement control -----------------------------------------------
@@ -81,9 +81,9 @@ Insert RGVMIN, RGVMAX, MINPOSITION and MAXPOSITION in <b>configSimcline.h</b>
 ```
 Now you should have a fully equiped and operational SIMCLINE 2 (TOF-sensor/display/driver/Actuator) with hardware components tested separately!<br>
 It is time to run /Simcline-V2/examples/<b>Test_Fully_Equiped_Setup</b><br>
-During operation of this Full-Setup test-program you will have most probably to finetune the MINPOSITION and MAXPOSITION. Repeat editing /documents/arduino/libraries/Simcline-V2/src/config/<b>configSimcline.h</b>... Don't forget to save the file before (!) you run the Full-Setup test-program again, otherwise the new values will not be effective!!
+During operation of this Full-Setup test-program you will have most probably to finetune the MINPOSITION and MAXPOSITION. Repeat (if necessary) editing /documents/arduino/libraries/Simcline-V2/src/config/<b>configSimcline.h</b>... Don't forget to save the file before (!) you run the Full-Setup test-program again, otherwise the new values will not be effective!!
 
-# Open Simcline code, compile and upload! 
+# Open Simcline program, compile and upload! 
 SIMCLINE should recognise the TOF-sensor, motor driver board and test the actuator movements with help of the TOF-sensor. It will scan for your trainer and advertise its server-side to be connected to Zwift... from now on it will handle the Bluetooth MITM and translate changing road grades to actuator movements.
 
 
