@@ -10,8 +10,8 @@ Since this ANT+ connection enables control of the physical device (trainer) ther
 If this case, unfortunately and undesirebly, happens with your equipment setup, the controlling Client-side code will not connect or disconnect with an error message! So keep these worlds separated! If you intend to use devices with BLE and FTMS: mechanically disconnect the ANT+ dongle to avoid your controller App (like Zwift) to (auto)connect over ANT+.
 
 # [3]
-<b>Zwift Hub and Jetblack users</b><br>
-There is an excellent review available [DCRainmaker Zwift Hub review](https://www.dcrainmaker.com/2022/10/zwift-hub-smart-trainer-in-depth-review-the-best-bang-for-your-buck.html), that describes o.a. a special goodie that comes with the Zwift Hub and Jetblack:
+<b>What about Zwift Hub and Jetblack users?</b><br>
++ There is an excellent review available [DCRainmaker Zwift Hub review](https://www.dcrainmaker.com/2022/10/zwift-hub-smart-trainer-in-depth-review-the-best-bang-for-your-buck.html), that describes o.a. a special goodie that comes with the Zwift Hub and Jetblack:
 >**– Protocol Compatibility:** ANT+ FE-C, ANT+ Power, Bluetooth Smart Trainer Control, Bluetooth Smart Power (everything you need)<br>
 **– Unique Party Trick: Can rebroadcast your heart rate sensor within a single channel, ideal for Apple TV Zwift users (who are Bluetooth channel limited)**<br>
 **– App Compatibility:** Every app out there basically (Zwift, TrainerRoad, Rouvy, RGT, The Sufferfest, Kinomap, etc…)<br>
@@ -19,27 +19,27 @@ There is an excellent review available [DCRainmaker Zwift Hub review](https://ww
 Simcline-V2 **fully** supports this proprietary Zwift function for your heart rate sensor connection. The code supports the same features as you would have had with only Zwift App connected to Zwift Hub or JetBlack trainer! Use your heart rate band the way you are used too before the Simcline-V2 came in between your Zwift Hub/Jetblack trainer and the Zwift App! It should be fully transparent with respect to this feature! Please test yourself!
 
 # [4]
-<b>Cleanup Zwift devices from the past</b><br>
+<b>How to cleanup Zwift devices from the past?</b><br>
 Zwift can sometimes hang onto the wrong info, such as trainers or sensors that were paired to the game in the past. Zwift uses Mac Addresses from previous connections to identify devices. So when device names change Zwift hangs on to the unique Mac Addresses rather than the names that you see in the pairing screens! This can be rather confusing and lead to misunderstandings when you connect devices having only their original names shown and not the actual names....<br>
 Check out the steps below.<br>
 For <b>PC/Mac</b> to reset all the Zwift stored devices on a PC or Mac, complete these steps:
 + Close Zwift
 + On your desktop, open Documents
 + Double-click Zwift
-+ Delete knowndevices.xml<br>
++ Delete or Edit knowndevices.xml<br>
 
 Next time you go for a Zwift ride:
 + Launch Zwift
 + Pair your devices
  
 # [5]
-<b>Dual Processor use with ESP32</b><br>
+<b>How is Dual Processor used with ESP32?</b><br>
 + One of the advantages of the ESP32 platform is the fact that the ESP32 WROOM processor has two cores. This makes it possible to precisely balance the load of a program over 2 processor cores. With the Simcline this is particular usefull for the motor control of the actuator. During operation Zwift sends from time to time new settings, and one of these is the grade value (road inclination in degrees). The program translates the grade to a level that should be reached by the actuator to simulate exactly the road grade that was received from Zwift. However, the actuator can only be switched to <b>move up</b>, <b>move down</b> or <b>stop</b>. After having set the actuator to move (up or down), the program has to check continuously if the actuator has reached the desired level by reading its position with the help of the Time-Of-Flight sensor and act accordingly. Meanwhile the trainer sends your cycling data and the Zwift app has to confirm the receipt of these data. The data sent by Zwift has also to be tranferred to the trainer and also the trainer has to confirm the receipt. Being a MITM means handling a lot of BLE traffic and it does not allow for mistakes!
 The load of the Simcline program itself, the BLE handling and the critical control of the actuator is balanced over 2 processor cores on the ESP32 platform. To avoid conflicts during variable updates (i.c. TargetPosition) a Binary Semaphore scheme is applied to protect <b>task shared variables</b> during an update.<br clear="left">
 
 # [6]
 <b>Why is my trainer variably successful in connecting with the SIMCLINE?</b><br>
-+ In most cases this behavior can be attributed to <b>NOT</b> following the critical sequence for starting and connecting of Trainer, SIMCLINE and Zwift.<br>
++ In most cases this behavior can be attributed to <b>NOT</b> follow the critical sequence for starting and connecting of Trainer, SIMCLINE and Zwift.<br>
 
 0) The Start or Initial situation of <b>ALL</b> parties involved is: Laptop/Zwift, Simcline and Trainer are Powered <b>OFF</b>!
 1) Trainer Power-ON --> Trainer needs some time (4 seconds?) to settle and start advertising!
