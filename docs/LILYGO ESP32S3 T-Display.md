@@ -1,7 +1,26 @@
-# <img src="https://github.com/Berg0162/simcline/blob/master/images/SC_logo.png" width="64" height="64" alt="SIMCLINE Icon"> &nbsp; SIMCLINE for Bluetooth Smart FTMS Trainers <br> based on the LILYGO ESP32S3 T-Display board <br>
+# <img src="../images/SC_logo.png" width="64" height="64" alt="SIMCLINE Icon"> &nbsp; SIMCLINE for Bluetooth Smart FTMS Trainers <br> based on the LILYGO ESP32S3 T-Display board <br>
 
-## Simcline-V2 library
-This board and display can be selected ... see Simcline-V2/src/config
+## Setup LILYGO ESP32S3 T-Display for Simcline-V2 library
+The board and display to work with can be activated in Simcline-V2 with the right settings, see folder: <b>/Simcline-V2/src/config</b><br>
+1) Open file, edit and save(!): <b>/documents/arduino/libraries/Simcline-V2/src/config/configBoard.h</b>
+```C++
+// ------------------------------------------------------------------------------------------------
+// Define the board here, that is part of your system setup
+#define LILYGO_T_DISPLAY_S3
+//#define ADAFRUIT_FEATHER_ESP32_V2
+//#define YOUR_ESP32_BOARD
+```
+2) Open file, edit and save(!): <b>/documents/arduino/libraries/Simcline-V2/src/config/configDisplay.h</b><br>
+```C++
+// ------------------------------------------------------------------------------------------------
+// Define the display, that is part of your system setup
+//#define NODISPLAY
+//#define OLEDSSD1306_128x64
+#define LILYGO_T_DISPLAY_S3
+//#define YOURDISPLAY
+//#define SERIALDISPLAY
+// ------------------------------------------------------------------------------------------------
+```
 
 ## Description
 T-Display-S3 is a ESP32-S3 development board. It is equipped with a color 1.9" LCD screen and two programmable buttons. Communication using I8080 interface. Retains the same layout design as T-Display. You can directly use ESP32S3 for USB communication or programming.
@@ -11,18 +30,17 @@ This board and ESP32S3 processor was selected for its excellent specifications c
 Unfortunately the LilyGo board does <b>NOT fit the original components box</b>, so that needs extra attention in the near future. Technically there is no reason sofar not to like this board!!!
 
 ## Arduino IDE 2.2
-The present code is developed on Arduino IDE 2.2. Notice that you will need an Arduino IDE that is tailored for this specific <b>ESP32S3</b> processor!<br>
+The present code is developed on Arduino IDE 2.2. Notice that you will need an Arduino IDE that is tailored for this specific <b>ESP32S3</b> processor! Please follow the installation instructions for the [ESP32S3 T-display](https://github.com/Xinyuan-LilyGO/T-Display-S3)<br>
 
 ## Before you start
-Please follow the installation instructions for the [ESP32S3 T-display](https://github.com/Xinyuan-LilyGO/T-Display-S3)<br>
 If you select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for the <b>ESP32S3</b> processor and the project are the following:
 <p align=center>
-<img src="https://github.com/Berg0162/s3-switch/blob/main/images/LilyGO_ESP32S3_Tools_Settings.png" width="350" height="400" alt="S3-Switch">
+<img src="../images/LilyGO_ESP32S3_Tools_Settings.png" width="350" height="400" alt="Tools menu">
 </p>
 <br clear="left">
 
 ## T-Display-S3 Pinout
-<img src="https://github.com/Berg0162/simcline/blob/master/images/T-Display-S3-pinout.png">
+<img src="../images/T-Display-S3-pinout.png">
 
 ## Quick Specs
 - MCU: ESP32-S3R8 Dual-core LX7 microprocessor
@@ -40,9 +58,9 @@ If you select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for 
 - Connector: JST-SH 1.0mm 4 PIN
 - Dimensions: 62 x 26 x 10mm
 
-# Electronic Components and Circuitry used in experimental version<br>
-<img src="https://github.com/Berg0162/simcline/blob/master/images/Simcline_Light_ESP32S3_T_Display_Wiring.png"  alt="Circuitry version 2.0">
-I have chosen for the following 4 compact active components that are slightly different from the earlier SIMCLINE project:<br>
+# Electronic Components and wiring for version 2<br>
+<img src="../images/Simcline_Light_ESP32S3_T_Display_Wiring.png"  alt="Circuitry version 2.0">
+In this project is chosen for the following 4 compact active components that are slightly different from the earlier SIMCLINE project:<br>
 <b>Adafruit DRV8871 DC Motor Driver</b><br>
 A small one channel motor driver for 12 V (6.5 - 48 V) and 3,6 Amperes max. This board enables the processor to set the Actuator motor in up or down movement. It transforms logical digital levels (Go Up, Go Down and Stop) from the Feather nRF52/ESP32 to switching of 12 Volt at 3,6 Amperes max., the levels at which the Actuator works. Notice that default the board comes limited to 2,6 Amperes and you need to add a resistor to set for max current level. Install Vertical Through Hole Male PCB Header Pins on the board; this will allow correct mounting of the board inside the components box!<br>
 <b>LYLIGO ESP32S3 T-Display</b><br>
@@ -53,20 +71,20 @@ This is a small 5V, 500mA Step-Down Voltage Regulator that is responsible for vo
 
 All components are documented very well and are low cost. There are lots of examples for use in an Arduino environment. They have turned out to be very reliable. The exact wiring of the components can be followed in the figure above.<br>
 
-## Experimental Setup
-<img src="https://github.com/Berg0162/simcline/blob/master/images/ESP32S3_Simcline_01.jpg" align="left" width=300 height=400>
-<img src="https://github.com/Berg0162/simcline/blob/master/images/ESP32S3_Simcline_02.jpg" align="left" width=300 height=400>
+## Experimental Mechanical Setup
+<img src="../images/ESP32S3_Simcline_01.jpg" align="left" width=300 height=400>
+<img src="../images/ESP32S3_Simcline_02.jpg" align="left" width=300 height=400>
 <br clear="left">
 
 ## Display during a ride
-<img src="https://github.com/Berg0162/simcline/blob/master/images/Simcline_ESP32S3_T_Display.png" align="left" width=283 height=628><br>
+<img src="../images/Simcline_ESP32S3_T_Display.png" align="left" width=283 height=628><br>
 - Icons bar on the top shows active connections
 - Actual road grade is shown in digits in the center of a gauge
 - Gauge shows clockwise, positive up-hill-grades and counter clockwise, negative down-hill-grades
 - Road profile is refreshed with every event (i.e. change of road grade) and shows the last 24 events
 - Position in vertical color palette legend is dynamically shown
 - Color palette for grade percentage is taken from [www.CylingCols.com](https://www.cyclingcols.com/col/Angliru).
-<img src="https://github.com/Berg0162/simcline/blob/master/images/GalibierSE.gif" align="left" width=539 height=280>
+<img src="../images/GalibierSE.gif" align="left" width=539 height=280>
 <br clear="left">
 
 ## Video of display during fictional riding
