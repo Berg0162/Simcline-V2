@@ -25,7 +25,7 @@ The board and display to work with can be activated in Simcline-V2 with the righ
 //#define SERIALDISPLAY
 // ------------------------------------------------------------------------------------------------
 ```
-When you want another board or display than is offered default with Simcline-V2, a proficient programmer/user can implement Concrete Classes for ESP32-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code. Special code is offered in /Simcline-V2/examples/Test_Board_plus_Display to help with the task!
++ When you want another board or display than is supplied as standard with Simcline-V2, a proficient programmer/user can implement Concrete Classes for ESP32-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code. A dedicated program for creating "YOURDISPLAY" is offered in /Simcline-V2/examples/Test_Board_plus_Display to help you with the task!
 
 
 3) Download relevant code and install the Simcline critical libraries.
