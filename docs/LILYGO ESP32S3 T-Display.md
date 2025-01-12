@@ -1,7 +1,26 @@
 # <img src="https://github.com/Berg0162/simcline/blob/master/images/SC_logo.png" width="64" height="64" alt="SIMCLINE Icon"> &nbsp; SIMCLINE for Bluetooth Smart FTMS Trainers <br> based on the LILYGO ESP32S3 T-Display board <br>
 
-## Simcline-V2 library
-This board and display can be selected ... see Simcline-V2/src/config
+## Setup LILYGO ESP32S3 T-Display for Simcline-V2 library
+The board and display to work with can be activated in Simcline-V2 with the right settings, see folder: <b>/Simcline-V2/src/config</b><br>
+1) Open file, edit and save(!): <b>/documents/arduino/libraries/Simcline-V2/src/config/configBoard.h</b>
+```C++
+// ------------------------------------------------------------------------------------------------
+// Define the board here, that is part of your system setup
+#define LILYGO_T_DISPLAY_S3
+//#define ADAFRUIT_FEATHER_ESP32_V2
+//#define YOUR_ESP32_BOARD
+```
+2) Open file, edit and save(!): <b>/documents/arduino/libraries/Simcline-V2/src/config/configDisplay.h</b><br>
+```C++
+// ------------------------------------------------------------------------------------------------
+// Define the display, that is part of your system setup
+//#define NODISPLAY
+//#define OLEDSSD1306_128x64
+#define LILYGO_T_DISPLAY_S3
+//#define YOURDISPLAY
+//#define SERIALDISPLAY
+// ------------------------------------------------------------------------------------------------
+```
 
 ## Description
 T-Display-S3 is a ESP32-S3 development board. It is equipped with a color 1.9" LCD screen and two programmable buttons. Communication using I8080 interface. Retains the same layout design as T-Display. You can directly use ESP32S3 for USB communication or programming.
@@ -11,10 +30,9 @@ This board and ESP32S3 processor was selected for its excellent specifications c
 Unfortunately the LilyGo board does <b>NOT fit the original components box</b>, so that needs extra attention in the near future. Technically there is no reason sofar not to like this board!!!
 
 ## Arduino IDE 2.2
-The present code is developed on Arduino IDE 2.2. Notice that you will need an Arduino IDE that is tailored for this specific <b>ESP32S3</b> processor!<br>
+The present code is developed on Arduino IDE 2.2. Notice that you will need an Arduino IDE that is tailored for this specific <b>ESP32S3</b> processor! Please follow the installation instructions for the [ESP32S3 T-display](https://github.com/Xinyuan-LilyGO/T-Display-S3)<br>
 
 ## Before you start
-Please follow the installation instructions for the [ESP32S3 T-display](https://github.com/Xinyuan-LilyGO/T-Display-S3)<br>
 If you select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for the <b>ESP32S3</b> processor and the project are the following:
 <p align=center>
 <img src="https://github.com/Berg0162/s3-switch/blob/main/images/LilyGO_ESP32S3_Tools_Settings.png" width="350" height="400" alt="S3-Switch">
