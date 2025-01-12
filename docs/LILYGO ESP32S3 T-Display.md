@@ -35,7 +35,7 @@ The present code is developed on Arduino IDE 2.2. Notice that you will need an A
 ## Before you start
 If you select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for the <b>ESP32S3</b> processor and the project are the following:
 <p align=center>
-<img src="../images/LilyGO_ESP32S3_Tools_Settings.png" width="350" height="400" alt="S3-Switch">
+<img src="../images/LilyGO_ESP32S3_Tools_Settings.png" width="350" height="400" alt="Tools menu">
 </p>
 <br clear="left">
 
