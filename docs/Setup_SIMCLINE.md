@@ -34,7 +34,7 @@ First install the <b>VL6180X</b> library in Arduino IDE 2 and the example progra
 [Adafruit Feather ESP32 V2](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Adafruit%20Feather%20ESP32-V2.md) or [Lilygo esp32s3 T-Display](https://github.com/Berg0162/Simcline-V2/blob/main/docs/LILYGO%20ESP32S3%20T-Display.md) <br>
 Test with the supplier code examples and finally run /Simcline-V2/examples/<b>Test_Board_plus_VL6180X</b> to test in the Simcline-V2 environment.
 
-# Attach the Motor Driver board and test 
+# Attach the Motor Driver board
 No library needed for <b>DRV8871</b>, but the supplier will have example code supplied. 
 
 # Attach the Actuator to the Motor Driver board and test 
