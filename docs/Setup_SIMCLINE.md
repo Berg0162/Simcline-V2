@@ -25,30 +25,58 @@ The board and display to work with can be activated in Simcline-V2 with the righ
 //#define SERIALDISPLAY
 // ------------------------------------------------------------------------------------------------
 ```
-+ When you want another board or display than is supplied as standard with Simcline-V2, a proficient programmer/user can implement Concrete Classes for ESP32-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code. A dedicated program for creating "YOURDISPLAY" is offered in /Simcline-V2/examples/Test_Board_plus_Display to help you with the task!
++ When you want another board or display than is supplied as standard with Simcline-V2, a proficient programmer/user can implement Concrete Classes for ESP32-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code. A dedicated program for creating "YOURDISPLAY" is offered in /Simcline-V2/examples/<b>Test_Board_plus_Display</b> to help you with the task!
 
 # Attach the TOF-sensor to your ESP32 board and test
 First install the <b>VL6180X</b> library in Arduino IDE 2 and the example programs that come with it. Connect using the prescribed wiring scheme depending on the board that you earlier selected: 
 [Adafruit Feather ESP32 V2](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Adafruit%20Feather%20ESP32-V2.md) or [Lilygo esp32s3 T-Display](https://github.com/Berg0162/Simcline-V2/blob/main/docs/LILYGO%20ESP32S3%20T-Display.md) <br>
-Test with supplier code examples and the Simcline test samples in the Arduino folder.
+Test with the supplier code examples and finally run /Simcline-V2/examples/<b>Test_Board_plus_VL6180X</b> to test in the Simcline-V2 environment.
 
+# Attach the Motor Driver board and test 
+No library needed for <b>DRV8871</b>, but the supplier will have example code supplied. 
 
+# Attach the Actuator to the Motor Driver board and test 
+Test the <b>DRV8871 plus Actuator</b> with /Simcline-V2/examples/<b>Test_Board_plus_DRV8871</b>.
 
-5) Attach the Motor Driver board and test. No library needed, but the supplier will have example code supplied. Use the Simcline test samples in the Arduino folder.
+# Setup and mount Simcline mechanically...
+Actuator attached to the body
 
+# Add the TOF-sensor to the mechanic setup (in the component box)
+Check it can measure the distance correctly using /Simcline-V2/examples/<b>Test_Board_plus_VL6180X</b>
+<b>Note down the provisional MAXPOSITION and MINPOSITION values of the TOF-sensor reaching the top position and lowest position!</b>
 
+Open file, edit and save(!): <b>/documents/arduino/libraries/Simcline-V2/src/config/configSimcline.h</b><br>
 
-6) Attach the Actuator to the Motor Driver board and test the Actuator....
+Insert RGVMIN, RGVMAX, MINPOSITION and MAXPOSITION in "configSimcline.h"
 
+```C++
+//----------- Global variable definitions for high level movement control -----------------------------------------------
+// In theory the RawgradeValue varies between 0 (equals -200% grade) and 40000 (equals +200% grade)
+// SIMCLINE is mechanically working between -10% and +20% --> 19000 and 22000
 
+//------------------------------------------------- WARNING --------------------------------------------------------------
+//------------ SET THESE TWO VALUES IN ACCORDANCE WITH THE MECHANICAL RANGE LIMITATIONS OF YOUR SIMCLINE !!! -------------
+// Raw Grade Value Minimally (Mechanically: the lowest position of wheel axis)  19000 is equiv. of 10% downhill road grade
+#define RGVMIN 19500 // -5%  // Always is RGVMIN < 20000 (flat road level)
+// Raw Grade Value Maximally (Mechanically: the highest position of wheel axis) 22000 is equiv. of 20% uphill road grade
+#define RGVMAX 22000 // 20%  // +20% // Always is RGVMAX > 20000 (flat road level)
+//------------------------------------------------- WARNING --------------------------------------------------------------
 
-7) Setup and mount Simcline mechanically...
+// Correction for measuring plane difference and midth wheel axis position (1 cm offset is an MEASUREOFFSET of about 40)
+#define MEASUREOFFSET 0
 
-
-
-8) Add the TOF-sensor to the mechanic setup and check it can measure the distance correctly. Repeat 3) for testing. Note down the MAX and MIN values of the TOF-sensor reaching the the top position and lowest position!
-
-
+// -------------------------- WARNING ------------------------------------------------------------
+// The following VL6180X sensor values are a 100% construction specific and
+// should be experimentally determined, when the Actuator AND the VL6180X sensor are mounted!
+// ------>>>> Test manually and use example/test sketches that go with the VL6180X sensor! <<<<---
+// Microswitches should limit physically/mechanically the upper and lower position of the Actuator!
+// The microswitches are mechanically controlled, and NOT by the software --> should be fail safe!
+// Notice that unrestricted movement at the boundaries can damage the Actuator and/or construction!
+// The following values are respected by the software and will (in normal cases!) never be exceeded!
+#define MINPOSITION 10  // VL6180X highest value top microswitch activated to mechanically stop operation
+#define MAXPOSITION 195 // VL6180X lowest value bottom microswitch activated to mechanically stop operation
+```
+Now you should have a fully equiped and operational Simcline (TOF-sensor/display/driver/Actuator) with hardware components tested separately!
 
 9) Insert the settings that you have noted down before in the Simcline Diagnostics Test code. Upload and run to see if all components work together properly.
 
