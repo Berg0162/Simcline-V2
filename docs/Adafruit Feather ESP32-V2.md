@@ -1,8 +1,8 @@
 # <img src="https://github.com/Berg0162/simcline/blob/master/images/SC_logo.png" width="64" height="64" alt="SIMCLINE Icon"> &nbsp; SIMCLINE for Bluetooth Smart FTMS trainers <br> based on the Adafruit Feather ESP32 V2 board with OLED display.
 
 # Simcline-V2
-This board and display can be selected to work in Simcline-V2 with the right settings, see folder: Simcline-V2/src/config<br>
-1) Open file, edit and save: /documents/arduino/libraries/Simcline-V2/src/config/configBoard.h
+The board and display to work with can be selected to work in Simcline-V2 with the right settings, see folder: <b>/Simcline-V2/src/config</b><br>
+1) Open file, edit and save(!): <b>/documents/arduino/libraries/Simcline-V2/src/config/configBoard.h</b>
 ```C++
 // ------------------------------------------------------------------------------------------------
 // Define the board here, that is part of your system setup
@@ -10,7 +10,7 @@ This board and display can be selected to work in Simcline-V2 with the right set
 #define ADAFRUIT_FEATHER_ESP32_V2
 //#define YOUR_ESP32_BOARD
 ```
-1) Open file, edit and save: /documents/arduino/libraries/Simcline-V2/src/config/configDisplay.h <br>
+2) Open file, edit and save(!): <b>/documents/arduino/libraries/Simcline-V2/src/config/configDisplay.h</b><br>
 ```C++
 // ------------------------------------------------------------------------------------------------
 // Define the display, that is part of your system setup
