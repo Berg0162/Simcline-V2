@@ -150,7 +150,7 @@ Be aware of undesirebly <b>autoconnect</b> of Zwift with your trainer using ANT+
 ```
 Please write down the MAC/Device Addresses of a) your Bluetooth Smart trainer and b) your Desktop/Laptop with Zwift.
 These are presented in the Serial Monitor log file when running the FTMS-MITM test code. This is for your own convenience
-since it helps you to identify later both devices! The FTMS-MITM detects the Mac addresses and stores these in ESP32 NVS
+since it helps you to identify later both devices by MAC Addresses! The FTMS-MITM detects the Mac addresses and stores these in ESP32 NVS
 (Non-Volatile-Storage) for later use to unmistakingly establish a BLE connection with the targeted devices.
 ```
 
