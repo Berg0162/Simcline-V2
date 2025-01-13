@@ -22,13 +22,12 @@ To benefit of the same formfactor (fit with the Mechanical SIMCLINE 2.0 componen
 Simcline-V2 library builds on the knowledge and code of my earlier Simcline projects. The original Simcline code has been redesigned completely and was transformed to a C++ Object model that handles the many BLE services and hides most of the Simcline's operation. The Simcline-V2 design separates completely:
 + presentation (display types/properties)
 + specific ESP32 board properties (pinout and initialization)
-+ BLE operation
-
++ BLE operation<br>
 To achieve this the design has implemented Abstract Base Classes for ESP32 board and Display. As a consequence the novice programmer/user only has to change config settings to select between existing board- and display-types. However, a proficient programmer/user can implement Concrete Classes for ESP32-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code.
 Benefits of this Approach:<br>
 + Scalability: Easily add new display types by creating new concrete classes implementing the IDisplay interface.
 + Maintainability: Changes to one display type do not affect others.
-+ Flexibility: Change the display type used by the Presentation class without modifying its implementation.
++ Flexibility: Change the display type used by the Presentation class without modifying its implementation.<br>
 As a result the Arduino ino-files that the user will access, in the <b>Simcline-V2/examples</b> folder, are very concise. <br>
 All settings have been gathered in one config directory (../documents/arduino/libaries/Simcline-V2/src/config) for Board-, Debug-, Display-, NimBLE- and Simcline-configurations.<br>
 The Simcline project heavily leans on the <b>NimBLE-Arduino</b> library for Bluetooth handling, see: [Github:H2Zero/NimBE-Arduino](https://github.com/h2zero/NimBLE-Arduino). <b>NimBLE-Arduino</b> is structured for compilation with Arduino and for use with ESP32! Simcline-V2 works only (!) with the latest version: <b>NimBLE-Arduino Version 2</b>!<br>
