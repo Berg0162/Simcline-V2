@@ -56,7 +56,7 @@ From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetoot
 |STAC |Bluetooth Smart FTMS on all 2020 smart trainers.|
 |Tacx |Bluetooth Smart FTMS on all 2020 smart trainers.|
 |Wahoo |Bluetooth Smart FTMS on all 2020 smart trainers <b>and</b> legacy Wahoo Bluetooth Smart Control.|
-|Zwift|Bluetooth Smart FTMS with HRM.&nbsp;[FAQ #3](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#3)|
+|Zwift Hub|Bluetooth Smart FTMS with HRM.&nbsp;[FAQ #3](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#3)|
 
 # Man-In-The-Middle (MITM) software pattern<br>
 <img src= "./images/FTMS_MITM.jpg" align="left" width="1000" height="500" alt="Man in the Middle"><br>
