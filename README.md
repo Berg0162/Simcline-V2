@@ -49,14 +49,14 @@ From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetoot
 |-----------|-------------------------------------------------------------------------------------| 
 |Elite |Bluetooth Smart FTMS on all 2020 smart trainers.|
 |Gravat |Bluetooth Smart FTMS on all 2020 smart trainers|
-|JetBlack |Bluetooth Smart FTMS with HRM.&nbsp;[FAQ #4](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#4)|
+|JetBlack |Bluetooth Smart FTMS with HRM.&nbsp;[FAQ #3](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#3)|
 |Kinetic |Bluetooth Smart FTMS on all 2020 smart trainers.|
 |Minoura |Bluetooth Smart FTMS on all 2020 smart trainers.|
 |Saris |Bluetooth Smart FTMS on all 2020 smart trainers.|
 |STAC |Bluetooth Smart FTMS on all 2020 smart trainers.|
 |Tacx |Bluetooth Smart FTMS on all 2020 smart trainers.|
 |Wahoo |Bluetooth Smart FTMS on all 2020 smart trainers and legacy Wahoo Bluetooth Smart Control.|
-|Zwift|Bluetooth Smart FTMS with HRM.|
+|Zwift|Bluetooth Smart FTMS with HRM.&nbsp;[FAQ #3](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#3)|
 
 # Man-In-The-Middle (MITM) software pattern<br>
 <img src= "./images/FTMS_MITM.jpg" align="left" width="1000" height="500" alt="Man in the Middle"><br>
