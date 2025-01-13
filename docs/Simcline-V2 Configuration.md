@@ -1,5 +1,5 @@
 # Board
-/documents/arduino/libraries/Simcline-V2/src/config/configBoard.h
+Board configuration:
 ```C++
 
 ```
