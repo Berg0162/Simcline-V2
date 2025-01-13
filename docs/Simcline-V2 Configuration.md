@@ -17,7 +17,7 @@ Simcline-V2 <b>Display</b> configuration options:
 //#define SERIALDISPLAY
 ```
 
-# NimBLE
+# configNimBLE.h
 Simcline-V2 <b>NimBLE</b> configuration options:
 ```C++
 // ----------------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ Simcline-V2 <b>NimBLE</b> configuration options:
 //#define ENABLE_WAHOOCPS
 ```
 
-# SIMCLINE 2.0
+# configSimcline.h
 Simcline-V2 <b>Mechanical SIMCLINE 2.0</b> configuration options:
 ```C++
 //------------- Range Control definitions for high level movement control -----------------------------------------------
@@ -88,7 +88,7 @@ Simcline-V2 <b>Mechanical SIMCLINE 2.0</b> configuration options:
 #define BANDWIDTH 4 
 ```
 
-# Debug
+# configDebug.h
 Simcline-V2 <b>Debug</b> configuration options:
 ```C++
 
