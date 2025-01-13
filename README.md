@@ -42,7 +42,7 @@ The Simcline project heavily leans on the <b>NimBLE-Arduino</b> library for Blue
 
 # FiTness Machine Service a Bluetooth Service Specification
 From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetooth Service specification. This service exposes training-related data in the sports and fitness environment, which allows a Server (e.g., a fitness machine) to send training-related data to a Client. In Februari 2017 the service specification reached a stable version: [Fitness Machine Service 1.0](https://www.bluetooth.com/specifications/specs/fitness-machine-service-1-0/) when it was adopted by the Bluetooth SIG Board of Directors. Have a look at the document to appreciate the effort of all the contributors and the companies they represented!<br>
-<b>FTMS</b> is an open (nonproprietary) protocol that is not owned by any particular company and not limited to a particular company's product. It can be compared in that respect with FE-C over ANT+, however <b>FTMS</b> is targeted to control fitness equipment over <b>Bluetooth</b>! Today <b>Bluetooth Smart FTMS</b> is the absolute industry standard for indoor trainers! <br>
+<b>FTMS</b> is an open (nonproprietary) protocol that is not owned by any particular company and not limited to a particular company's product. It can be compared in that respect with FE-C over ANT+, however <b>FTMS</b> is targeted to control fitness equipment over <b>Bluetooth</b>! Today <b>Bluetooth Smart FTMS</b> is the absolute industry standard for indoor trainers and Simcline-V2 is primarily targeted at <b>FTMS</b>! <br>
 
 # Simcline-V2 is fully supporting:
 |Trainer  |Supported protocols|
