@@ -19,20 +19,25 @@ The present Github repository
 # Simcline-V2 Library is optimised for ESP32 and NimBLE-Arduino 2!<br>
 The <b>ESP32</b> family has a series of low-cost and low-power System on a Chip (SoC) microcontrollers developed by Espressif that include Wi-Fi and Bluetooth wireless capabilities and dual-core processor. See for an introduction: [Random Nerds Tutorials](https://randomnerdtutorials.com/getting-started-with-esp32/). Particularly the multiprocessing capabilities of the dual-core processor make the ESP32 a very attractive choice for the project!
 To benefit of the same formfactor (fit with the Mechanical SIMCLINE 2.0 component box!), I used the [Adafruit Feather ESP32 V2](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Adafruit%20Feather%20ESP32-V2.md) board. Notice that other members of the ESP32 (particularly <b>ESP32S3</b>) will do the job perfectly, when the development boards come with extra flash and psram memory! For example SIMCLINE works successfully with the [Lilygo esp32s3 T-Display](https://github.com/Berg0162/Simcline-V2/blob/main/docs/LILYGO%20ESP32S3%20T-Display.md), however that Lilygo-board needs another size component box!
-Simcline-V2 library builds on the knowledge and code of my earlier Simcline projects. The original Simcline code has been redesigned completely and was transformed to a C++ Object model that handles the many BLE services and hides most of the Simcline's operation. The Simcline-V2 design separates completely:
+Simcline-V2 library builds on the knowledge and code of my earlier Simcline projects. The original Simcline code has been revisited and redesigned completely. It was transformed to a C++ Object model that handles the many BLE services and hides most of the Simcline's operation. <br>
+
+# The Simcline-V2 design separates completely:
 + presentation (display types/properties)
 + specific ESP32 board properties (pinout and initialization)
 + BLE operation<br>
 
-To achieve this the design has implemented Abstract Base Classes for ESP32 board and Display. As a consequence the novice programmer/user only has to change config settings to select between existing board- and display-types. However, a proficient programmer/user can implement Concrete Classes for ESP32-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code.
-Benefits of this Approach:<br>
-
+To achieve this the design has implemented Abstract Base Classes for ESP32 board and Display. As a consequence the novice programmer/user only has to change config settings to select between existing board- and display-types. However, a proficient programmer/user can implement Concrete Classes for ESP32-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code.<br>
+Benefits of this Approach:
 + Scalability: Easily add new display types by creating new concrete classes implementing the IDisplay interface.
 + Maintainability: Changes to one display type do not affect others.
 + Flexibility: Change the display type used by the Presentation class without modifying its implementation.<br>
 
 As a result the Arduino ino-files that the user will access, in the <b>Simcline-V2/examples</b> folder, are very concise. <br>
-All settings have been gathered in one config directory (../documents/arduino/libaries/Simcline-V2/src/config) for Board-, Debug-, Display-, NimBLE- and Simcline-configurations.<br>
+
+# Simcline-V2 has powerful configuration
+All configuration settings have been gathered in one config directory (../documents/arduino/libaries/Simcline-V2/src/config) for Board-, Debug-, Display-, NimBLE- and Simcline-configurations.<br>
+
+# NimBLE-Arduino Version 2
 The Simcline project heavily leans on the <b>NimBLE-Arduino</b> library for Bluetooth handling, see: [Github:H2Zero/NimBE-Arduino](https://github.com/h2zero/NimBLE-Arduino). <b>NimBLE-Arduino</b> is structured for compilation with Arduino and for use with ESP32! Simcline-V2 works only (!) with the latest version: <b>NimBLE-Arduino Version 2</b>!<br>
 
 # FiTness Machine Service a Bluetooth Service Specification
