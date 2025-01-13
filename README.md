@@ -73,7 +73,7 @@ We have applied the very principle: the Simcline is strategicly positioned in be
 The requirements in this phase are simple: 
 + running Zwift, Rouvy or myWhoosh app or alike, 
 + working Feather ESP32-V2 (or other ESP32S3) development board and 
-+ working Bluetooth Smart FTMS Trainer or legacy Bluetooth Smart Wahoo KICKR
++ working Bluetooth Smart FTMS Trainer (see above support list)
 + running Simcline-V2 library and FTMS-MITM application.<br>
 
 # Testing is Knowing!<br>
