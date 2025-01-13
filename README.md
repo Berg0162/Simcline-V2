@@ -35,10 +35,10 @@ Benefits of this Approach:
 As a result the Arduino ino-files that the user will access, in the <b>Simcline-V2/examples</b> folder, are very concise. <br>
 
 # Simcline-V2 has powerful configuration
-All configuration settings have been gathered in one config directory (../documents/arduino/libaries/Simcline-V2/src/config) for Board-, Debug-, Display-, NimBLE- and Simcline-configurations.<br>
+All configuration settings have been gathered in one config directory (../documents/arduino/libaries/Simcline-V2/src/config) for <b>Board</b>-, <b>Debug</b>-, <b>Display</b>-, <b>NimBLE</b>- and <b>Simcline</b>-configurations. [Simcline-V2 Configuration](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Simcline-V2%20Configuration.md)<br>
 
-# NimBLE-Arduino Version 2
-The Simcline project heavily leans on the <b>NimBLE-Arduino</b> library for Bluetooth handling, see: [Github:H2Zero/NimBE-Arduino](https://github.com/h2zero/NimBLE-Arduino). <b>NimBLE-Arduino</b> is structured for compilation with Arduino and for use with ESP32! Simcline-V2 works only (!) with the latest version: <b>NimBLE-Arduino Version 2</b>!<br>
+# NimBLE-Arduino
+The Simcline project heavily leans on the <b>NimBLE-Arduino</b> library for Bluetooth handling, see: [Github.com/H2Zero/NimBE-Arduino](https://github.com/h2zero/NimBLE-Arduino). <b>NimBLE-Arduino</b> is structured for compilation with Arduino and for use with ESP32! Simcline-V2 works only (!) with the latest version: <b>NimBLE-Arduino Version 2</b>!<br>
 
 # FiTness Machine Service a Bluetooth Service Specification
 From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetooth Service specification. This service exposes training-related data in the sports and fitness environment, which allows a Server (e.g., a fitness machine) to send training-related data to a Client. In Februari 2017 the service specification reached a stable version: [Fitness Machine Service 1.0](https://www.bluetooth.com/specifications/specs/fitness-machine-service-1-0/) when it was adopted by the Bluetooth SIG Board of Directors. Have a look at the document to appreciate the effort of all the contributors and the companies they represented!<br>
