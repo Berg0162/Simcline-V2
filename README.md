@@ -49,7 +49,7 @@ From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetoot
 |-----------|-------------------------------------------------------------------------------------| 
 |Elite |Bluetooth Smart FTMS on all 2020 smart trainers.|
 |Gravat |Bluetooth Smart FTMS on all 2020 smart trainers|
-|JetBlack |Bluetooth Smart FTMS with HRM.|
+|JetBlack |Bluetooth Smart FTMS with HRM.&nbsp;[FAQ #4](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#4)|
 |Kinetic |Bluetooth Smart FTMS on all 2020 smart trainers.|
 |Minoura |Bluetooth Smart FTMS on all 2020 smart trainers.|
 |Saris |Bluetooth Smart FTMS on all 2020 smart trainers.|
