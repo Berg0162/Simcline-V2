@@ -1,11 +1,11 @@
-# <img src="./images/SC_logo.png" width="64" height="64" alt="SIMCLINE Icon"> &nbsp; SIMCLINE-V2 for Bluetooth Smart Trainers
+# <img src="./images/SC_logo.png" width="64" height="64" alt="SIMCLINE Icon"> &nbsp; SIMCLINE-V2 for Smart Trainers
 # Simulation of Changing Road Inclination for Indoor Cycling<br>
 <img src="./images/Simcline_2_0.jpg" width="300" height="300" ALIGN="left" alt="Mechanical SIMCLINE 2">
 The SIMCLINE physically adjusts the bike position to mimic hilly roads, climbing and descending. This allows the rider to naturally change position on the bike, engage climbing muscles, and improve pedaling technique to become a more efficient and powerful climber.<br>
 Without user intervention the SIMCLINE will replicate inclines and declines depicted in (online & offline) training programs (like <b>Zwift, Rouvy, VeloReality, myWhoosh</b> and many others) that adjust accordingly the resistance of the indoor trainer.<br>
-The SIMCLINE auto connects at power up with a Bluetooth Smart trainer and let's relive the ascents and descents from favorite rides or routes while training indoors.<br>
+The SIMCLINE auto connects at power up with a Smart trainer and let's relive the ascents and descents from favorite rides or routes while training indoors.<br>
 The physical reach is: 20% maximum incline and -10% maximum decline. However, the reach that the rider is comfortable with can be adjusted!<br>
-The SIMCLINE pairs directly to the Bluetooth Smart trainer and with your PC/Laptop/Tablet with (Zwift) training App for a connection that notifies the SIMCLINE to simulate autonomous the (change in) physical grade of the road during an indoor ride. During operation an OLED display shows the road grade in digits and in graphics. The SIMCLINE Companion App (for Android smartphones) can be paired, only when the training App is disconnected, for adjusting operational settings, like Ascent Grade Limit (between 0-20%), Descent Grade Limit (between 0-10%), Road Grade Change Factor (between 0-100%) and manual Up and Down control.<br clear="left"> 
+The SIMCLINE pairs directly to the Smart trainer and with your PC/Laptop/Tablet with (Zwift) training App for a connection that notifies the SIMCLINE to simulate autonomous the (change in) physical grade of the road during an indoor ride. During operation an OLED display shows the road grade in digits and in graphics. The SIMCLINE Companion App (for Android smartphones) can be paired, only when the training App is disconnected, for adjusting operational settings, like Ascent Grade Limit (between 0-20%), Descent Grade Limit (between 0-10%), Road Grade Change Factor (between 0-100%) and manual Up and Down control.<br clear="left"> 
 <br>
 Notice that the description on how to build SIMCLINE consists of two parts:
 
@@ -61,7 +61,7 @@ From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetoot
 # Man-In-The-Middle (MITM) software pattern<br>
 <img src= "./images/FTMS_MITM.jpg" align="left" width="1000" height="500" alt="Man in the Middle"><br>
 <b>Man-In-The-Middle</b> is a powerful software engineering pattern that is applied in many software designs. Unfortunately it is also known for a negative application in communication traffic: MITM is a common type of cybersecurity attack that allows attackers to eavesdrop on the communication between two targets.
-We have applied the very principle: the Simcline is strategicly positioned in between the BLE communication of the Bluetooth Smart Trainer and the training App (like Zwift) running on the PC/Laptop, all communication traffic can be inspected in that MITM position, when it is passed on from one to the other, in both directions. When Zwift sends resistance information (like the road inclination) to the Bluetooth Smart trainer, this information can be intercepted and applied to determine the up/down positioning of the Simcline. <br>
+We have applied the very principle: the Simcline is strategicly positioned in between the BLE communication of the Smart Trainer and the training App (like Zwift) running on the PC/Laptop, all communication traffic can be inspected in that MITM position, when it is passed on from one to the other, in both directions. When Zwift sends resistance information (like the road inclination) to the Smart trainer, this information can be intercepted and applied to determine the up/down positioning of the Simcline. <br>
 
 # How to start?<br>
 + Install the [Arduino IDE 2](https://www.arduino.cc/en/Main/Software) and all the libraries on a PC/Mac.
@@ -73,7 +73,7 @@ We have applied the very principle: the Simcline is strategicly positioned in be
 The requirements in this phase are simple: 
 + running Zwift, Rouvy or myWhoosh app or alike, 
 + working Feather ESP32-V2 (or other ESP32S3) development board and 
-+ working Bluetooth Smart FTMS Trainer (see above support list)
++ working Smart Trainer (see above support list)
 + running Simcline-V2 library and FTMS-MITM application.<br>
 
 # Testing is Knowing!<br>
@@ -84,9 +84,9 @@ In the Simcline-V2 Library <b>Examples</b> section (see <b>..documents/arduino/l
 <img src="./images/Feather_FTMS.jpg" align="middle" width="1000" height="500" alt="Simcline in the Middle"><br>
 A working <b>MITM</b> implementation links a bike trainer (BLE Server FTMS) and a PC/Laptop (BLE Client running Zwift) with the Feather ESP32, like a <b>bridge</b> in between. The MITM bridge can pass on, control, filter and alter the interchanged trafic data! The <b>MITM</b> code is fully ignorant of mechanical or electronic components that drive the Simcline construction.<br>
 ```
-It simply estabishes a virtual BLE bridge and allows you to ride the bike on the Bluetooth Smart Trainer and 
+It simply estabishes a virtual BLE bridge and allows you to ride the bike on the Smart Trainer and 
 feel the resistance that comes with the route you have choosen, thanks to Zwift.
-The experience should not differ from a normal direct one-to-one connection, Zwift - Bluetooth Smart Trainer!
+The experience should not differ from a normal direct one-to-one connection, Zwift - Smart Trainer!
 ```
 All Bluetooth Smart FTMS indoor trainers expose your efforts on the bike in 2 additional BLE services: Cyling Power (CPS) and Speed & Cadence (CSC). These services are detected and applied by many training app's and are therefore an integral part of the present design of the MITM bridge. Training app's simply expect, when they connect to the Bluetooth Smart FTMS trainer, that the CPS and CSC services are available in one go! The Zwift pairing screen is a good example: it expects Power Souce (CPS), Resistance (FTMS) and Cadence (CSC) to be connected...
 + The client-side (Feather ESP32) scans for (a trainer) and connects with <b>FTMS, CPS and optional CSC</b> and collects cyling power, speed and cadence data like Zwift would do! The <b>Simcline Client</b> is doing just that at the left side of the "bridge"!
@@ -126,7 +126,7 @@ A recipe for success: follow <b>ALWAYS</b> the usage instructions at the top of 
  *  
  *  The client plus server (MITM) are transparent to the Indoor Trainer as well as to the training app Zwift or alike!
  *  
- *  Requirements: Zwift app or alike, ESP32 board (NO display required) and a Bluetooth Smart Indoor Trainer
+ *  Requirements: Zwift app or alike, ESP32 board (NO display required) and a Smart Indoor Trainer
  *  0) Upload and Run this code on your ESP32 board
  *  1) Start the Serial Monitor to catch debugging info
  *  2) The code will do basic testing of electronic parts and settings
@@ -148,7 +148,7 @@ A recipe for success: follow <b>ALWAYS</b> the usage instructions at the top of 
 ```
 Be aware of undesirebly <b>autoconnect</b> of Zwift with your trainer using ANT+ or BLE Smart before <b>FTMS-MITM</b> can establish a connection: always <b>start</b> Zwift <b>AFTER</b> FTMS-MITM and trainer have connected successfully! The <b>FTMS-MITM</b> code will than fail to connect, that does not help you getting representative results during the reconnaisance! Only one client can control at the same time: 2 captains on one ship is a recipe for disaster! See for more info [FAQ #1](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#1) and [FAQ #6](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#6)
 ```
-Please write down the MAC/Device Addresses of a) your Bluetooth Smart trainer and b) your Desktop/Laptop with Zwift.
+Please write down the MAC/Device Addresses of a) your Smart trainer and b) your Desktop/Laptop with Zwift.
 These are presented in the Serial Monitor log file when running the FTMS-MITM test code. This is for your own convenience
 since it helps you to identify later both devices by MAC Addresses! The FTMS-MITM detects the Mac addresses and stores these in ESP32 NVS
 (Non-Volatile-Storage) for later use to unmistakingly establish a BLE connection with the targeted devices.
