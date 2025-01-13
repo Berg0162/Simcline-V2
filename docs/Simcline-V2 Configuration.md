@@ -89,7 +89,12 @@ Simcline-V2 <b>Mechanical SIMCLINE 2.0</b> configuration options:
 ```
 
 # configDebug.h
+Simcline-V2 has a fine-grained scheme for allowing debug-messages during operation. Every /src/<name>.cpp file has its own <b>#define Debug</b> at the beginning of the code that can be (un)commented (switched on or off) discretionary. However, when one reaches the state that debugging has no longer a purpose, you want to get rid of all the overhead (processor load) and optimize for speed. This config file allows you to switch OFF in one place all Simcline-V2 debugging messages with one <b>master switch</b><br>
 Simcline-V2 <b>Debug</b> configuration options:
 ```C++
+// ------------------------------------------------------------------------------------------------
+// COMPILER DIRECTIVE to allow/suppress ALL DEBUG messages that help to debug code sections
+// Uncomment general "#define GLOBAL_DEBUG" to activate the Simcline-V2 debug master switch...
+#define GLOBAL_DEBUG
 
 ```
