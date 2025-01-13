@@ -74,11 +74,11 @@ The requirements in this phase are simple:
 + running Zwift, Rouvy or myWhoosh app or alike, 
 + working Feather ESP32-V2 (or other ESP32S3) development board and 
 + working Smart Trainer (see above support list)
-+ running Simcline-V2 library and FTMS-MITM application.<br>
++ running Simcline-V2 library and Smart-MITM application.<br>
 
 # Testing is Knowing!<br>
 I can understand and respect that you have some reserve: Is this really working in my situation? Better test if it is working, before buying all components and start building.
-In the Simcline-V2 Library <b>Examples</b> section (see <b>..documents/arduino/libraries/Simcline-V2/examples</b>) you will find the appropriate applications for testing and running SIMCLINE that come with the library. The one you should start with in this stage is <b>FTMS-MITM</b> It is developed with the only intention to allow you to check if the MITM solution is delivering in your specific situation. Within the Arduino IDE 2 select on the top bar menu: File > Examples > Simcline-V2 > FTMS-MITM<br>
+In the Simcline-V2 Library <b>Examples</b> section (see <b>..documents/arduino/libraries/Simcline-V2/examples</b>) you will find the appropriate applications for testing and running SIMCLINE that come with the library. The one you should start with in this stage is <b>Smart-MITM</b> It is developed with the only intention to allow you to check if the MITM solution is delivering in your specific situation. Within the Arduino IDE 2 select on the top bar menu: File > Examples > Simcline-V2 > Smart-MITM<br>
 
 <b>What it does in short:</b><br>
 <img src="./images/Feather_FTMS.jpg" align="middle" width="1000" height="500" alt="Simcline in the Middle"><br>
@@ -93,15 +93,15 @@ All Bluetooth Smart FTMS indoor trainers expose your efforts on the bike in 2 ad
 + The Server-side (Feather ESP32) advertises and enables connection with training/cycling/game apps like Zwift and collects relevant resistance data, it simulates as if an active <b>FTMS</b> enabled trainer is connected to Zwift or alike! Notice that the Server-side also exposes active <b>CPS</b> and <b>CSC</b> services. The <b>Simcline Server</b> is doing just at the right side of the "bridge"!
 + The <b>Simcline MITM</b> code is connecting both sides at the same time: a full-blown working bridge<br clear="left">
 
-# Load FTMS-MITM application
-Within the Arduino IDE 2 select on the top bar menu: File > Examples > Simcline-V2 > FTMS-MITM<br>
-The default Simcline-V2 configuration settings for FTMS-MITM are: 
+# Load Smart-MITM application
+Within the Arduino IDE 2 select on the top bar menu: File > Examples > Simcline-V2 > Smart-MITM<br>
+The default Simcline-V2 configuration settings for Smart-MITM are: 
 + Display: <b>NODISPLAY</b>
 + ESP32 board: <b>YOUR_ESP32_BOARD</b>
 + NimBLE: <b>FTMS</b> and <b>CSC</b>
 + Debug:  <b>Defined</b>
   
-<b>FTMS-MITM</b> is default in Debug mode: using Serial Monitor (logging on the PC-screen) to show you what is happening!<br>
+<b>Smart-MITM</b> is default in Debug mode: using Serial Monitor (logging on the PC-screen) to show you what is happening!<br>
 
 A recipe for success: follow <b>ALWAYS</b> the usage instructions at the top of the respective program codes!
 
@@ -146,11 +146,11 @@ A recipe for success: follow <b>ALWAYS</b> the usage instructions at the top of 
  *  
 */ 
 ```
-Be aware of undesirebly <b>autoconnect</b> of Zwift with your trainer using ANT+ or BLE Smart before <b>FTMS-MITM</b> can establish a connection: always <b>start</b> Zwift <b>AFTER</b> FTMS-MITM and trainer have connected successfully! The <b>FTMS-MITM</b> code will than fail to connect, that does not help you getting representative results during the reconnaisance! Only one client can control at the same time: 2 captains on one ship is a recipe for disaster! See for more info [FAQ #1](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#1) and [FAQ #6](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#6)
+Be aware of undesirebly <b>autoconnect</b> of Zwift with your trainer using ANT+ or BLE Smart before <b>Smart-MITM</b> can establish a connection: always <b>start</b> Zwift <b>AFTER</b> Smart-MITM and trainer have connected successfully! The <b>Smart-MITM</b> code will than fail to connect, that does not help you getting representative results during the reconnaisance! Only one client can control at the same time: 2 captains on one ship is a recipe for disaster! See for more info [FAQ #1](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#1) and [FAQ #6](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#6)
 ```
 Please write down the MAC/Device Addresses of a) your Smart trainer and b) your Desktop/Laptop with Zwift.
-These are presented in the Serial Monitor log file when running the FTMS-MITM test code. This is for your
-own convenience since it helps you to identify later both devices by MAC Addresses! The FTMS-MITM detects
+These are presented in the Serial Monitor log file when running the Smart-MITM test code. This is for your
+own convenience since it helps you to identify later both devices by MAC Addresses! The Smart-MITM detects
 the Mac addresses and stores these in ESP32 NVS (Non-Volatile-Storage) for later use to unmistakingly
 establish a BLE connection with the targeted devices.
 ```
