@@ -35,26 +35,28 @@ Benefits of this Approach:
 As a result the Arduino ino-files that the user will access, in the <b>Simcline-V2/examples</b> folder, are very concise. <br>
 
 # Simcline-V2 has powerful configuration
-All configuration settings have been gathered in one config directory (../documents/arduino/libaries/Simcline-V2/src/config) for <b>Board</b>-, <b>Debug</b>-, <b>Display</b>-, <b>NimBLE</b>- and <b>Simcline</b>-configurations. [Simcline-V2 Configuration](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Simcline-V2%20Configuration.md)<br>
+All configuration settings have been gathered in one config directory (../documents/arduino/libaries/Simcline-V2/src/config) for <b>Board</b>-, <b>Debug</b>-, <b>Display</b>-, <b>NimBLE</b>- and <b>Simcline</b>-configurations. Check this out:  [Simcline-V2 Configuration](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Simcline-V2%20Configuration.md)<br>
 
 # NimBLE-Arduino
 The Simcline project heavily leans on the <b>NimBLE-Arduino</b> library for Bluetooth handling, see: [Github.com/H2Zero/NimBE-Arduino](https://github.com/h2zero/NimBLE-Arduino). <b>NimBLE-Arduino</b> is structured for compilation with Arduino and for use with ESP32! Simcline-V2 works only (!) with the latest version: <b>NimBLE-Arduino Version 2</b>!<br>
 
 # FiTness Machine Service a Bluetooth Service Specification
 From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetooth Service specification. This service exposes training-related data in the sports and fitness environment, which allows a Server (e.g., a fitness machine) to send training-related data to a Client. In Februari 2017 the service specification reached a stable version: [Fitness Machine Service 1.0](https://www.bluetooth.com/specifications/specs/fitness-machine-service-1-0/) when it was adopted by the Bluetooth SIG Board of Directors. Have a look at the document to appreciate the effort of all the contributors and the companies they represented!<br>
-<b>FTMS</b> is an open (nonproprietary) protocol that is not owned by any particular company and not limited to a particular company's product. It can be compared in that respect with FE-C over ANT+, however <b>FTMS</b> is targeted to control fitness equipment over <b>Bluetooth</b>! Today <b>Bluetooth Smart FTMS</b> is the absolute industry standard for indoor trainers! Simcline-V2 is fully supporting <b>Bluetooth Smart FTMS</b>
+<b>FTMS</b> is an open (nonproprietary) protocol that is not owned by any particular company and not limited to a particular company's product. It can be compared in that respect with FE-C over ANT+, however <b>FTMS</b> is targeted to control fitness equipment over <b>Bluetooth</b>! Today <b>Bluetooth Smart FTMS</b> is the absolute industry standard for indoor trainers! <br>
+
+# Simcline-V2 is fully supporting:
 |Trainer  |Supported protocols|
 |-----------|-------------------------------------------------------------------------------------| 
-|Elite |ANT+ FE-C and Bluetooth Smart FTMS on all 2020 smart trainers.|
-|Gravat |ANT+ FE-C and Bluetooth Smart FTMS on all 2020 smart trainers|
-|JetBlack |ANT+ FE-C and Bluetooth Smart FTMS on all 2020 smart trainers.|
-|Kinetic |ANT+ FE-C and Bluetooth Smart FTMS on all 2020 smart trainers.|
-|Minoura |ANT+ FE-C and Bluetooth Smart FTMS on all 2020 smart trainers.|
-|Saris |ANT+ FE-C and Bluetooth Smart FTMS on all 2020 smart trainers.|
-|STAC |ANT+ FE-C and Bluetooth Smart FTMS on all 2020 smart trainers.|
-|Tacx |ANT+ FE-C on all ‘Smart’ branded trainers (except Satori). Bluetooth Smart FTMS on all post-2021 direct drive models.|
-|Wahoo |ANT+ FE-C on all smart trainers, proprietary Wahoo Bluetooth Smart Control and all post-2020 models have Bluetooth Smart FTMS.|
-|Zwift|ANT+ FE-C and Bluetooth Smart FTMS on Zwift Hub smart trainer.|
+|Elite |Bluetooth Smart FTMS on all 2020 smart trainers.|
+|Gravat |Bluetooth Smart FTMS on all 2020 smart trainers|
+|JetBlack |Bluetooth Smart FTMS on all 2020 smart trainers.|
+|Kinetic |Bluetooth Smart FTMS on all 2020 smart trainers.|
+|Minoura |Bluetooth Smart FTMS on all 2020 smart trainers.|
+|Saris |Bluetooth Smart FTMS on all 2020 smart trainers.|
+|STAC |Bluetooth Smart FTMS on all 2020 smart trainers.|
+|Tacx |Bluetooth Smart FTMS on all 2020 smart trainers.|
+|Wahoo |Bluetooth Smart FTMS on all 2020 smart trainers and legacy Wahoo Bluetooth Smart Control.|
+|Zwift|Bluetooth Smart FTMS.|
 
 # Man-In-The-Middle (MITM) software pattern<br>
 <img src= "./images/FTMS_MITM.jpg" align="left" width="1000" height="500" alt="Man in the Middle"><br>
