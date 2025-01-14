@@ -54,7 +54,7 @@ The load of the Simcline program itself, the BLE handling and the critical contr
 
 # [7]
 <b>Will Simcline-V2 work out-of-the-box with my ESP32S3 development board?</b><br>
-+ Yes, in most cases, when we assume your ESP32S3 has enough Flash and PSRAM memory on board. Particularly when you <b>restrict</b> (!) your attention initially to <b>SMART-MITM</b> application, to check out if the concept is working with your hardware.<br>
++ Yes, in most cases, when we assume your ESP32S3 has enough Flash and PSRAM memory on board. Particularly when you <b>restrict</b> (!) your attention initially to the <b>SMART-MITM</b> application, to check out if the concept is working with your hardware.<br>
 If you want finally a full blown working SIMCLINE setup, you have to <b>complement</b> the concrete ESP32board class in the file: /documents/arduino/libraries/Simcline-V2/src/board/<b>YOUR_ESP32_Board.h</b>. It needs minimally definitions for the PIN assignments: TOF-sensor (I2C), DRV8871 Motor Driver board (Actuator) and optionally for 2 Buttons. Possibly you have to insert code for specific board initialization (not shown).<br>
 ```C++
 #define PIN_ACTUATOR_1 	-1  // PIN to be connected to pin IN2 of the Adafruit DRV8871 Motor Driver board
