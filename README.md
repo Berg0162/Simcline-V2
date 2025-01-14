@@ -26,7 +26,7 @@ Simcline-V2 library builds on the knowledge and code of my earlier Simcline proj
 + specific ESP32 board properties (pinout and initialization)
 + BLE operation<br>
 
-To achieve this the design has implemented Abstract Base Classes for ESP32 board and Display. As a consequence the novice programmer/user only has to change config settings to select between existing board- and display-types. However, a proficient programmer/user can implement Concrete Classes for ESP32-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code.<br>
+To achieve this the design has implemented Abstract Base Classes for ESP32 board and Display. As a consequence the novice programmer/user only has to change config settings to select between <b>standard</b> board- and display-types that are supplied with Simcline-V2. However, a proficient programmer/user can implement Concrete Classes for ESP32-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code.<br>
 Benefits of this Approach:
 + Scalability: Easily add new display types by creating new concrete classes implementing the IDisplay interface.
 + Maintainability: Changes to one display type do not affect others.
