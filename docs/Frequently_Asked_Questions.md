@@ -66,8 +66,8 @@ If you want finally a full blown working SIMCLINE setup, you have to <b>compleme
 
 #define PIN_I2C_SCL    	SCL // Default in Arduino IDE -> Check for your board!
 #define PIN_I2C_SDA    	SDA // Default in Arduino IDE -> Check for your board!
-
 ```
-
+For how Arduino IDE 2.x handles the specific board pin assignments, 
+https://github.com/espressif/arduino-esp32/blob/master/variants/<board_name>/pins_arduino.h
 
 
