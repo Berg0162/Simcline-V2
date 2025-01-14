@@ -52,3 +52,22 @@ The load of the Simcline program itself, the BLE handling and the critical contr
 8) Click orange CADENCE button and select in the list with devices: ESP32#### (Simcline) --> Close
 9) Click orange OK! button, when all the selected devices are conforming your choices and are indicated as <b>CONNECTED</b>!
 
+#[7]
+<b>Will Simcline-V2 work out-of-the-box with my ESP32S3 development board?</b><br>
++ Yes, in most cases, when we assume your ESP32S3 has enough Flash and PSRAM memory on board. Particularly when you restrict (!) your use initially to SMART-MITM application, to check out if the concept is working with your hardware.<br>
+If you want finally a full blown working SIMCLINE setup, you have to <b>complement</b> the concrete ESP32board class in the file: /documents/arduino/libraries/Simcline-V2/src/board/<b>YOUR_ESP32_Board.h</b>. It needs minimally definitions for the PIN assignments: TOF-sensor (I2C), DRV8871 Motor Driver board (Actuator) and optionally for 2 Buttons. Possibly you have to insert code for specific board initialization(s).<br>
+```C++
+#define PIN_ACTUATOR_1 	-1  // PIN to be connected to pin IN2 of the Adafruit DRV8871 Motor Driver board
+#define PIN_ACTUATOR_2 	-1  // PIN to be connected to pin IN1 of the Adafruit DRV8871 Motor Driver board
+
+// Optional Button 1 and 2 PIN connections
+//#define PIN_BUTTON_1  -1  // PIN to be connected to Internal/External button 
+//#define PIN_BUTTON_2  -1  // PIN to be connected to Internal/External button 
+
+#define PIN_I2C_SCL    	SCL // Default in Arduino IDE -> Check for your board!
+#define PIN_I2C_SDA    	SDA // Default in Arduino IDE -> Check for your board!
+
+```
+
+
+
