@@ -101,7 +101,9 @@ The default Simcline-V2 configuration settings for Smart-MITM are:
 + ESP32 board: <b>YOUR_ESP32_BOARD</b>
 + NimBLE: <b>FTMS</b> and <b>CSC</b>
 + Debug:  <b>Defined</b>
-  
+
+Users of <b>Legacy Wahoo KICKR</b> trainers have to make changes now to [configNimBLE]()
+
 <b>Smart-MITM</b> is default in Debug mode: using Serial Monitor (logging on the PC-screen) to show you what is happening!<br>
 
 A recipe for success: follow <b>ALWAYS</b> the usage instructions at the top of the respective program codes!
