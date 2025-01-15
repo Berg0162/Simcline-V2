@@ -5,7 +5,7 @@
 First test the ESP32 board of your choice with the display attached to it, after you have installed Arduino IDE 2 and the appropriate graphics libraries (like Adafruit GFX and/or TFT_eSPI). Notice that you have to install the original libraries and not the modified versions that product suppliers like to include! All graphics libraries come with code examples and test these. For TFT_eSPI you need to set your display in "User_Setup_Select.h" <b>first</b> to comply with the board/display type you use. Read and study the instructions that come with the sites of these libraries! Only when you have a working combination continue...
 
 # Setup your board for Simcline-V2
-The board and display to work with can be activated in Simcline-V2 with the right settings, see folder: <b>/Simcline-V2/src/config</b><br>
+The board and display to work with can be activated in Simcline-V2 with the right settings, see folder: `/Simcline-V2/src/config`<br>
 
 + Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V2/src/config/configBoard.h`
 ```C++
@@ -27,18 +27,18 @@ The board and display to work with can be activated in Simcline-V2 with the righ
 //#define SERIALDISPLAY
 // ------------------------------------------------------------------------------------------------
 ```
-+ When you want another board or display than is supplied as standard with Simcline-V2, a proficient programmer/user can implement Concrete Classes for ESP32-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code. A dedicated program for creating "YOURDISPLAY" is offered in /Simcline-V2/examples/<b>Test_Board_plus_Display</b> to help you with the task!
++ When you want another board or display than is supplied as standard with Simcline-V2, a proficient programmer/user can implement Concrete Classes for ESP32-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code. A dedicated program for creating "YOURDISPLAY" is offered in `/Simcline-V2/examples/Test_Board_plus_Display` to help you with the task!
 
 # Attach the TOF-sensor to your ESP32 board and test
 First install the <b>VL6180X</b> library in Arduino IDE 2 and the example programs that come with it. Connect using the prescribed wiring scheme depending on the board that you earlier selected: 
 [Adafruit Feather ESP32 V2](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Adafruit%20Feather%20ESP32-V2.md) or [Lilygo esp32s3 T-Display](https://github.com/Berg0162/Simcline-V2/blob/main/docs/LILYGO%20ESP32S3%20T-Display.md) <br>
-Test with the supplier code examples and finally run /Simcline-V2/examples/<b>Test_Board_plus_VL6180X</b> to test in the Simcline-V2 environment.
+Test with the supplier code examples and finally run `/Simcline-V2/examples/Test_Board_plus_VL6180X` to test in the Simcline-V2 environment.
 
 # Attach the Motor Driver board
 No library needed for <b>DRV8871</b>, but the supplier will have example code supplied. 
 
 # Attach the Actuator to the Motor Driver board and test 
-Test the <b>DRV8871 plus Actuator</b> with /Simcline-V2/examples/<b>Test_Board_plus_DRV8871</b>.
+Test the <b>DRV8871 plus Actuator</b> with `/Simcline-V2/examples/<b>Test_Board_plus_DRV8871`.
 
 # Setup and mount Simcline mechanically...
 Actuator attached to the body
