@@ -4,7 +4,8 @@
 The SIMCLINE physically adjusts the bike position to mimic hilly roads, climbing and descending. This allows the rider to naturally change position on the bike, engage climbing muscles, and improve pedaling technique to become a more efficient and powerful climber.<br>
 Without user intervention the SIMCLINE will replicate inclines and declines depicted in (online & offline) training programs (like <b>Zwift, Rouvy, VeloReality, myWhoosh</b> and many others) that adjust accordingly the resistance of the indoor trainer.<br>
 The SIMCLINE auto connects at power up with a Smart trainer and let's relive the ascents and descents from favorite rides or routes while training indoors. The physical reach is: 20% maximum incline and -10% maximum decline. However, the reach that the rider is comfortable with can be adjusted! The SIMCLINE pairs directly to the Smart trainer and with your PC/Laptop/Tablet with (Zwift) training App for a connection that notifies the SIMCLINE to simulate autonomous the (change in) physical grade of the road during an indoor ride. During operation an OLED display shows the road grade in digits and in graphics. <br>
-The SIMCLINE Companion App (for Android smartphones) can be paired with SIMCLINE (ESP32 board) <b>instead</b> of the cycling App (Zwift)! During SIMCLINE startup when the App is not activated yet and after a ride when the App is disconnected. The Companion App allows for the dynamic setting of some variables like Ascent Grade Limit (between 0-20%), Descent Grade Limit (between 0-10%), Road Grade Change Factor (between 0-100%) and for simple manual control/testing of the Up and Down movement.<br clear="left"> 
+The Simcline-V2 library comes with an Android companion app for configuring and controlling its features. See: [android](android/README.md)
+<br clear="left"> 
 <br>
 Notice that the description on how to build SIMCLINE consists of two parts:
 
@@ -32,7 +33,7 @@ Benefits of this Approach:
 + Maintainability: Changes to one display type do not affect others.
 + Flexibility: Change the display type used by the Presentation class without modifying its implementation.<br>
 
-As a result the Arduino ino-files that the user will access, in the <b>Simcline-V2/examples</b> folder, are very concise in compare with the original code files. <br>
+As a result the Arduino ino-files that the user will access, in the `Simcline-V2/examples` folder, are very concise in compare with the original code files. <br>
 
 # Simcline-V2 has central configuration
 All configuration settings have been gathered in one config directory `../documents/arduino/libaries/Simcline-V2/src/config` for <b>Board</b>-, <b>Debug</b>-, <b>Display</b>-, <b>NimBLE</b>- and <b>Simcline</b>-configurations. Check this out:  [Simcline-V2 Configuration](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Simcline-V2%20Configuration.md)<br>
@@ -78,7 +79,7 @@ The requirements in this phase are simple:
 
 # Testing is Knowing!<br>
 I can understand and respect that you have some reserve: Is this really working in my situation? Better test if it is working, before buying all components and start building.
-In the Simcline-V2 Library <b>Examples</b> section (see `..documents/arduino/libraries/Simcline-V2/examples`) you will find the appropriate applications for testing and running SIMCLINE that come with the library. The one you should start with in this stage is <b>Smart-MITM</b> It is developed with the only intention to allow you to check if the MITM solution is delivering in your specific situation. Within the Arduino IDE 2 select on the top bar menu: File > Examples > Simcline-V2 > Smart-MITM<br>
+In the Simcline-V2 Library <b>Examples</b> section (see `..documents/arduino/libraries/Simcline-V2/examples`) you will find the appropriate applications for testing and running SIMCLINE that come with the library. The one you should start with in this stage is <b>Smart-MITM</b> It is developed with the only intention to allow you to check if the MITM solution is delivering in your specific situation. Within the Arduino IDE 2 select on the top bar menu: `File > Examples > Simcline-V2 > Smart-MITM`<br>
 
 <b>What it does in short:</b><br>
 <img src="./images/Feather_FTMS.jpg" align="middle" width="1000" height="500" alt="Simcline in the Middle"><br>
@@ -94,7 +95,7 @@ All Bluetooth Smart FTMS indoor trainers expose your efforts on the bike in 2 ad
 + The <b>Simcline MITM</b> code is connecting both sides at the same time: a full-blown working bridge<br clear="left">
 
 # Load Smart-MITM application in Arduino IDE 2
-Within the Arduino IDE 2 select on the top bar menu: File > Examples > Simcline-V2 > Smart-MITM<br>
+Within the Arduino IDE 2 select on the top bar menu: `File > Examples > Simcline-V2 > Smart-MITM`<br>
 The default Simcline-V2 configuration settings for Smart-MITM are: 
 + Display: <b>NODISPLAY</b>
 + ESP32 board: <b>YOUR_ESP32_BOARD</b>
