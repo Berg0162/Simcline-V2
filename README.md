@@ -35,7 +35,7 @@ Benefits of this Approach:
 
 As a result the Arduino ino-files that the user will access, in the <b>Simcline-V2/examples</b> folder, are very concise in compare with the original code files. <br>
 
-# Simcline-V2 has powerful configuration
+# Simcline-V2 has central configuration
 All configuration settings have been gathered in one config directory (../documents/arduino/libaries/Simcline-V2/src/config) for <b>Board</b>-, <b>Debug</b>-, <b>Display</b>-, <b>NimBLE</b>- and <b>Simcline</b>-configurations. Check this out:  [Simcline-V2 Configuration](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Simcline-V2%20Configuration.md)<br>
 
 # NimBLE-Arduino
