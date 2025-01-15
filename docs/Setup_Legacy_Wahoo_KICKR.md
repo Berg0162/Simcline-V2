@@ -1,7 +1,7 @@
 
 
 # configNimBLE.h
-Simcline-V2 <b>NimBLE</b> configuration options:
+Simcline-V2 <b>NimBLE</b> configuration options set for Legacy Wahoo KICKR users:
 ```C++
 // ----------------------------------------------------------------------------------------
 // Uncomment to allow/enable the MITM transfer of FiTness Machine Service data from trainer 
