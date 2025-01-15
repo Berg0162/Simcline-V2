@@ -9,7 +9,7 @@ This folder contains files for the Android companion app for the Simcline-V2 lib
 - `Simcline_v2_5_2.aia`: The project file for [MIT App Inventor](https://appinventor.mit.edu/). Use this to modify or rebuild the app.
 - `Simcline_v2_5_2.apk`: The pre-built Android app. Install this on your Android device to configure and simple control the SIMCLINE.
 
-The Android app is built with BluetoothLE version: 'edu.mit.appinventor.ble-20240822.aix'
+The Android app is built with BluetoothLE version: `edu.mit.appinventor.ble-20240822.aix`
 
 ## Instructions
 - To install the `.apk`:
