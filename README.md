@@ -54,7 +54,7 @@ From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetoot
 |STAC |Bluetooth Smart FTMS on all 2020 smart trainers.|
 |Tacx |Bluetooth Smart FTMS on all 2020 smart trainers.|
 |Wahoo |Bluetooth Smart FTMS on all 2020 smart trainers <b>and</b> legacy Wahoo Bluetooth Smart Control.|
-|Zwift Hub|Bluetooth Smart FTMS with HRM.&nbsp;[FAQ #3](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#3)|
+|Zwift Hub|Bluetooth Smart FTMS with HRM.&nbsp;[FAQ #3](docs/Frequently_Asked_Questions.md#3)|
 
 # Man-In-The-Middle (MITM) software pattern<br>
 <img src= "./images/FTMS_MITM.jpg" align="left" width="1000" height="500" alt="Man in the Middle"><br>
@@ -100,11 +100,11 @@ The default Simcline-V2 configuration settings for Smart-MITM are:
 + Debug:  <b>Defined</b>
 
 Optionally:
-+ Users with a <b>Adafruit Feather ESP32 V2</b> can setup their board and display now! See: [Setup Adafruit Feather ESP32 V2](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Adafruit%20Feather%20ESP32-V2.md)<br>
-+ Users with a <b>Lilygo esp32s3 T-Display</b> can setup the board and display now! See: [Setup Lilygo esp32s3 T-Display](https://github.com/Berg0162/Simcline-V2/blob/main/docs/LILYGO%20ESP32S3%20T-Display.md)<br>
++ Users with a <b>Adafruit Feather ESP32 V2</b> can setup their board and display now! See: [Setup Adafruit Feather ESP32 V2](docs/Adafruit%20Feather%20ESP32-V2.md)<br>
++ Users with a <b>Lilygo esp32s3 T-Display</b> can setup the board and display now! See: [Setup Lilygo esp32s3 T-Display](docs/LILYGO%20ESP32S3%20T-Display.md)<br>
 
 Mandatory:
-+ Users of <b>Legacy Wahoo KICKR</b> trainers (<b>NOT supporting FTMS</b>) must make changes now! See: [Setup for Legacy Wahoo KICKR](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Setup_Legacy_Wahoo_KICKR.md).
++ Users of <b>Legacy Wahoo KICKR</b> trainers (<b>NOT supporting FTMS</b>) must make changes now! See: [Setup for Legacy Wahoo KICKR](docs/Setup_Legacy_Wahoo_KICKR.md).
 
 <b>Smart-MITM</b> is default in Debug mode: using Serial Monitor (logging on the PC-screen) to show you what is happening!<br>
 
@@ -153,7 +153,7 @@ A recipe for success: follow <b>ALWAYS</b> the instructions and procedure at the
  *  
 */ 
 ```
-Be aware of undesirebly <b>autoconnect</b> of Zwift with your trainer using ANT+ or BLE Smart before <b>Smart-MITM</b> can establish a connection: always <b>start</b> Zwift <b>AFTER</b> Smart-MITM and trainer have connected successfully! The <b>Smart-MITM</b> code will than fail to connect, that does not help you getting representative results during the reconnaisance! Only one client can control at the same time: 2 captains on one ship is a recipe for disaster! See for more info [FAQ #1](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#1) and [FAQ #6](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#6)
+Be aware of undesirebly <b>autoconnect</b> of Zwift with your trainer using ANT+ or BLE Smart before <b>Smart-MITM</b> can establish a connection: always <b>start</b> Zwift <b>AFTER</b> Smart-MITM and trainer have connected successfully! The <b>Smart-MITM</b> code will than fail to connect, that does not help you getting representative results during the reconnaisance! Only one client can control at the same time: 2 captains on one ship is a recipe for disaster! See for more info [FAQ #1](docs/Frequently_Asked_Questions.md#1) and [FAQ #6](docs/Frequently_Asked_Questions.md#6)
 ```
 Please write down the MAC/Device Addresses of a) your Smart trainer and b) your Desktop/Laptop with Zwift.
 These are presented in the Serial Monitor log file when running the Smart-MITM test code. This is for your
