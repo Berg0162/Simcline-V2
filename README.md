@@ -11,7 +11,7 @@ Notice that the description on how to build SIMCLINE consists of two parts:
 <br clear="left">
 
 + <b>Present Simcline-V2 Library</b><br>
-The Simcline-V2 library comes with an Android companion app for configuring and controlling its features. See: `android`<br>
+The Simcline-V2 library comes with an Android companion app for configuring and controlling its features. See: `android`<br> [android](android/readme.md)
 
 # Simcline-V2 Library is optimised for ESP32 and NimBLE-Arduino 2!<br>
 The <b>ESP32</b> family has a series of low-cost and low-power System on a Chip (SoC) microcontrollers developed by Espressif that include Wi-Fi and Bluetooth wireless capabilities and dual-core processor. See for an introduction: [Random Nerds Tutorials](https://randomnerdtutorials.com/getting-started-with-esp32/). Particularly the multiprocessing capabilities of the dual-core processor make the ESP32 a very attractive choice for the project! See: &nbsp;[FAQ #5](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#5)<br>
