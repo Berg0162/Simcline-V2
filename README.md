@@ -35,7 +35,7 @@ Benefits of this Approach:
 As a result the Arduino ino-files that the user will access, in the <b>Simcline-V2/examples</b> folder, are very concise in compare with the original code files. <br>
 
 # Simcline-V2 has central configuration
-All configuration settings have been gathered in one config directory (../documents/arduino/libaries/Simcline-V2/src/config) for <b>Board</b>-, <b>Debug</b>-, <b>Display</b>-, <b>NimBLE</b>- and <b>Simcline</b>-configurations. Check this out:  [Simcline-V2 Configuration](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Simcline-V2%20Configuration.md)<br>
+All configuration settings have been gathered in one config directory `../documents/arduino/libaries/Simcline-V2/src/config` for <b>Board</b>-, <b>Debug</b>-, <b>Display</b>-, <b>NimBLE</b>- and <b>Simcline</b>-configurations. Check this out:  [Simcline-V2 Configuration](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Simcline-V2%20Configuration.md)<br>
 
 # NimBLE-Arduino
 The Simcline project heavily leans on the <b>NimBLE-Arduino</b> library for Bluetooth handling, see: [Github.com/H2Zero/NimBE-Arduino](https://github.com/h2zero/NimBLE-Arduino). <b>NimBLE-Arduino</b> is structured for compilation with Arduino and for use with ESP32! Simcline-V2 works only (!) with the latest version: <b>NimBLE-Arduino Version 2</b>!<br>
@@ -78,7 +78,7 @@ The requirements in this phase are simple:
 
 # Testing is Knowing!<br>
 I can understand and respect that you have some reserve: Is this really working in my situation? Better test if it is working, before buying all components and start building.
-In the Simcline-V2 Library <b>Examples</b> section (see <b>..documents/arduino/libraries/Simcline-V2/examples</b>) you will find the appropriate applications for testing and running SIMCLINE that come with the library. The one you should start with in this stage is <b>Smart-MITM</b> It is developed with the only intention to allow you to check if the MITM solution is delivering in your specific situation. Within the Arduino IDE 2 select on the top bar menu: File > Examples > Simcline-V2 > Smart-MITM<br>
+In the Simcline-V2 Library <b>Examples</b> section (see `..documents/arduino/libraries/Simcline-V2/examples`) you will find the appropriate applications for testing and running SIMCLINE that come with the library. The one you should start with in this stage is <b>Smart-MITM</b> It is developed with the only intention to allow you to check if the MITM solution is delivering in your specific situation. Within the Arduino IDE 2 select on the top bar menu: File > Examples > Simcline-V2 > Smart-MITM<br>
 
 <b>What it does in short:</b><br>
 <img src="./images/Feather_FTMS.jpg" align="middle" width="1000" height="500" alt="Simcline in the Middle"><br>
