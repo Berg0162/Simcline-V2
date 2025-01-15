@@ -1,8 +1,10 @@
 
 
 # configNimBLE.h
-Make configNimBLE.h to comply with your Legacy Wahoo KICKR trainer.<br>
+Make configNimBLE.h to comply with your <b>Legacy Wahoo KICKR</b> trainer.<br>
+
 Open file, edit and save(!): /documents/arduino/libraries/Simcline-V2/src/config/configNimBLE.h<br>
+
 Simcline-V2 <b>NimBLE</b> configuration set for Legacy Wahoo KICKR users:<br>
 ```C++
 // ----------------------------------------------------------------------------------------
