@@ -15,8 +15,8 @@ The Simcline-V2 library comes with an Android companion app for configuring and 
 
 # Simcline-V2 Library is optimised for ESP32 and NimBLE-Arduino 2!<br>
 The <b>ESP32</b> family has a series of low-cost and low-power System on a Chip (SoC) microcontrollers developed by Espressif that include Wi-Fi and Bluetooth wireless capabilities and dual-core processor. See for an introduction: [Random Nerds Tutorials](https://randomnerdtutorials.com/getting-started-with-esp32/). Particularly the multiprocessing capabilities of the dual-core processor make the ESP32 a very attractive choice for the project! See: &nbsp;[FAQ #5](docs/Frequently_Asked_Questions.md#5)<br>
-To benefit of the same formfactor (fit with the Mechanical SIMCLINE 2.0 component box!), the <b>Adafruit Feather ESP32 V2 plus Oled display</b> is still the preferred board and display for the project. See: [Adafruit Feather ESP32 V2](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Adafruit%20Feather%20ESP32-V2.md) for settings, wiring scheme and more.<br> 
-Notice that other members of the ESP32 (particularly <b>ESP32S3</b>) will do the job perfectly, when the development boards come with extra flash and psram memory! See: &nbsp;[FAQ #7](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#7). &nbsp; For example SIMCLINE works successfully with the <b>Lilygo esp32s3 T-Display</b> board, however that Lilygo-board needs another size component box! See: [Lilygo esp32s3 T-Display](https://github.com/Berg0162/Simcline-V2/blob/main/docs/LILYGO%20ESP32S3%20T-Display.md) for settings, wiring scheme and more.<br> 
+To benefit of the same formfactor (fit with the Mechanical SIMCLINE 2.0 component box!), the <b>Adafruit Feather ESP32 V2 plus Oled display</b> is still the preferred board and display for the project. See: [Adafruit Feather ESP32 V2](docs/Adafruit%20Feather%20ESP32-V2.md) for settings, wiring scheme and more.<br> 
+Notice that other members of the ESP32 (particularly <b>ESP32S3</b>) will do the job perfectly, when the development boards come with extra flash and psram memory! See: &nbsp;[FAQ #7](docs/Frequently_Asked_Questions.md#7). &nbsp; For example SIMCLINE works successfully with the <b>Lilygo esp32s3 T-Display</b> board, however that Lilygo-board needs another size component box! See: [Lilygo esp32s3 T-Display](docs/LILYGO%20ESP32S3%20T-Display.md) for settings, wiring scheme and more.<br> 
 Simcline-V2 library builds on the experience, knowledge and code of Simcline projects since <b>2020</b>. The original Simcline code has been revisited and redesigned completely. It was transformed to a C++ Object model that handles the many BLE services and hides most of the Simcline's internal operation. The Simcline community is very diverse when it comes to programming skills. The present Simcline-V2 library matches this much better! It also meets the urge for a greater variety in ESP32 boards and displays to work with.<br>
 
 # The Simcline-V2 design separates completely:
@@ -33,7 +33,7 @@ Benefits of this Approach:
 As a result the Arduino ino-files that the user will access, in the `Simcline-V2/examples` folder, are very concise in compare with the original code files. <br>
 
 # Simcline-V2 has central configuration
-All configuration settings have been gathered in one config directory `../documents/arduino/libaries/Simcline-V2/src/config` for <b>Board</b>-, <b>Debug</b>-, <b>Display</b>-, <b>NimBLE</b>- and <b>Simcline</b>-configurations. Check this out:  [Simcline-V2 Configuration](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Simcline-V2%20Configuration.md)<br>
+All configuration settings have been gathered in one config directory `../documents/arduino/libaries/Simcline-V2/src/config` for <b>Board</b>-, <b>Debug</b>-, <b>Display</b>-, <b>NimBLE</b>- and <b>Simcline</b>-configurations. Check this out:  [Simcline-V2 Configuration](docs/Simcline-V2%20Configuration.md)<br>
 
 # NimBLE-Arduino
 The Simcline project heavily leans on the <b>NimBLE-Arduino</b> library for Bluetooth handling, see: [Github.com/H2Zero/NimBE-Arduino](https://github.com/h2zero/NimBLE-Arduino). <b>NimBLE-Arduino</b> is structured for compilation with Arduino and for use with ESP32! Simcline-V2 works only (!) with the latest version: <b>NimBLE-Arduino Version 2</b>!<br>
@@ -47,7 +47,7 @@ From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetoot
 |-----------|-------------------------------------------------------------------------------------| 
 |Elite |Bluetooth Smart FTMS on all 2020 smart trainers.|
 |Gravat |Bluetooth Smart FTMS on all 2020 smart trainers|
-|JetBlack |Bluetooth Smart FTMS with HRM.&nbsp;[FAQ #3](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#3)|
+|JetBlack |Bluetooth Smart FTMS with HRM.&nbsp;[FAQ #3](docs/Frequently_Asked_Questions.md#3)|
 |Kinetic |Bluetooth Smart FTMS on all 2020 smart trainers.|
 |Minoura |Bluetooth Smart FTMS on all 2020 smart trainers.|
 |Saris |Bluetooth Smart FTMS on all 2020 smart trainers.|
