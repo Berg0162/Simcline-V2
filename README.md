@@ -102,7 +102,7 @@ The default Simcline-V2 configuration settings for Smart-MITM are:
 + NimBLE: <b>FTMS</b> and <b>CSC</b>
 + Debug:  <b>Defined</b>
 
-Users of <b>Legacy Wahoo KICKR</b> trainers have to make changes now to [configNimBLE](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Setup_Legacy_Wahoo_KICKR.md)
+Users of <b>Legacy Wahoo KICKR</b> trainers (<b>NOT</b> supporting FTMS) have to make changes now to [configNimBLE](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Setup_Legacy_Wahoo_KICKR.md).
 
 <b>Smart-MITM</b> is default in Debug mode: using Serial Monitor (logging on the PC-screen) to show you what is happening!<br>
 
