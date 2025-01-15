@@ -38,7 +38,7 @@ Test with the supplier code examples and finally run `/Simcline-V2/examples/Test
 No library needed for <b>DRV8871</b>, but the supplier will have example code supplied. 
 
 # Attach the Actuator to the Motor Driver board and test 
-Test the <b>DRV8871 plus Actuator</b> with `/Simcline-V2/examples/<b>Test_Board_plus_DRV8871`.
+Test the <b>DRV8871 plus Actuator</b> with `/Simcline-V2/examples/Test_Board_plus_DRV8871`.
 
 # Setup and mount Simcline mechanically...
 Actuator attached to the body
@@ -80,8 +80,8 @@ Insert <b>RGVMIN</b>, <b>RGVMAX</b>, <b>MINPOSITION</b> and <b>MAXPOSITION</b> v
 #define MAXPOSITION 195 // VL6180X lowest value bottom microswitch activated to mechanically stop operation
 ```
 Now you should have a fully equiped and operational SIMCLINE 2 (TOF-sensor/display/driver/Actuator) with hardware components tested separately!<br>
-It is time to run /Simcline-V2/examples/<b>Test_Fully_Equiped_Setup</b>.<br>
-During operation of this Full-Setup test-program you will have most probably to finetune the <b>MINPOSITION</b> and <b>MAXPOSITION</b>. Repeat, if necessary, by editing `/documents/arduino/libraries/Simcline-V2/src/config/<b>configSimcline.h` ... Don't forget to save the file before (!) you run the Full-Setup test-program again, otherwise the new values will not be effective!!
+It is time to run `/Simcline-V2/examples/Test_Fully_Equiped_Setup`.<br>
+During operation of this Full-Setup test-program you will have most probably to finetune the <b>MINPOSITION</b> and <b>MAXPOSITION</b>. Repeat, if necessary, by editing `/documents/arduino/libraries/Simcline-V2/src/config/configSimcline.h` ... Don't forget to save the file before (!) you run the Full-Setup test-program again, otherwise the new values will not be effective!!
 
 # Open Simcline program, compile and run! 
 SIMCLINE should recognise the TOF-sensor, motor driver board and test the actuator movements with help of the TOF-sensor. It will scan for your trainer and advertise its server-side to be connected to Zwift... from now on it will handle the Bluetooth MITM and translate changing road grades to actuator movements.
