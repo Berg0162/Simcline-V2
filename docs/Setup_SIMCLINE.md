@@ -7,7 +7,7 @@ First test the ESP32 board of your choice with the display attached to it, after
 # Setup your board for Simcline-V2
 The board and display to work with can be activated in Simcline-V2 with the right settings, see folder: <b>/Simcline-V2/src/config</b><br>
 
-+ Open file, edit and save(!): <b>/documents/arduino/libraries/Simcline-V2/src/config/configBoard.h</b>
++ Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V2/src/config/configBoard.h`
 ```C++
 // ------------------------------------------------------------------------------------------------
 // Define the board here, that is part of your system setup
@@ -15,7 +15,7 @@ The board and display to work with can be activated in Simcline-V2 with the righ
 #define ADAFRUIT_FEATHER_ESP32_V2
 //#define YOUR_ESP32_BOARD
 ```
-+ Open file, edit and save(!): <b>/documents/arduino/libraries/Simcline-V2/src/config/configDisplay.h</b><br>
++ Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V2/src/config/configDisplay.h`<br>
 
 ```C++
 // ------------------------------------------------------------------------------------------------
@@ -44,11 +44,11 @@ Test the <b>DRV8871 plus Actuator</b> with /Simcline-V2/examples/<b>Test_Board_p
 Actuator attached to the body
 
 # Add the TOF-sensor to the mechanic setup (in the component box)
-Check it can measure the distance correctly using /Simcline-V2/examples/<b>Test_Board_plus_VL6180X</b><br>
+Check it can measure the distance correctly using `/Simcline-V2/examples/Test_Board_plus_VL6180X`<br>
 
 Note down the provisional <b>MAXPOSITION</b> and <b>MINPOSITION</b> values of the TOF-sensor reaching the <b>top</b> position and <b>lowest</b> position!<br>
 
-Open file, edit and save(!): <b>/documents/arduino/libraries/Simcline-V2/src/config/configSimcline.h</b><br>
+Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V2/src/config/configSimcline.h`<br>
 
 Insert <b>RGVMIN</b>, <b>RGVMAX</b>, <b>MINPOSITION</b> and <b>MAXPOSITION</b> values in <b>configSimcline.h</b> in accordance with your mechanical setup.
 
@@ -81,7 +81,7 @@ Insert <b>RGVMIN</b>, <b>RGVMAX</b>, <b>MINPOSITION</b> and <b>MAXPOSITION</b> v
 ```
 Now you should have a fully equiped and operational SIMCLINE 2 (TOF-sensor/display/driver/Actuator) with hardware components tested separately!<br>
 It is time to run /Simcline-V2/examples/<b>Test_Fully_Equiped_Setup</b>.<br>
-During operation of this Full-Setup test-program you will have most probably to finetune the <b>MINPOSITION</b> and <b>MAXPOSITION</b>. Repeat, if necessary, by editing /documents/arduino/libraries/Simcline-V2/src/config/<b>configSimcline.h</b>... Don't forget to save the file before (!) you run the Full-Setup test-program again, otherwise the new values will not be effective!!
+During operation of this Full-Setup test-program you will have most probably to finetune the <b>MINPOSITION</b> and <b>MAXPOSITION</b>. Repeat, if necessary, by editing `/documents/arduino/libraries/Simcline-V2/src/config/<b>configSimcline.h` ... Don't forget to save the file before (!) you run the Full-Setup test-program again, otherwise the new values will not be effective!!
 
 # Open Simcline program, compile and run! 
 SIMCLINE should recognise the TOF-sensor, motor driver board and test the actuator movements with help of the TOF-sensor. It will scan for your trainer and advertise its server-side to be connected to Zwift... from now on it will handle the Bluetooth MITM and translate changing road grades to actuator movements.
