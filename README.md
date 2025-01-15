@@ -103,16 +103,16 @@ The default Simcline-V2 configuration settings for Smart-MITM are:
 + Debug:  <b>Defined</b>
 
 Optionally:
-+ Users with a <b>Adafruit Feather ESP32 V2</b> can setup their board and display now! See: [Adafruit Feather ESP32 V2](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Adafruit%20Feather%20ESP32-V2.md)<br>
-+ Users with a <b>Lilygo esp32s3 T-Display</b> can setup the board and display now! See: [Lilygo esp32s3 T-Display](https://github.com/Berg0162/Simcline-V2/blob/main/docs/LILYGO%20ESP32S3%20T-Display.md)<br>
++ Users with a <b>Adafruit Feather ESP32 V2</b> can setup their board and display now! See: [Setup Adafruit Feather ESP32 V2](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Adafruit%20Feather%20ESP32-V2.md)<br>
++ Users with a <b>Lilygo esp32s3 T-Display</b> can setup the board and display now! See: [Setup Lilygo esp32s3 T-Display](https://github.com/Berg0162/Simcline-V2/blob/main/docs/LILYGO%20ESP32S3%20T-Display.md)<br>
 
 Mandatory:
-+ Users of <b>Legacy Wahoo KICKR</b> trainers (<b>NOT supporting FTMS</b>) have to make changes now to [Setup for Legacy Wahoo KICKR](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Setup_Legacy_Wahoo_KICKR.md).
++ Users of <b>Legacy Wahoo KICKR</b> trainers (<b>NOT supporting FTMS</b>) must make changes now! See: [Setup for Legacy Wahoo KICKR](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Setup_Legacy_Wahoo_KICKR.md).
 
 <b>Smart-MITM</b> is default in Debug mode: using Serial Monitor (logging on the PC-screen) to show you what is happening!<br>
 
-A recipe for success: follow <b>ALWAYS</b> the usage instructions at the top of the respective program codes!
-
+# Upload Smart-MITM to your ESP32 board
+A recipe for success: follow <b>ALWAYS</b> the instructions and procedure at the top of the respective program codes!
 ```
 /* -----------------------------------------------------------------------------------------------------
  *             This code should work with all indoor cycling trainers that fully support,
