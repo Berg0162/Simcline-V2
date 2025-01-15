@@ -94,7 +94,7 @@ All Bluetooth Smart FTMS indoor trainers expose your efforts on the bike in 2 ad
 + The Server-side (Feather ESP32) advertises and enables connection with training/cycling/game apps like Zwift and collects relevant resistance data, it simulates as if an active <b>FTMS</b> enabled trainer is connected to Zwift or alike! Notice that the Server-side also exposes active <b>CPS</b> and <b>CSC</b> services. The <b>Simcline Server</b> is doing just at the right side of the "bridge"!
 + The <b>Simcline MITM</b> code is connecting both sides at the same time: a full-blown working bridge<br clear="left">
 
-# Load Smart-MITM application
+# Load Smart-MITM application in Arduino IDE 2
 Within the Arduino IDE 2 select on the top bar menu: File > Examples > Simcline-V2 > Smart-MITM<br>
 The default Simcline-V2 configuration settings for Smart-MITM are: 
 + Display: <b>NODISPLAY</b>
