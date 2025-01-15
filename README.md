@@ -5,8 +5,8 @@ The SIMCLINE physically adjusts the bike position to mimic hilly roads, climbing
 Without user intervention the SIMCLINE will replicate inclines and declines depicted in (online & offline) training programs (like <b>Zwift, Rouvy, VeloReality, myWhoosh</b> and many others) that adjust accordingly the resistance of the indoor trainer.<br>
 The SIMCLINE auto connects at power up with a Smart trainer and let's relive the ascents and descents from favorite rides or routes while training indoors. The physical reach is: 20% maximum incline and -10% maximum decline. However, the reach that the rider is comfortable with can be adjusted! The SIMCLINE pairs directly to the Smart trainer and with your PC/Laptop/Tablet with (Zwift) training App for a connection that notifies the SIMCLINE to simulate autonomous the (change in) physical grade of the road during an indoor ride. During operation an OLED display shows the road grade in digits and in graphics. <br>
 The Simcline-V2 library comes with an Android companion app for configuring and controlling its features. 
-See: [android](https://github.com/Berg0162/Simcline-V2/blob/main/android/readme.md)<br>
-See: [android](android/readme.md)
+See: [android](https://github.com/Berg0162/Simcline-V2/blob/android/readme.md)<br>
+See: [android](../android/readme.md)
 <br clear="left"> 
 <br>
 Notice that the description on how to build SIMCLINE consists of two parts:
