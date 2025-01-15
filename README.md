@@ -10,8 +10,7 @@ Notice that the description on how to build SIMCLINE consists of two parts:
 <img src="https://www.instructables.com/assets/img/instructables-logo-v2.png" width="32" height="48" align="left" alt="Instructables"> &nbsp; [SIMCLINE 2.0 Instructables](https://www.instructables.com/SIMCLINE-20-Easy-Simulation-of-Road-Incline/) 
 <br clear="left">
 
-+ <b>Simcline-V2 Library</b><br>
-The present Github repository<br>
++ <b>Present Simcline-V2 Library</b><br>
 The Simcline-V2 library comes with an Android companion app for configuring and controlling its features. See: `android`<br>
 
 # Simcline-V2 Library is optimised for ESP32 and NimBLE-Arduino 2!<br>
