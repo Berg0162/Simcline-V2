@@ -3,9 +3,9 @@
 # configNimBLE.h
 Make configNimBLE.h to comply with your <b>Legacy Wahoo KICKR</b> trainer.<br>
 
-Open file, edit and save(!): /documents/arduino/libraries/Simcline-V2/src/config/configNimBLE.h<br>
++ Open file, edit and save(!): /documents/arduino/libraries/Simcline-V2/src/config/configNimBLE.h<br>
 
-Simcline-V2 <b>NimBLE</b> configuration set for Legacy Wahoo KICKR users:<br>
++ Set Simcline-V2 <b>NimBLE</b> configuration for use of <b>Legacy Wahoo KICKR</b>:<br>
 ```C++
 // ----------------------------------------------------------------------------------------
 // Uncomment to allow/enable the MITM transfer of FiTness Machine Service data from trainer 
