@@ -20,20 +20,20 @@ The present Github repository
 The <b>ESP32</b> family has a series of low-cost and low-power System on a Chip (SoC) microcontrollers developed by Espressif that include Wi-Fi and Bluetooth wireless capabilities and dual-core processor. See for an introduction: [Random Nerds Tutorials](https://randomnerdtutorials.com/getting-started-with-esp32/). Particularly the multiprocessing capabilities of the dual-core processor make the ESP32 a very attractive choice for the project! See: &nbsp;[FAQ #5](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#5)<br>
 To benefit of the same formfactor (fit with the Mechanical SIMCLINE 2.0 component box!), the <b>Adafruit Feather ESP32 V2 plus Oled display</b> is still the preferred board and display for the project. See: [Adafruit Feather ESP32 V2](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Adafruit%20Feather%20ESP32-V2.md) for settings, wiring scheme and more.<br> 
 Notice that other members of the ESP32 (particularly <b>ESP32S3</b>) will do the job perfectly, when the development boards come with extra flash and psram memory! See: &nbsp;[FAQ #7](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Frequently_Asked_Questions.md#7). &nbsp; For example SIMCLINE works successfully with the <b>Lilygo esp32s3 T-Display</b> board, however that Lilygo-board needs another size component box! See: [Lilygo esp32s3 T-Display](https://github.com/Berg0162/Simcline-V2/blob/main/docs/LILYGO%20ESP32S3%20T-Display.md) for settings, wiring scheme and more.<br> 
-Simcline-V2 library builds on the experience, knowledge and code of earlier Simcline projects. The original Simcline code has been revisited and redesigned completely. It was transformed to a C++ Object model that handles the many BLE services and hides most of the Simcline's operation. <br>
+Simcline-V2 library builds on the experience, knowledge and code of earlier Simcline projects. The original Simcline code has been revisited and redesigned completely. It was transformed to a C++ Object model that handles the many BLE services and hides most of the Simcline's internal operation. The Simcline community is very diverse when it comes to programming skills, the present Simcline-V2 library fits much better! <br>
 
 # The Simcline-V2 design separates completely:
 + presentation (display types/properties)
 + specific ESP32 board properties (pinout and initialization)
 + BLE operation<br>
 
-To achieve this the design has implemented Abstract Base Classes for ESP32 board and Display. As a consequence the novice programmer/user only has to change config settings to select between <b>standard</b> board- and display-types that are supplied with Simcline-V2. However, a proficient programmer/user can implement Concrete Classes for ESP32-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code.<br>
+To achieve this the design has implemented Abstract Base Classes for ESP32 board and Display. As a consequence the <b>novice programmer/user</b> only has to change config settings to select between <b>standard</b> board- and display-types that are supplied with Simcline-V2. However, a <b>proficient programmer/user</b> can implement Concrete Classes for ESP32-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code.<br>
 Benefits of this Approach:
 + Scalability: Easily add new display types by creating new concrete classes implementing the IDisplay interface.
 + Maintainability: Changes to one display type do not affect others.
 + Flexibility: Change the display type used by the Presentation class without modifying its implementation.<br>
 
-As a result the Arduino ino-files that the user will access, in the <b>Simcline-V2/examples</b> folder, are very concise. <br>
+As a result the Arduino ino-files that the user will access, in the <b>Simcline-V2/examples</b> folder, are very concise in compare with the original code files. <br>
 
 # Simcline-V2 has powerful configuration
 All configuration settings have been gathered in one config directory (../documents/arduino/libaries/Simcline-V2/src/config) for <b>Board</b>-, <b>Debug</b>-, <b>Display</b>-, <b>NimBLE</b>- and <b>Simcline</b>-configurations. Check this out:  [Simcline-V2 Configuration](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Simcline-V2%20Configuration.md)<br>
