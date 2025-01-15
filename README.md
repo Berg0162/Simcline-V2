@@ -111,7 +111,9 @@ Mandatory:
 
 <b>Smart-MITM</b> is default in Debug mode: using Serial Monitor (logging on the PC-screen) to show you what is happening!<br>
 
-# Upload Smart-MITM to your ESP32 board
+When the settings are conforming your desired setup, it is time to run Smart-MITM!
+
+# Compile and Upload Smart-MITM to your ESP32 board
 A recipe for success: follow <b>ALWAYS</b> the instructions and procedure at the top of the respective program codes!
 ```
 /* -----------------------------------------------------------------------------------------------------
