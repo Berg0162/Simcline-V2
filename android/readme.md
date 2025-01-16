@@ -20,4 +20,4 @@ The Android app is built with BluetoothLE version: `edu.mit.appinventor.ble-2024
 - To modify the app, import the `.aia` file into [MIT App Inventor](https://appinventor.mit.edu/).
 
 ## Test Simcline and smartphone together
-A dedicated program for testing is offered in `/Simcline-V2/examples/Test_Simcline_App_Connection` to help you with the task!
+A dedicated program for testing Simcline and Smartphone <b>secured and authenticated</b> connection is offered: `/Simcline-V2/examples/Test_Simcline_App_Connection` to help you with the task! Notice that the security pin when the two pair is: `123456`
