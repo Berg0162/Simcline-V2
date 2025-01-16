@@ -19,4 +19,5 @@ The Android app is built with BluetoothLE version: `edu.mit.appinventor.ble-2024
   4. Open the file to install the app.
 - To modify the app, import the `.aia` file into [MIT App Inventor](https://appinventor.mit.edu/).
 
+## Test Simcline and smartphone together
 
