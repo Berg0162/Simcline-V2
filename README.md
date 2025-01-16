@@ -159,7 +159,7 @@ Please write down the MAC/Device Addresses of a) your Smart trainer and b) your 
 These are presented in the Serial Monitor output when running the Smart-MITM test code. This is for your
 own convenience since it helps you to identify later both devices by MAC Addresses! The Smart-MITM detects
 the Mac addresses and stores these in ESP32 NVS (Non-Volatile-Storage) for later use to unmistakingly
-establish a BLE connection with the targeted devices.
+establish a BLE connection with the targeted devices. See [FAQ #9](docs/Frequently_Asked_Questions.md#9)
 ```
 
 When you see different road grade values in the Zwift window compared with the Simcline display or in the Serial Monitor output, this can have different reasons! See: [FAQ #8](docs/Frequently_Asked_Questions.md#8)
