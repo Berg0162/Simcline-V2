@@ -55,7 +55,7 @@ The load of the Simcline program itself, the BLE handling and the critical contr
 # [7]
 <b>Will Simcline-V2 work out-of-the-box with my ESP32S3 development board?</b><br>
 + Yes, in most cases, when we assume your ESP32S3 has enough Flash and PSRAM memory on board. Particularly when you <b>restrict</b> (!) your attention initially to the <b>Smart-MITM</b> application, to check out if the concept is working with your hardware.<br>
-If you want finally a full blown working SIMCLINE setup, you have to <b>complement</b> the concrete ESP32board class in the file: /documents/arduino/libraries/Simcline-V2/src/board/<b>YOUR_ESP32_Board.h</b>. It needs minimally definitions for the PIN assignments: TOF-sensor (I2C), DRV8871 Motor Driver board (Actuator) and optionally for 2 Buttons. Possibly you have to insert code for specific board initialization (not shown).<br>
+If you want finally a full blown working SIMCLINE setup, you have to <b>complement</b> the concrete ESP32board class in the file: `/documents/arduino/libraries/Simcline-V2/src/board/YOUR_ESP32_Board.h`. It needs minimally definitions for the PIN assignments: TOF-sensor (I2C), DRV8871 Motor Driver board (Actuator) and optionally for 2 Buttons. Possibly you have to insert code for specific board initialization (not shown).<br>
 ```C++
 #define PIN_ACTUATOR_1 	-1  // PIN to be connected to pin IN2 of the Adafruit DRV8871 Motor Driver board
 #define PIN_ACTUATOR_2 	-1  // PIN to be connected to pin IN1 of the Adafruit DRV8871 Motor Driver board
@@ -67,8 +67,7 @@ If you want finally a full blown working SIMCLINE setup, you have to <b>compleme
 #define PIN_I2C_SCL    	SCL // Default in Arduino IDE -> Check for your board!
 #define PIN_I2C_SDA    	SDA // Default in Arduino IDE -> Check for your board!
 ```
-For how Arduino IDE 2.x handles the specific board pin assignments: <br>
-https://github.com/espressif/arduino-esp32/blob/master/variants
+For how Arduino IDE 2.x handles the specific board pin assignments, search for your board in: [this reference](https://github.com/espressif/arduino-esp32/blob/master/variants)
 
 # [8]
 <b>How are Zwift, Trainer and Simcline handling (changes in) road grade during your ride!</b><br>
@@ -79,3 +78,28 @@ https://github.com/espressif/arduino-esp32/blob/master/variants
 5) The Simcline code has its own setting that influences how it will react on and display the road grade value sent by Zwift. The Grade-Change-Factor functionality was originally designed and implemented to allow a Simcline user to attenuate the actuator movements in case of a noisy and/or slow actuator. Notice that the original (unmodified) Zwift grade value is passed on to the trainer, so the trainer's resistance is NOT affected by the Grade-Change-Factor setting! Default code setting for the Grade-Change-Factor is 100% and it can be modified dynamically using the Simcline app.
 
 In conclusion when you see different road grade values in the Zwift window compared with the Simcline display, this can have different reasons! If you consider this a problem: check first Zwift difficulty setting and Grade-Change-Factor of the Simcline, these can be modified to what you prefer! Like it or not, the other causes are Zwift features and part of the design! Cycling Apps like Rouvy and MyWhoosh handle road grades more or less comparably.
+
+#[8]
+
+```C++
+// ----------------------------------------------------------------------------------------
+// Your FIXED hardware Laptop/Trainer/Smartphone BLE MAC- or DEVICE-Addresses 
+// Enter address string here like the printed format like [00:01:02:03:04:05 0]
+// LAPTOP Fixed Device Address --------Public Type (0) --------- Random Type (1)-----------
+//#define LAPTOPADDRESS "00:01:02:03:04:05 0" // Example Mac string of Public Type
+//#define LAPTOPADDRESS "80:86:F2:7E:B2:87 0" // DELL Inspiron laptop of Public Type 
+//#define LAPTOPADDRESS "84:FC:E6:6B:B7:85 0" // XIAO ESP32 S3 of Public Type
+
+//#define LAPTOPADDRESS "80:86:F2:7E:B2:87 0" // DELL Inspiron laptop of Public Type 
+
+// TRAINER Fixed Device Address --------Public Type (0) --------- Random Type (1)----------
+//#define TRAINERADDRESS "00:01:02:03:04:05 0"  // Example Mac string of Public Type
+//#define TRAINERADDRESS "FE:B2:48:6C:2B:E1 1"  // Sim nRF52 of Random Type
+//#define TRAINERADDRESS "FD:6C:BD:F3:50:95 0"  // nRF52 Sterzo Simulator of Public Type
+//#define TRAINERADDRESS "E8:9F:6D:26:93:C2 0"  // Adafruit Feather ESP32 V2 of Public Type
+//#define TRAINERADDRESS "84:FC:E6:6B:B7:85 0"  // XIAO ESP32 S3 of Public Type
+
+//#define TRAINERADDRESS "FE:B2:48:6C:2B:E1 1" // Sim nRF52 of Random Type
+
+```
+
