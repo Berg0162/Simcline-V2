@@ -62,7 +62,7 @@ From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetoot
 We have applied the very principle: the Simcline is strategicly positioned in between the BLE communication of the Smart Trainer and the training App (like Zwift) running on the PC/Laptop, all communication traffic can be inspected in that MITM position, when it is passed on from one to the other, in both directions. When Zwift sends resistance information (like the road inclination) to the Smart trainer, this information can be intercepted and applied to determine the up/down positioning of the Simcline. <br>
 
 # How to start?<br>
-+ Install the [Arduino IDE 2](https://www.arduino.cc/en/Main/Software) and all the libraries on a PC/Mac.
++ Install the [Arduino IDE 2](https://randomnerdtutorials.com/installing-esp32-arduino-ide-2-0/).
 + Install your ESP32 board in the Arduino environment
 + download the ESP32 NimBLE-Arduino library (<b>Latest Version 2.#.#</b>), see [Arduino Installation NimBLE](https://github.com/h2zero/NimBLE-Arduino#arduino-installation)
 + Download the Simcline-V2 library from [Github](https://github.com/Berg0162/Simcline-V2/tree/master/Simcline-V2) and install the library in the Arduino IDE following the rules that apply to this. <br>
