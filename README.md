@@ -155,10 +155,6 @@ A recipe for success: follow <b>ALWAYS</b> the instructions and procedure at the
 ```
 # Points of Interest
 + Be aware of undesirebly <b>autoconnect</b> of Zwift with your trainer using ANT+ or BLE Smart before <b>Smart-MITM</b> can establish a connection: always <b>start</b> Zwift <b>AFTER</b> Smart-MITM and trainer have connected successfully! The <b>Smart-MITM</b> code will than fail to connect, that does not help you getting representative results during the reconnaisance! Only one client can control at the same time: 2 captains on one ship is a recipe for disaster! See for more info [FAQ #1](docs/Frequently_Asked_Questions.md#1) and [FAQ #6](docs/Frequently_Asked_Questions.md#6)
-+ Please write down the MAC/Device Addresses of a) your Smart trainer and b) your Desktop/Laptop with Zwift.
-These are presented in the Serial Monitor output when running the Smart-MITM test code. This is for your
-own convenience since it helps you to identify later both devices by MAC Addresses! The Smart-MITM detects
-the Mac addresses and stores these in ESP32 NVS (Non-Volatile-Storage) for later use to unmistakingly
-establish a BLE connection with the targeted devices. See [FAQ #9](docs/Frequently_Asked_Questions.md#9)
++ Please write down the presented MAC/Device Addresses of a) your Smart trainer and b) your Desktop/Laptop with Zwift. These are presented in the Serial Monitor output when running the Smart-MITM test code. This is for your own convenience since it helps you to identify later both devices by MAC Addresses! The Smart-MITM detects the Mac addresses and stores these in ESP32 NVS (Non-Volatile-Storage) for later use to unmistakingly establish a BLE connection with the targeted devices. See [FAQ #9](docs/Frequently_Asked_Questions.md#9)
 + When you see different road grade values in the Zwift window compared with the Simcline display or in the Serial Monitor output, this can have different reasons! See: [FAQ #8](docs/Frequently_Asked_Questions.md#8)
 
