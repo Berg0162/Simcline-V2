@@ -84,6 +84,8 @@ It is time to run `/Simcline-V2/examples/Test_Fully_Equiped_Setup`.<br>
 During operation of this Full-Setup test-program you will have most probably to finetune the <b>MINPOSITION</b> and <b>MAXPOSITION</b>. Repeat, if necessary, by editing `/documents/arduino/libraries/Simcline-V2/src/config/configSimcline.h` ... Don't forget to save the file before (!) you run the Full-Setup test-program again, otherwise the new values will not be effective!!
 
 # Open Simcline program, compile and run! 
-SIMCLINE should recognise the TOF-sensor, motor driver board and test the actuator movements with help of the TOF-sensor. It will scan for your trainer and advertise its server-side to be connected to Zwift... from now on it will handle the Bluetooth MITM and translate changing road grades to actuator movements.
+SIMCLINE should recognise the TOF-sensor, motor driver board and test the actuator movements with help of the TOF-sensor. It will scan for your trainer and advertise its server-side to be connected to Zwift... from now on it will handle the Bluetooth MITM and translate changing road grades to actuator movements.<br>
+See [for how road grades are handled FAQ #8](docs/Frequently_Asked_Questions.md#8)<br>
+See [for when devives have changed FAQ #9](docs/Frequently_Asked_Questions.md#9)<br>
 
 
