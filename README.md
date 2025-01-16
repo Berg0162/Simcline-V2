@@ -162,4 +162,5 @@ the Mac addresses and stores these in ESP32 NVS (Non-Volatile-Storage) for later
 establish a BLE connection with the targeted devices.
 ```
 
+When you see different road grade values in the Zwift window compared with the Simcline display or in the serial monitor output, this can have different reasons! See: [FAQ #8](docs/Frequently_Asked_Questions.md#8)
 
