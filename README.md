@@ -64,8 +64,9 @@ We have applied the very principle: the Simcline is strategicly positioned in be
 # How to start?<br>
 + Install the [Arduino IDE 2](https://randomnerdtutorials.com/installing-esp32-arduino-ide-2-0/).
 + Install your ESP32 board in the Arduino environment
-+ download the ESP32 NimBLE-Arduino library (<b>Latest Version 2.#.#</b>), see [Arduino Installation NimBLE](https://github.com/h2zero/NimBLE-Arduino#arduino-installation)
-+ Download the Simcline-V2 library from [Github](https://github.com/Berg0162/Simcline-V2/tree/master/Simcline-V2) and install the library in the Arduino IDE following the rules that apply to this. <br>
++ Install Adafruit OLED and GFX Libraries [Install OLED and GFX](https://makeabilitylab.github.io/physcomp/advancedio/oled-libraries.html)
++ Install the ESP32 NimBLE-Arduino library (<b>Latest Version 2.#.#</b>), see [Arduino Installation NimBLE](https://github.com/h2zero/NimBLE-Arduino#arduino-installation)
++ Install the Simcline-V2 library from [Github](https://github.com/Berg0162/Simcline-V2/tree/master/Simcline-V2) and install the library in the Arduino IDE following the rules that apply to this. <br>
 
 # How to make it work?<br>
 The requirements in this phase are simple: 
