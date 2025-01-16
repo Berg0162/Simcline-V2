@@ -79,10 +79,10 @@ For how Arduino IDE 2.x handles the specific board pin assignments, search for y
 
 In conclusion when you see different road grade values in the Zwift window compared with the Simcline display, this can have different reasons! If you consider this a problem: check first Zwift difficulty setting and Grade-Change-Factor of the Simcline, these can be modified to what you prefer! Like it or not, the other causes are Zwift features and part of the design! Cycling Apps like Rouvy and MyWhoosh handle road grades more or less comparably.
 
-#[8]
+#[9]
 <b>How to (later) manage (changed) Device MAC Addresses?</b> <br>
 When you run <b>Smart-MITM</b>, it is instructed to detect and store in ESP32 NVS (Non-Volatile-Storage) the MAC addresses for Trainer and Laptop. These stored MAC addresses are used by <b>Smart-Simcline</b> to unmistakenly connect to the right client and server! If you want to check or eventually change the MAC addresses in NVS (because of changing devices) you will find in `Simcline-V2/examples` a tool <b>Test_Board_plus_NVS</b> that will help with the task! Notice that MAC addresses have to be a) <b>correct</b> and b) in <b>right format</b> to be resolved at connection-time!<br>
-The second option is to insert <b>defines</b> in the `configNimBLE.h`.
+The second option with permanent result, is to insert <b>defines</b> in the `configNimBLE.h`.
 + Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V2/src/config/configNimBLE.h`<br>
 Look for the following section:
 ```C++
