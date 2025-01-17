@@ -1,3 +1,5 @@
+Warning: When a new version of Simcline-V2 is installed in Arduino IDE 2 it will override <b>ALL</> files of the previous version! If you have made modifications in a file that is part of `Simcline-V2` --> make a copy of the file(s) in question <b>BEFORE</b> you install a new library version!
+
 # configBoard.h
 Simcline-V2 <b>Board</b> configuration options:
 ```C++
