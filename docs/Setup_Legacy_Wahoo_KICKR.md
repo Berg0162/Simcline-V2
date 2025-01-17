@@ -1,6 +1,6 @@
 # Legacy Wahoo KICKR
 Today <b>Bluetooth Smart FTMS</b> is the absolute industry standard for indoor trainers and Simcline-V2 is primarily targeted at <b>FTMS</b>! However Simcline-V2 has builtin support for <b>Legacy Wahoo KICKR</b> trainers to meet the needs of early adapters of SIMCLINE! <br>
-Pre-2020 Wahoo trainers use Cycling Power Service as a trainer control. Wahoo has added a custom characteristic: `A026E005-0A7D-4AB3-97FA-F1500F9FEB8B` to CPS to handle the Control Point characteristic. This functionality is builtin with Simcline-V2, you only have to activate it when using legacy KICKR trainer! Notice that FTMS and Wahoo CPS mutually exclude each other within Simcline-V2!<br>
+Pre-2020 Wahoo trainers use Cycling Power Service as a trainer control. Wahoo has added a custom characteristic: `A026E005-0A7D-4AB3-97FA-F1500F9FEB8B` to CPS to handle the Control Point characteristic. This functionality is builtin with Simcline-V2, you only have to activate it when using a legacy KICKR trainer! Notice that FTMS and Wahoo CPS mutually exclude each other within Simcline-V2!<br>
 
 # configNimBLE.h
 Make configNimBLE.h settings to comply with your <b>Legacy Wahoo KICKR</b> trainer.
