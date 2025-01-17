@@ -1,4 +1,4 @@
-# <img src="../images/SC_logo.png" width="64" height="64" alt="SIMCLINE Icon"> &nbsp; SIMCLINE for Bluetooth Smart FTMS Trainers <br> based on the LILYGO ESP32S3 T-Display board <br>
+# <img src="../images/SC_logo.png" width="64" height="64" alt="SIMCLINE Icon"> &nbsp; SIMCLINE for Bluetooth Smart Trainers <br> based on the LILYGO ESP32S3 T-Display board <br>
 
 ## Setup LILYGO ESP32S3 T-Display for Simcline-V2 library
 The board and display to work with can be activated in Simcline-V2 with the right settings, see folder: <b>/Simcline-V2/src/config</b><br>
