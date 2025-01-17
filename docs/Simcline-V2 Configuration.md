@@ -1,4 +1,4 @@
-<b>Warning</b>: When a new version of Simcline-V2 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V2` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
+# Central configuration
 
 # configBoard.h
 Simcline-V2 <b>Board</b> configuration options:
@@ -18,6 +18,7 @@ Simcline-V2 <b>Display</b> configuration options:
 //#define YOURDISPLAY
 //#define SERIALDISPLAY
 ```
+<b>Warning</b>: When a new version of Simcline-V2 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V2` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
 
 # configNimBLE.h
 Simcline-V2 <b>NimBLE</b> configuration options:
@@ -89,6 +90,7 @@ Simcline-V2 <b>Mechanical SIMCLINE 2.0</b> configuration options:
 // These microswitches are a SECOND line of defence against out of range and potentially damaging movement!
 #define BANDWIDTH 4 
 ```
+<b>Warning</b>: When a new version of Simcline-V2 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V2` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
 
 # configDebug.h
 Simcline-V2 has a fine-grained scheme for allowing debug-messages during operation. Every /src/file.cpp has its own <b>#define Debug</b> at the beginning of the code that can be (un)commented (switched on or off) discretionary. However, when one reaches the state that debugging has no longer a purpose, you want to get rid of all the overhead (processor load) and optimise for speed. This configDebug allows you to switch OFF in one place all Simcline-V2 debugging messages with one <b>master switch</b>.<br>
