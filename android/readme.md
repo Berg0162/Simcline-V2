@@ -1,6 +1,6 @@
 # Simcline Android Companion App
 
-The SIMCLINE Companion App (for Android smartphones) can be paired with SIMCLINE, over a <b>secured and authenticated</b> connection, instead of the cycling App (Zwift)! During SIMCLINE startup when the App is <b>not</b> activated yet and after a ride when the App is <b>disconnected</b>. The Companion App allows for the dynamic setting of some preferences like Ascent Grade Limit (between 0-20%), Descent Grade Limit (between 0-10%), Road Grade Change Factor (between 0-100%) and for simple manual control/testing of the Up and Down movement.
+The SIMCLINE Companion App (for Android smartphones) can be paired with SIMCLINE, over a <b>secured and authenticated</b> connection, instead of the cycling App (Zwift)! During SIMCLINE startup when the cycling App is <b>not</b> activated yet and after a ride when the cycling App is <b>disconnected</b>. The Companion App allows for the dynamic setting of some preferences like Ascent Grade Limit (between 0-20%), Descent Grade Limit (between 0-10%), Road Grade Change Factor (between 0-100%) and for simple manual control/testing of the Up and Down movement.
 The preferences will be stored in ESP32 NVS (Non-Volatile-Storage) when you send them to the SIMCLINE. Every following bootup will reactivate your preferences!
 
 This folder contains files for the Android companion app for the Simcline-V2 library.
