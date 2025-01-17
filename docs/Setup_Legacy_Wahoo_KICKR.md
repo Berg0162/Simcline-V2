@@ -34,3 +34,4 @@ Make configNimBLE.h settings to comply with your <b>Legacy Wahoo KICKR</b> train
 //		  NOTICE --> Most pre-2020 Wahoo trainers support this instead of FTMS!!!
 #define ENABLE_WAHOOCPS
 ```
+<b>Warning</b>: When a new version of Simcline-V2 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V2` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
