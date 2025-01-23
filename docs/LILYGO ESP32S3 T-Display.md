@@ -39,7 +39,7 @@ Unfortunately the LilyGo board does <b>NOT fit the original components box</b>, 
 ```C++
 #include <User_Setups/Setup206_LilyGo_T_Display_S3.h>     // For the LilyGo T-Display S3 based ESP32S3 with ST7789 170 x 320 TFT
 ```
-+ Now save the file and close -> TFT_eSPI will use from now on the pin definition of `LilyGo_T-Display-S3` by default! <br>
++ Now save the file and close -> TFT_eSPI will use from now on the pin and screen definitions of `LilyGo_T-Display-S3` by default! <br>
 
 <b>Warning</b>: When a new version of TFT_eSPI is installed in Arduino IDE, it will override <b>ALL</b> files of a previous version!
 
