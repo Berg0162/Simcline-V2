@@ -31,8 +31,8 @@ This board and ESP32S3 processor was selected for its excellent specifications c
 Unfortunately the LilyGo board does <b>NOT fit the original components box</b>, so that needs extra attention in the near future. Technically there is no reason sofar not to like this board!!!
 
 ## Install TFT_eSPI
-+ Search for TFT_eSPI in the Arduino IDE library manager and click Install or Update.
-+ Enter the default library manager installation location. The default is: `C:\Users\<YourName>\Documents\Arduino\libraries`.
++ Search for <b>TFT_eSPI</b> in the Arduino IDE library manager and click Install or Update.
++ Enter the default library manager installation location: `C:\Users\<YourName>\Documents\Arduino\libraries`.
 + Find and open the newly created <b>TFT_eSPI</b> folder. 
 + Open `User_Setup_Select.h`, <b>comment out</b> or <b>delete</b> the line `#include <User_Setup.h>` which is enabled by default.
 + Search `Setup206_LilyGo_T_Display_S3`, find it and <b>uncomment</b> the line:
