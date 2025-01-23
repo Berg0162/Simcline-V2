@@ -30,6 +30,15 @@ T-Display-S3 is a ESP32-S3 development board. It is equipped with a color 1.9" L
 This board and ESP32S3 processor was selected for its excellent specifications crisp and colorful display. Aside of gaining experience with the [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI) library, creating a much richer visual user interface (than a SSD1306 0,96 Inch) was the dominant incentive. A lot of inspiration and practical knowledge was obtained by studying on Youtube: [the Volos Projects](https://www.youtube.com/c/VolosProjects). This ended up sofar in a good working and visually attractive Simcline 2.0 interface! What's more, in the experiments the processor was behaving like to be expected (despite the high display interface load) and I did not experience (during operation) any response difference with other ESP32 boards (with minimal display interface load) and that have been tested thoroughly...<br>
 Unfortunately the LilyGo board does <b>NOT fit the original components box</b>, so that needs extra attention in the near future. Technically there is no reason sofar not to like this board!!!
 
+## Install TFT_eSPI
++ Search for TFT_eSPI in the ArduinoIDE library manager and click Update.
++ Enter the default library manager installation location and open the TFT_eSPI folder. The default installation location is:(e.g. C:\Users\YourName\Documents\Arduino\libraries)
++ Open User_Setup_Select.h, comment out #include <User_Setup.h> which is enabled by default, or delete it
++ Search Setup206_LilyGo_T_Display_S3, find it, cancel the previous comment, then save it, and finally close it, so that TFT_eSPI uses the pin definition of T-Display-S3 by default
+```C++
+#include <User_Setups/Setup206_LilyGo_T_Display_S3.h>     // For the LilyGo T-Display S3 based ESP32S3 with ST7789 170 x 320 TFT
+```
+
 ## Arduino IDE 2.2
 The present code is developed on Arduino IDE 2.2. Notice that you will need an Arduino IDE that is tailored for this specific <b>ESP32S3</b> processor! Please follow the installation instructions for the [ESP32S3 T-display](https://github.com/Xinyuan-LilyGO/T-Display-S3)<br>
 ```
