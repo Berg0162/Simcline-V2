@@ -78,7 +78,7 @@ Insert <b>RGVMIN</b>, <b>RGVMAX</b>, <b>MINPOSITION</b> and <b>MAXPOSITION</b> v
 // Notice that unrestricted movement at the boundaries can damage the Actuator and/or construction!
 // The following values are respected by the software and will (in normal cases!) never be exceeded!
 #define MINPOSITION 100 // VL6180X highest value top microswitch activated to mechanically stop operation
-#define MAXPOSITION 200 // VL6180X lowest value bottom microswitch activated to mechanically stop operation
+#define MAXPOSITION 350 // VL6180X lowest value bottom microswitch activated to mechanically stop operation
 ```
 <b>Warning</b>: When a new version of Simcline-V2 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V2` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
 
