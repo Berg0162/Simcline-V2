@@ -32,13 +32,15 @@ Unfortunately the LilyGo board does <b>NOT fit the original components box</b>, 
 
 ## Install TFT_eSPI
 + Search for TFT_eSPI in the Arduino IDE library manager and click Install or Update.
-+ Enter the default library manager installation location and open the TFT_eSPI folder. The default installation location is: `C:\Users\<YourName>\Documents\Arduino\libraries`
-+ Open `User_Setup_Select.h`, comment out or delete the line `#include <User_Setup.h>` which is enabled by default
++ Enter the default library manager installation location. The default is: `C:\Users\<YourName>\Documents\Arduino\libraries`.
++ Find and open the newly created <b>TFT_eSPI</b> folder. 
++ Open `User_Setup_Select.h`, <b>comment out</b> or <b>delete</b> the line `#include <User_Setup.h>` which is enabled by default.
 + Search `Setup206_LilyGo_T_Display_S3`, find it and <b>uncomment</b> the line:
 ```C++
 #include <User_Setups/Setup206_LilyGo_T_Display_S3.h>     // For the LilyGo T-Display S3 based ESP32S3 with ST7789 170 x 320 TFT
 ```
 + Now save the file and close -> TFT_eSPI will use from now on the pin definition of `LilyGo_T-Display-S3` by default! <br>
+
 <b>Warning</b>: When a new version of TFT_eSPI is installed in Arduino IDE, it will override <b>ALL</b> files of a previous version!
 
 ## Arduino IDE 2.2
