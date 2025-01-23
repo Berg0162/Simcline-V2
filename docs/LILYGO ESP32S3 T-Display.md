@@ -31,7 +31,7 @@ This board and ESP32S3 processor was selected for its excellent specifications c
 Unfortunately the LilyGo board does <b>NOT fit the original components box</b>, so that needs extra attention in the near future. Technically there is no reason sofar not to like this board!!!
 
 ## Install TFT_eSPI
-+ Search for <b>TFT_eSPI</b> in the Arduino IDE library manager and click Install or Update.
++ Search for <b>TFT_eSPI</b> in the Arduino IDE library manager and click <b>Install</b> or Update.
 + Enter the default library manager installation location: `C:\Users\<YourName>\Documents\Arduino\libraries`.
 + Find and open the newly created <b>TFT_eSPI</b> folder. 
 + Open `User_Setup_Select.h`, <b>comment out</b> or <b>delete</b> the line `#include <User_Setup.h>` which is enabled by default.
@@ -41,7 +41,7 @@ Unfortunately the LilyGo board does <b>NOT fit the original components box</b>, 
 ```
 + Now save the file and close -> TFT_eSPI will use from now on the pin and screen definitions of `LilyGo_T-Display-S3` by default! <br>
 
-<b>Warning</b>: When a new version of TFT_eSPI is installed in Arduino IDE, it will override <b>ALL</b> files of a previous version!
+<b>Warning</b>: When a new version of <b>TFT_eSPI</b> is installed in Arduino IDE, it will override <b>ALL</b> files of a previous version!
 
 ## Arduino IDE 2.2
 The present code is developed on Arduino IDE 2.2. Notice that you will need an Arduino IDE that is tailored for this specific <b>ESP32S3</b> processor! Please follow the installation instructions for the [ESP32S3 T-display](https://github.com/Xinyuan-LilyGO/T-Display-S3)<br>
