@@ -43,17 +43,17 @@ Unfortunately the LilyGo board does <b>NOT fit the original components box</b>, 
 
 <b>Warning</b>: When a new version of <b>TFT_eSPI</b> is installed in Arduino IDE, it will override <b>ALL</b> files of a previous version!
 
-## Arduino IDE 2.2
-The present code is developed on Arduino IDE 2.2. Notice that you will need an Arduino IDE that is tailored for this specific <b>ESP32S3</b> processor! Please follow the installation instructions for the [ESP32S3 T-display](https://github.com/Xinyuan-LilyGO/T-Display-S3)<br>
+## Arduino IDE 2.x
+The present code is developed on Arduino IDE 2.x. Notice that you will need an Arduino IDE that is tailored for this specific <b>ESP32S3</b> processor! Please follow the installation instructions for the [ESP32S3 T-display](https://github.com/Xinyuan-LilyGO/T-Display-S3)<br>
 ```
 **************************************************************************************************
 >>>> DO NOT select in board drop down -> lilygo_t_display_s3 to let Arduino IDE 2.x handle it <<<<
->>>> Arduino IDE does NOT allow to choose Menu -> Tools the correct settings, this results in <<<<
+>>>> Arduino IDE does NOT allow to choose (in Tools) the correct settings, this results in    <<<<
 >>>>                          INFERIOR OR NO PERFORMANCE AT ALL                               <<<<
 **************************************************************************************************
 ```
 ## Before you start
-If you select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for the <b>ESP32S3 Dev Module</b> processor and the project are the following:
+If you select in the menu bar of Arduino IDE 2.x <b>Tools</b>, the settings for the <b>ESP32S3 Dev Module</b> processor should be exactly like the following:
 <p align=center>
 <img src="../images/LilyGO_ESP32S3_Tools_Settings.png" width="350" height="400" alt="Tools menu">
 </p>
