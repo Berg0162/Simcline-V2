@@ -30,19 +30,19 @@ The board and display to work with can be activated in Simcline-V2 with the righ
 + When you want another board or display than is supplied as standard with Simcline-V2, a proficient programmer/user can implement Concrete Classes for ESP32-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code. A dedicated program for creating "YOURDISPLAY" is offered in `/Simcline-V2/examples/Test_Board_plus_Display` to help you with the task!
 + <b>Warning</b>: When a new version of Simcline-V2 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V2` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
 
-# Attach the TOF-sensor to your ESP32 board and test
+# Attach the TOF-sensor to your ESP32 board (connect wiring) and test
 First install the <b>VL6180X</b> library in Arduino IDE 2 and the example programs that come with it. Connect using the prescribed wiring scheme depending on the board that you earlier selected: 
 [Adafruit Feather ESP32 V2](https://github.com/Berg0162/Simcline-V2/blob/main/docs/Adafruit%20Feather%20ESP32-V2.md) or [Lilygo esp32s3 T-Display](https://github.com/Berg0162/Simcline-V2/blob/main/docs/LILYGO%20ESP32S3%20T-Display.md) <br>
 Test with the supplier code examples and finally run `/Simcline-V2/examples/Test_Board_plus_VL6180X` to test in the Simcline-V2 environment.
 
-# Attach the Motor Driver board
+# Attach the Motor Driver board (connect wiring) 
 No library needed for <b>DRV8871</b>, but the supplier will have example code supplied. 
 
-# Attach the Actuator to the Motor Driver board and test 
+# Connect wiring for power regulator (5V and 12V) and connect the Actuator to the Motor Driver board and test 
 Test the <b>DRV8871 plus Actuator</b> with `/Simcline-V2/examples/Test_Board_plus_DRV8871`.
 
 # Setup and mount Simcline mechanically...
-Actuator attached to the body
+Actuator attached to the body and powered
 
 # Add the TOF-sensor to the mechanic setup (in the component box)
 Check it can measure the distance correctly using `/Simcline-V2/examples/Test_Board_plus_VL6180X`<br>
