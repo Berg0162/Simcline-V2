@@ -64,6 +64,7 @@ If you select in the menu bar of Arduino IDE 2.x <b>Tools</b>, the settings for 
 <img src="../images/LilyGO_T-Display-S3_Tools_Settings.png" width="350" height="400" alt="Tools menu">
 </p>
 <br clear="left">
+
 ## T-Display-S3 Pinout
 <img src="../images/T-Display-S3-pinout.png">
 
