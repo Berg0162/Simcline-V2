@@ -48,9 +48,9 @@ Unfortunately the LilyGo board does <b>NOT fit the original components box</b>, 
 The present code is developed on Arduino IDE 2.x. Notice that you will need an Arduino IDE that is tailored for this specific <b>ESP32S3</b> processor! Please follow the installation instructions for the [ESP32S3 T-display](https://github.com/Xinyuan-LilyGO/T-Display-S3)<br>
 ```
 **************************************************************************************************
->>>> DO NOT select in board drop down -> lilygo_t_display_s3 to let Arduino IDE 2.x handle it <<<<
->>>> Arduino IDE does NOT allow to choose (in Tools) the correct settings, this results in    <<<<
->>>>                          INFERIOR OR NO PERFORMANCE AT ALL                               <<<<
+>>>> Select in board drop down -> ESP32S3 Dev Module    (Preferred option)                    <<<<
+>>>> Select in board drop down -> lilygo_t_display_s3   (Alternative option)                  <<<<
+>>>>      NOTICE that you also have to set the appropriate settings in the Tools menu         <<<<
 **************************************************************************************************
 ```
 ## Before you start
