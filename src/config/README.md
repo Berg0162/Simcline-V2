@@ -7,6 +7,7 @@ Simcline-V2 <b>Board</b> configuration options:
 //#define LILYGO_T_DISPLAY_S3
 //#define ADAFRUIT_FEATHER_ESP32_V2
 #define YOUR_ESP32_BOARD
+//#define XIAO_ESP32S3
 ```
 # configDisplay.h
 Simcline-V2 <b>Display</b> configuration options:
