@@ -160,4 +160,6 @@ A recipe for success: follow <b>ALWAYS</b> the instructions and procedure at the
 + When you see different road grade values in the Zwift window compared with the Simcline display or in the Serial Monitor output, this can have different reasons! See: [FAQ #8](docs/Frequently_Asked_Questions.md#8)
 # What's next?
 + When you are pleased with the results sofar you can consider to setup a fullblown SIMCLINE device mechanics and software.
-  [Setup Simcline](docs/setupSimcline.md)
+<img src="https://www.instructables.com/assets/img/instructables-logo-v2.png" width="32" height="48" align="left" alt="Instructables"> &nbsp; [SIMCLINE 2.0 Instructables](https://www.instructables.com/SIMCLINE-20-Easy-Simulation-of-Road-Incline/) 
+<br clear="left">
+[Setup Simcline](docs/Setup_SIMCLINE.md)
