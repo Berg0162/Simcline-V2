@@ -14,6 +14,7 @@ The board and display to work with can be activated in Simcline-V2 with the righ
 //#define LILYGO_T_DISPLAY_S3
 #define ADAFRUIT_FEATHER_ESP32_V2
 //#define YOUR_ESP32_BOARD
+//#define XIAO_ESP32S3
 ```
 + Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V2/src/config/configDisplay.h`<br>
 
