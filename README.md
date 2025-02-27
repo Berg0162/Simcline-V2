@@ -159,10 +159,10 @@ A recipe for success: follow <b>ALWAYS</b> the instructions and procedure at the
 + Please write down the presented MAC/Device Addresses of a) your Smart trainer and b) your Desktop/Laptop with Zwift. These showup in the Serial Monitor output when running the Smart-MITM test code. This is for your own convenience since it helps you to identify later both devices by MAC Addresses! The Smart-MITM detects the Mac addresses and stores these in ESP32 NVS (Non-Volatile-Storage) for later use to unmistakingly establish a BLE connection with the targeted devices. See [FAQ #9](docs/Frequently_Asked_Questions.md#9)
 + When you see different road grade values in the Zwift window compared with the Simcline display or in the Serial Monitor output, this can have different reasons! See: [FAQ #8](docs/Frequently_Asked_Questions.md#8)
 # What's next?
-When you are pleased with the results sofar you can consider to setup a fullblown SIMCLINE device: mechanically and electronically.<br>
-+ Mechanically<br>
+When you are pleased with the results sofar you can consider to setup a fullblown SIMCLINE device.<br>
++ Mechanical Assembly <br>
 <img src="https://www.instructables.com/assets/img/instructables-logo-v2.png" width="32" height="48" align="left" alt="Instructables"> &nbsp; [SIMCLINE 2.0 Instructables](https://www.instructables.com/SIMCLINE-20-Easy-Simulation-of-Road-Incline/) 
 <br clear="left">
 
-+ Electronically<br>
-[Setup Simcline](docs/Setup_SIMCLINE.md)<br>
++ Embedded Control System <br>
+[Setup Simcline Control System](docs/Setup_SIMCLINE.md)<br>
