@@ -4,7 +4,7 @@
 # Independently of the Simcline-V2 library 
 First test the ESP32 board of your choice with the display attached to it, after you have installed Arduino IDE 2 and the appropriate graphics libraries (like Adafruit GFX and/or TFT_eSPI). Notice that you have to install the original libraries and not the modified versions that product suppliers like to include! All graphics libraries come with code examples and test these. For TFT_eSPI you need to set your display in "User_Setup_Select.h" <b>first</b> to comply with the board/display type you use. Read and study the instructions that come with the sites of these libraries! Only when you have a working combination continue...
 
-# Setup your board for Simcline-V2
+# Setup your ESP32 board for Simcline-V2
 The board and display to work with can be activated in Simcline-V2 with the right settings, see folder: `/Simcline-V2/src/config`<br>
 
 + Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V2/src/config/configBoard.h`
