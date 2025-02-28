@@ -17,7 +17,7 @@ The Simcline-V2 library comes with an Android companion app for configuring and 
 The <b>ESP32</b> family has a series of low-cost and low-power System on a Chip (SoC) microcontrollers developed by Espressif that include Wi-Fi and Bluetooth wireless capabilities and dual-core processor. See for an introduction: [Random Nerds Tutorials](https://randomnerdtutorials.com/getting-started-with-esp32/). Particularly the multiprocessing capabilities of the dual-core processor make the ESP32 a very attractive choice for the project! See: &nbsp;[FAQ #5](docs/Frequently_Asked_Questions.md#5)<br>
 To benefit of the same formfactor (fit with the Mechanical SIMCLINE 2.0 component box!), the <b>Adafruit Feather ESP32 V2 plus Oled display</b> is still the preferred board and display for the project. See: [Adafruit Feather ESP32 V2](docs/Adafruit%20Feather%20ESP32-V2.md) for settings, wiring scheme and more.<br> 
 Notice that other members of the ESP32 (particularly <b>ESP32S3</b>) will do the job perfectly, when the development boards come with extra flash and psram memory! See: &nbsp;[FAQ #7](docs/Frequently_Asked_Questions.md#7). &nbsp; For example SIMCLINE works successfully with the <b>Lilygo esp32s3 T-Display</b> board, however that Lilygo-board needs another size component box! See: [Lilygo esp32s3 T-Display](docs/LILYGO%20ESP32S3%20T-Display.md) for settings, wiring scheme and more.<br> 
-Simcline-V2 library builds on the experience, knowledge and code of Simcline projects since <b>2020</b>. The original Simcline code has been revisited and redesigned completely. It was transformed to a C++ Object model that handles the many BLE services and hides most of the Simcline's internal operation. The Simcline community is very diverse when it comes to programming skills. The present Simcline-V2 library matches this much better! It also meets the urge for a greater variety in ESP32 boards and displays to work with.<br>
+Simcline-V2 library builds on the experience, knowledge and code of Simcline projects since <b>2020</b>. The original Simcline code has been revisited and redesigned completely for better stability, robustness and modularity. It was transformed to a C++ Object model that handles the many BLE services and hides most of the Simcline's internal operation. The Simcline community is very diverse when it comes to programming skills. The present Simcline-V2 library matches this much better! It also meets the urge for a greater variety in ESP32 boards and displays to work with.<br>
 
 # The Simcline-V2 design separates completely:
 + presentation (display types/properties)
@@ -30,7 +30,7 @@ Benefits of this Approach:
 + Maintainability: Changes to one display type do not affect others.
 + Flexibility: Change the display type used by the Presentation class without modifying its implementation.<br>
 
-As a result the Arduino ino-files that the user will access, in the `Simcline-V2/examples` folder, are very concise in compare with the original code files. <br>
+As a result the Arduino ino-files that the user will access, in the `Simcline-V2/examples` folder, are very concise in comparison with the old code files. <br>
 
 # Simcline-V2 has central configuration
 All configuration settings have been gathered in one config directory `../documents/arduino/libaries/Simcline-V2/src/config` for <b>Board</b>-, <b>Debug</b>-, <b>Display</b>-, <b>NimBLE</b>- and <b>Simcline</b>-configurations. Check this out:  [Simcline-V2 Configuration](src/config/README.md)<br>
@@ -89,7 +89,7 @@ The experience should not differ from a normal direct one-to-one connection, Zwi
 ```
 All Bluetooth Smart FTMS indoor trainers expose your efforts on the bike in 2 additional BLE services: Cyling Power (CPS) and Speed & Cadence (CSC). These services are detected and applied by many training app's and are therefore an integral part of the present design of the MITM bridge. Training app's simply expect, when they connect to the Bluetooth Smart FTMS trainer, that the CPS and CSC services are available in one go! The Zwift pairing screen is a good example: it expects Power Souce (CPS), Resistance (FTMS) and Cadence (CSC) to be connected...
 + The client-side (Feather ESP32) scans for (a trainer) and connects with <b>FTMS, CPS and CSC</b> and collects cyling power, speed and cadence data like Zwift would do! The <b>Simcline Client</b> is doing just that at the left side of the "bridge"!
-+ The Server-side (Feather ESP32) advertises and enables connection with training/cycling/game apps like Zwift and collects relevant resistance data, it simulates as if an active <b>FTMS</b> enabled trainer is connected to Zwift or alike! Notice that the Server-side also exposes active <b>CPS</b> and <b>CSC</b> services. The <b>Simcline Server</b> is doing just at the right side of the "bridge"!
++ The Server-side (Feather ESP32) advertises and enables connection with training/cycling/game apps like Zwift and collects relevant resistance data, it simulates as if an active <b>FTMS</b> enabled trainer is connected to Zwift or alike! Notice that the Server-side also exposes active <b>CPS</b> and <b>CSC</b> services. The <b>Simcline Server</b> is doing just that at the right side of the "bridge"!
 + The <b>Simcline MITM</b> code is connecting both sides at the same time: a full-blown working bridge<br clear="left">
 
 # Load Smart-MITM application in Arduino IDE 2
@@ -158,4 +158,11 @@ A recipe for success: follow <b>ALWAYS</b> the instructions and procedure at the
 + Be aware of undesirebly <b>autoconnect</b> of Zwift with your trainer using ANT+ or BLE Smart before <b>Smart-MITM</b> can establish a connection: always <b>start</b> Zwift <b>AFTER</b> Smart-MITM and trainer have connected successfully! The <b>Smart-MITM</b> code will than fail to connect, that does not help you getting representative results during the reconnaisance! Only one client can control at the same time: 2 captains on one ship is a recipe for disaster! See for more info [FAQ #1](docs/Frequently_Asked_Questions.md#1) and [FAQ #6](docs/Frequently_Asked_Questions.md#6)
 + Please write down the presented MAC/Device Addresses of a) your Smart trainer and b) your Desktop/Laptop with Zwift. These showup in the Serial Monitor output when running the Smart-MITM test code. This is for your own convenience since it helps you to identify later both devices by MAC Addresses! The Smart-MITM detects the Mac addresses and stores these in ESP32 NVS (Non-Volatile-Storage) for later use to unmistakingly establish a BLE connection with the targeted devices. See [FAQ #9](docs/Frequently_Asked_Questions.md#9)
 + When you see different road grade values in the Zwift window compared with the Simcline display or in the Serial Monitor output, this can have different reasons! See: [FAQ #8](docs/Frequently_Asked_Questions.md#8)
+# What's next?
+When you are pleased with the results sofar, you can consider to setup the complete SIMCLINE mechatronic system.<br>
++ Mechanical Assembly <br>
+<img src="https://www.instructables.com/assets/img/instructables-logo-v2.png" width="32" height="48" align="left" alt="Instructables"> &nbsp; [SIMCLINE 2.0 Instructables](https://www.instructables.com/SIMCLINE-20-Easy-Simulation-of-Road-Incline/) 
+<br clear="left">
 
++ Embedded Control System <br>
+[Setup Simcline Control System](docs/Setup_SIMCLINE.md)<br>
