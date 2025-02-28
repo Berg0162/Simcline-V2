@@ -56,7 +56,7 @@ The present code is developed on Arduino IDE 2.x. Notice that you will need an A
 ## Before you start
 If you select in the menu bar of Arduino IDE 2.x <b>Tools</b>, the settings for the <b>ESP32S3 Dev Module</b> processor should be exactly like the following:
 <p align=center>
-<img src="../images/ESP32S3-Dev-Module_Tools_Settings.png" width="200" height="400" alt="Tools menu">
+<img src="../images/ESP32S3-Dev-Module_Tools_Settings.png" width="300" height="600" alt="Tools menu">
 </p>
 <br clear="left">
 If you select in the menu bar of Arduino IDE 2.x <b>Tools</b>, the settings for the <b>LilyGo T-display-S3</b> processor should be exactly like the following:
