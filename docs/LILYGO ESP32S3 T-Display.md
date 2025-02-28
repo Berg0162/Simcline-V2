@@ -61,7 +61,7 @@ If you select in the menu bar of Arduino IDE 2.x <b>Tools</b>, the settings for 
 <br clear="left">
 If you select in the menu bar of Arduino IDE 2.x <b>Tools</b>, the settings for the <b>LilyGo T-display-S3</b> processor should be exactly like the following:
 <p align=center>
-<img src="../images/LilyGO_T-Display-S3_Tools_Settings.png" width="350" height="400" alt="Tools menu">
+<img src="../images/LilyGO_T-Display-S3_Tools_Settings.png" width="300" height="600" alt="Tools menu">
 </p>
 <br clear="left">
 
