@@ -23,7 +23,7 @@ The board and display to work with can be activated in Simcline-V2 with the righ
 ```
 <b>Warning</b>: When a new version of Simcline-V2 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V2` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
 
-## Arduino IDE 2.2
+## Arduino IDE 2.x
 The present code is developed on Arduino IDE 2.2. Notice that you will need an Arduino IDE that is tailored for this specific <b>Adafruit Feather ESP32 V2</b> processor! Please follow the installation instructions for the [Adafruit Feather ESP32 V2](https://learn.adafruit.com/adafruit-esp32-feather-v2/arduino-ide-setup)<br>
 
 ## Before you start
