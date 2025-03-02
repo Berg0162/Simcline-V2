@@ -33,7 +33,7 @@ Next time you go for a Zwift ride:
 - Pair your devices
  
 # [5]
-<b>How is Dual Processor used with ESP32?</b><br>
+<b>How does Simcline-V2 utilize the Dual Processor capacities of the ESP32?</b><br>
 + One of the advantages of the ESP32 platform is the fact that the ESP32 WROOM processor has two cores. This makes it possible to precisely balance the load of a program over 2 processor cores. With the mechatronic Simcline setup this is particular usefull for the motor control of the actuator and the BLE MITM traffic, heavily leaning on the NimBLE-Arduino library. <br>
 During operation Zwift sends from time to time new settings, and one of these is the grade value (road inclination in degrees). Simcline-V2 translates the grade to a level that should be reached by the actuator to simulate exactly the road grade that was received from Zwift. However, the actuator can only be switched to <b>move up</b>, <b>move down</b> or <b>stop</b>. After having set the actuator to move (up or down), the program has to check continuously if the actuator has reached the desired level by reading its position with the help of the Time-Of-Flight sensor and act accordingly. <br>
 Meanwhile the trainer sends all your cycling data (CPS, CSC, FTMS and optional HRM) several times per second over BLE MITM channels. The Zwift app has to confirm the receipt of several of these data. Vice versa, the (virtual ride) data sent by Zwift have to be tranferred to the trainer and also the trainer has to confirm the receipt of several of these data. Simcline-V2, being a BLE MITM, handles a lot of BLE traffic and it does not allow for mistakes! <br>
