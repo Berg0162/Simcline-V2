@@ -95,9 +95,8 @@ Look for the following section:
 // Enter address string here like the printed format like [00:01:02:03:04:05 0]
 // LAPTOP Fixed Device Address --------Public Type (0) --------- Random Type (1)-----------
 #define LAPTOPADDRESS "00:01:02:03:04:05 0" // Example Mac string of Public Type
-
 // TRAINER Fixed Device Address --------Public Type (0) --------- Random Type (1)----------
-#define TRAINERADDRESS "00:01:02:03:04:05 0"  // Example Mac string of Public Type
+#define TRAINERADDRESS "00:01:02:03:04:05 1"  // Example Mac string of Random Type
 ```
 + Uncommented `#define LAPTOPADDRESS` and `#define TRAINERADDRESS` are <b>overruling</b> whatever values are stored within NVS !
 
