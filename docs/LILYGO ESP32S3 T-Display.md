@@ -48,8 +48,8 @@ Unfortunately the LilyGo board does <b>NOT fit the original components box</b>, 
 The present code is developed on Arduino IDE 2.x. Notice that you will need an Arduino IDE that is tailored for this specific <b>ESP32S3</b> processor! Please follow the installation instructions for the [ESP32S3 T-display](https://github.com/Xinyuan-LilyGO/T-Display-S3)<br>
 ```
 **************************************************************************************************
->>>> Select in board drop down -> ESP32S3 Dev Module    (Preferred more options)              <<<<
->>>> Select in board drop down -> LilyGo T-display-S3   (Alternative less options)            <<<<
+>>>> Select in board drop down -> ESP32S3 Dev Module    (Preferred: more specific options)    <<<<
+>>>> Select in board drop down -> LilyGo T-display-S3   (Alternative with minimal options)    <<<<
 >>>>         NOTICE that you have to set the appropriate settings in the Tools menu           <<<<
 **************************************************************************************************
 ```
@@ -57,11 +57,6 @@ The present code is developed on Arduino IDE 2.x. Notice that you will need an A
 If you select in the menu bar of Arduino IDE 2.x <b>Tools</b>, the settings for the <b>ESP32S3 Dev Module</b> processor should be exactly like the following:
 <p align=center>
 <img src="../images/ESP32S3-Dev-Module_Tools_Settings.png" width="300" height="600" alt="Tools menu">
-</p>
-<br clear="left">
-If you select in the menu bar of Arduino IDE 2.x <b>Tools</b>, the settings for the <b>LilyGo T-display-S3</b> processor should be exactly like the following:
-<p align=center>
-<img src="../images/LilyGO_T-Display-S3_Tools_Settings.png" width="300" height="500" alt="Tools menu">
 </p>
 <br clear="left">
 
