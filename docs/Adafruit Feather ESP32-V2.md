@@ -29,7 +29,7 @@ The present code is developed on Arduino IDE 2.2. Notice that you will need an A
 ## Before you start
 If you select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for the <b>Adafruit Feather ESP32 V2</b> processor and the project are the following:
 <p align=center>
-<img src="../images/Feather-ESP32-V2_Tools_Settings.jpg" align="left" width="400" height="650" alt="Feather ESP32 V2 Tools Menu">
+<img src="../images/Feather_ESP32_V2_Tools_Settings.jpg" align="left" width="400" height="650" alt="Feather ESP32 V2 Tools Menu">
 </p>
 <br clear="left">
 
