@@ -1,9 +1,8 @@
+#include <VL6180X.h>
+
 /*
- * Lifter class: all basic up/down/brake actions 
- * Version #2 code changes
- * 10/01/2022 -> VL6180X timeout errors -> reset VL6180X separately and continue
- * 10/02/2022 -> More debug info, rework of settings, Single Shot is active, delay's deleted
- * 20/06/2024 -> Redesign xTaskControl, compatible with Simcline 2.0
+ * Lifter class: handles all basic up/down/brake/control actions 
+ * Redesigned xTaskControl, compatible with Simcline-V2
  */
 #include "Lifter.h"
 
@@ -27,55 +26,96 @@
 // Include the mechanical and logical configuration settings of the Simcline
 #include "../config/configSimcline.h"
 
-// NOTICE: COMPILER DIRECTIVE !!!!
-// setup VL6180X Range Continuous or Single Shot, read the manual.... 
-#define _RANGE_CONTINUOUS 0 // 1 = Range Continuous   0 = Single Shot
+/* Select setup VL6180X Range Continuous or Range Single Shot, read the fine manual for details
+ *                https://www.pololu.com/file/0J961/VL6180X.pdf
+ * In the present code OPTIONAL Range Continuous Mode is setup for 10Hz sampling -> every 100ms a reading 
+ * is available and quicker (<100ms) readings will have to wait for a sample to be ready!
+ * In DEFAULT Range Single Shot Mode, it takes less time for a sample to be ready for reading! 
+ * The range convergence time is variable and depends on target distance/reflectance */
+// Uncomment for selection of Range Continuous Mode, otherwise default is Single Shot Mode
+//#define RANGE_CONTINUOUS
 
-// Declare the running average filter for VL6180X Range measurements
-// Filter is only used in the Lifter Class 
-// Sampling is at about 10 Hz --> 10 VL6180X-RANGE-readings per second
-#define _NUMBER_OF_RANGE_READINGS 10
+// Filter requires a specific number of VL6180X readings before it's stable -> PRIME_COUNT
+// If sampling rate is at about 10 Hz -> time to prime filter is about (PRIME_COUNT * 100) ms
+// PRIME_COUNT should be in all modes between 5 and 10
+#define PRIME_COUNT 7
 
-// Define Lifter class Constructor
-  Lifter::Lifter() {
-	// Dynamically allocate the VL6180X sensor object
-    	sensor = new VL6180X();
-	// Dynamically allocate the MovingAverageFilter object
-	movingAverageFilter_Range = new MovingAverageFilter(_NUMBER_OF_RANGE_READINGS);	
+#if defined(SMA_FILTER)
+// SMA_DATA_POINT_WINDOW should be between 5 and 10
+#define SMA_DATA_POINT_WINDOW 7
+#endif
+
+#if defined(EMA_FILTER)
+// EMA_ALPHA should be between low (10-40) is maximal and high (50-90) is minimal filtering
+#define EMA_ALPHA 35
+#endif 
+
+// Lifter class Constructor
+Lifter::Lifter() {
+    // Heap allocate the VL6180X sensor object
+    sensor = new VL6180X();
+#if defined(SMA_FILTER)
+    // Heap allocate the SMAFilter object
+    SMAFilter = new SMA_Filter(SMA_DATA_POINT_WINDOW);
+#endif
+#if defined(EMA_FILTER)
+    // Heap allocate the EMAFilter object
+    EMAFilter = new EMA_Filter(EMA_ALPHA);
+#endif
+    // Default actuator states
+    isBrakeOn = true;
+    isMovingUp = false;
+    isMovingDown = false;
+    // Default position values
+    targetPosition = 0;
+    currentPosition = 0;	
 }
 
-// Define Lifter class Destructor
-   Lifter::~Lifter() {
+// Lifter class Destructor
+Lifter::~Lifter() {
    	// Free the dynamically allocated memory when the object is destroyed
-    	if (sensor)
+    if (sensor)
         	delete sensor;
-	if (movingAverageFilter_Range)
-		delete movingAverageFilter_Range;
+#if defined(SMA_FILTER)
+	  if (SMAFilter)
+		      delete SMAFilter;
+#endif
+#if defined(EMA_FILTER)
+    if (EMAFilter)
+          delete EMAFilter;
+#endif
 }
 
-void Lifter::Fill_Moving_Average_Filter(void)
-{
-  // fill the movingAverageFilter with current values
-  // these blur operation when movement changes of direction
-  for (int i = 0; i < _NUMBER_OF_RANGE_READINGS; i++) {
-    delay(100); // Respect sample rate of 10 Hz
-    _CurrentPosition = GetVL6180X_Range_Reading();
+void Lifter::primeFilter(uint8_t maxCount) {
+  // Prime the Filter in stable position with readings and set currentPosition
+#ifdef MOVEMENTDEBUG
+  std::string logBuffer; // Accumulate output before logging
+#endif
+  for (uint8_t i = 0; i < maxCount; i++) {
+#if defined(RANGE_CONTINUOUS)
+  delay(100); // Respect 10 Hz sample rate of VL6180X
+#else // Single Shot Mode
+  delay(50); // Wait for 50ms
+#endif
+    currentPosition = getVL6180XRangeReading();
+#ifdef MOVEMENTDEBUG
+    logBuffer += std::to_string(currentPosition) + " | ";
+#endif
     } 
+#ifdef MOVEMENTDEBUG
+  LOG("Primed filter: %s", logBuffer.c_str()); // Send final log buffer
+#endif
 }
 
-void Lifter::InitVL6180X(void)
-{  
-// setup VL6180X settings and operating mode
-// Range Continuous or Single Shot, read the manual.... 
-// Set scaling (after configureDefault = 1) of the VL6180X to approriate value 1, 2 or 3
-// Only scaling factor #3 will work in our situation of 30+ cm range !!!!
-#define _SCALING 3
+void Lifter::initVL6180X(void) {  
   sensor->init();
   sensor->configureDefault();
-  sensor->setScaling(_SCALING);
-// Single shot operating mode of VL6180X is simplest and default
+  // Set scaling factor to 3 for long range, SIMCLINE needs max. 300 millimeters
+  // Raw range values are in units of 3 mm
+  sensor->setScaling(3);  // Readings are filtered to increase resolution
+// Single Shot operating mode of VL6180X is simplest and default
 // The following is extra code critical for using Continuous mode !!!
-#if _RANGE_CONTINUOUS
+#if defined(RANGE_CONTINUOUS)
   // Reduce range max convergence time and the inter-measurement
   // -time to 30 ms and 50 ms, respectively, to allow 10 Hz
   // operation. Somewhat more power consumption but higher accuracy!
@@ -83,272 +123,287 @@ void Lifter::InitVL6180X(void)
   sensor->writeReg(VL6180X::SYSRANGE__INTERMEASUREMENT_PERIOD, 50);
   // stop continuous mode if already active
   sensor->stopContinuous();
-  // in case stopContinuous() triggered a single-shot
-  // measurement, wait for it to complete
+  // in case stopContinuous() triggered a single-shot measurement, wait for it to complete
   delay(300);
   // start range continuous mode with a period of 100 ms
   sensor->startRangeContinuous(100);
   LOG("VL6180X Range Continuous Mode Selected");
-#else 
+#else
   LOG("VL6180X Single Shot Mode Selected");
 #endif
   sensor->setTimeout(500);
 }
 
-boolean Lifter::Init(void)
-{
-  _actuatorOutPin1 = PIN_ACTUATOR_1;
-  _actuatorOutPin2 = PIN_ACTUATOR_2;
-  _BANDWIDTH = BANDWIDTH;
-  _MINPOSITION = MINPOSITION;
-  _MAXPOSITION = MAXPOSITION;
-  LOG("Pin #1: %d  Pin #2: %d  BandWidth: %d  VL6180X MinPosition: %d VL6180X MaxPosition: %d", \
-			_actuatorOutPin1, _actuatorOutPin2, _BANDWIDTH, _MINPOSITION, _MAXPOSITION);  
-// Private variables for position control
-  _IsBrakeOn = true;
-  _IsMovingUp = false;
-  _IsMovingDown = false;
-// ------------version #2 Setup I2C and initialize VL6180X
-  InitVL6180X(); 
-// Test for a working sensor --> can we read position without a timeout!!
-#if _RANGE_CONTINUOUS
-  int16_t temp = sensor->readRangeContinuousMillimeters();
+bool Lifter::Init(void) {
+  LOG("Pin #1: %d | Pin #2: %d | Bandwidth: %d | MinPos: %d | MaxPos: %d", \
+              PIN_ACTUATOR_1, PIN_ACTUATOR_2, BANDWIDTH, MINPOSITION, MAXPOSITION);
+  // Initialize VL6180X
+  initVL6180X();
+  // Test if VL6180X is working
+  int retries = 3;
+  bool sensorOK = false;
+  int16_t tempPosition;
+  while (retries-- > 0) {
+#if defined(RANGE_CONTINUOUS)
+      tempPosition = sensor->readRangeContinuousMillimeters();
 #else
-  int16_t temp = sensor->readRangeSingleMillimeters();
+      tempPosition = sensor->readRangeSingleMillimeters();
 #endif
-  if (sensor->timeoutOccurred()) {
-        LOG(">> ERROR << --> VL6180X reports TIMEOUT --> Not working!");
-	return false; // failed
+      if (!sensor->timeoutOccurred()) {
+          sensorOK = true;
+          break;
+      }
+      LOG("VL6180X Timeout, retrying... (%d retries left)", retries);
+      delay(100);
+  } // while
+
+  if (!sensorOK) {
+      LOG(">> ERROR << VL6180X failed after retries. Check wiring and power!");
+      return false;
   }
-// ----------- version #2
-  // fill the movingAverageFilter with actual values instead of default zero's....
-  // that blur operation in the early stages (of testing..)
-  Fill_Moving_Average_Filter();
-  _TargetPosition = _CurrentPosition; // Set default: No offset
+
+  // Change default zero values in filter to tempPosition
+#if defined(SMA_FILTER)
+  SMAFilter->presetFilter(static_cast<float>(tempPosition));
+  LOG("SMA Filter Activated!");
+#endif
+#if defined(EMA_FILTER)
+  EMAFilter->presetFilter(static_cast<float>(tempPosition));
+  LOG("EMA Filter Activated!");
+#endif
+
+  // Prime the Filter with stable readings and set currentPosition
+  primeFilter(PRIME_COUNT);
+
+  // Set Target position equal to Current Position
+  targetPosition = currentPosition;
+
   LOG("ToF VL6180X Initialized!");
   return true;
 }
 
-int16_t Lifter::GetVL6180X_Range_Reading()
-{
-#if _RANGE_CONTINUOUS
-    int16_t temp = sensor->readRangeContinuousMillimeters();
+int16_t Lifter::getVL6180XRangeReading(void) {
+    static int timeoutCount = 0;    // Track consecutive timeouts
+    const int timeoutThreshold = 3; // Number of timeouts before resetting sensor 
+    int16_t tempPosition;  
+#if defined(RANGE_CONTINUOUS)
+    tempPosition = sensor->readRangeContinuousMillimeters();
 #else
-    int16_t temp = sensor->readRangeSingleMillimeters();
+    tempPosition = sensor->readRangeSingleMillimeters();
 #endif
-    if (sensor->timeoutOccurred()) 
-        {
-        LOG(">> ERROR << --> VL6180X reports TIMEOUT --> VL6180X is reset --> continue");
-        // ------------version #2 handle timeout error state VL6180X
-        brakeActuator();         // Stop any movement to avoid erroneous behavior of the Actuator
-        InitVL6180X();           // Initialize ToF VL6180X again --> this resets timeout error state!
-        return _CurrentPosition; // Do NOT use latest (temp) reading, it is not valid due to the timeout!!
-        // ----------- version #2
+    // Handle timeout error
+    if (sensor->timeoutOccurred()) {
+        timeoutCount++;
+        LOG(">> ERROR << VL6180X Timeout! Attempt %d/%d", timeoutCount, timeoutThreshold);
+        // Reset the sensor only if timeouts keep happening
+        if (timeoutCount >= timeoutThreshold) {
+            LOG("Too many timeouts! Resetting VL6180X...");
+            brakeActuator();  // Stop movement
+            initVL6180X();    // Reset ToF sensor
+            timeoutCount = 0; // Reset timeout counter
         }
-  return movingAverageFilter_Range->process(temp);  
-} 
-
-bool Lifter::TestBasicMotorFunctions()
-{
-  LOG("Testing VL6180X and motor functioning...");
-  int16_t PresentPosition01 = GetVL6180X_Range_Reading();
-  LOG("Start at position: %d", PresentPosition01);
-  if (PresentPosition01 != (constrain(PresentPosition01, _MINPOSITION, _MAXPOSITION)) )
-  { // VL6108X is out of Range ... ?
-    LOG(">> ERROR << --> VL6108X Out of Range at start !!");
-    return false; 
-  }
-  LOG("Moving UP ...");
-  moveActuatorUp();
-  delay(800); // Wait for some time
-  brakeActuator();
-  int16_t PresentPosition02 = (_CurrentPosition + _BANDWIDTH);
-  if (PresentPosition02 != (constrain(PresentPosition02, _MINPOSITION, _MAXPOSITION)) )
-  { // VL6108X is out of Range ... ?
-    LOG(">> ERROR << -> VL6108X Out of Range");
-    return false; 
-  }
-  if (!(PresentPosition02 < PresentPosition01))
-    { 
-    LOG(">> ERROR << -> VL6108X did not detect an UP movement");
-    return false;
+        return currentPosition; // Return last known good position
     }
-  // VL6108X is properly working moving UP! ------------------------------------ 
-  LOG("Moving Down ...");
-  moveActuatorDown();
-  delay(1600); // Wait some time (extra to "undo" the previous Up movement!!)
-  brakeActuator();
-  PresentPosition01 = (_CurrentPosition - _BANDWIDTH);
-  if (PresentPosition01 != (constrain(PresentPosition01, _MINPOSITION, _MAXPOSITION)) )
-  { // VL6108X is out of Range ... ?
-    LOG(">> ERROR << -> VL6108X Out of Range");
-    return false; 
-  }
-  if (!(PresentPosition01 > PresentPosition02))
-    { 
-    LOG(">> ERROR << -> VL6108X did not detect a DOWN movement");
-    return false;
+    // Reset timeout counter if we get a valid reading
+    timeoutCount = 0;
+    // Sanity check: Filter out extreme values
+    if (tempPosition < MINPOSITION || tempPosition > MAXPOSITION) {
+        LOG(">> WARNING << VL6180X reported out-of-range value: %d (valid: %d-%d)", \
+                                                          tempPosition, MINPOSITION, MAXPOSITION);
+        return currentPosition;  // Ignore bad reading
     }
-  // AND VL6108X is properly moving DOWN ! --------------------------------------
-  LOG("VL6180X and motor properly working ...");
-  return true;
+#if defined(SMA_FILTER)
+    // Process valid reading through the SMA filter and return
+    return static_cast<uint16_t>( std::round(SMAFilter->getFilteredValue(static_cast<float>(tempPosition))) );
+#endif
+#if defined(EMA_FILTER)
+    // Process valid reading through the EMA filter and return
+    return static_cast<uint16_t>( std::round(EMAFilter->getFilteredValue(static_cast<float>(tempPosition))) );
+#endif
+    // No Filter and return
+    return tempPosition; 
+}
+ 
+bool Lifter::TestBasicMotorFunctions() {
+    uint8_t moveCount = 0;
+    int16_t upPos;
+    uint32_t startTime;
+    uint32_t endTime;
+ 
+    // Prime the Filter to get a stable starting position
+    primeFilter(PRIME_COUNT);
+    LOG("Start position: %d", currentPosition);
+    if (currentPosition < MINPOSITION || currentPosition > MAXPOSITION) {
+      LOG(">> ERROR << VL6180X Out of Range at start!!");
+      return false;
+    }
+    // Movement detection: 3 times in a row in limited time!
+    upPos = currentPosition;
+    LOG("Moving UP...");
+    moveActuatorUp();
+    delay(250); // Give actuator time to respond
+    startTime = millis(); // Get the start time
+    while ((millis()-startTime) < 3000) { // Max timeout of 3 sec
+        currentPosition = getVL6180XRangeReading();
+        if (currentPosition <= (MINPOSITION + BANDWIDTH)) { // Check we do not reach the ceiling
+            LOG(">> WARNING << Reached MINPOSITION limit: %d", currentPosition);
+            brakeActuator();
+            return false;
+        }
+        if (currentPosition < upPos) {  // Confirm an upward movement
+            upPos = currentPosition;
+            moveCount++;
+            //LOG("moveCount: %d Raw: %d Filtered: %d", moveCount, tempPosition, currentPosition);
+        } else moveCount = 0; // Reset!
+        if (moveCount >= 3) {
+          endTime = millis();
+          break;  // Exit early if consistent UP movements detected
+        }
+#if defined(RANGE_CONTINUOUS)
+        delay(100); // Respect 10 Hz sample rate of VL6180X
+#else // Single Shot Mode
+        delay(50); // Wait for 50ms
+#endif
+    } // while
+    brakeActuator();
+    if (moveCount < 3) {
+        LOG(">> ERROR << VL6180X did not detect an UP movement!");
+        return false;
+    }
+    LOG("3 Consecutive UP movements detected in: %d ms", (endTime-startTime));
+    return true;
 }
 
-
-int Lifter::GetOffsetPosition()
-{
-  _CurrentPosition = GetVL6180X_Range_Reading();
-  int16_t _PositionOffset = _TargetPosition - _CurrentPosition;
-  if (sensor->timeoutOccurred()) 
-    {
-      LOG("VL6180X persists in TIMEOUT error state!");
-      return 3;
+int Lifter::getOffsetPosition() {
+    // Read the current position
+    int16_t tempPosition = getVL6180XRangeReading();
+    // Check for timeout BEFORE using the measurement
+    if (sensor->timeoutOccurred()) {
+        return 3;  // Timeout Error state
     }
+    currentPosition = tempPosition;  // Now safe to update
+    int16_t _PositionOffset = targetPosition - currentPosition;
 #ifdef MOVEMENTDEBUG
-  LOG("Target: %d  Current %d  Offset: %d", _TargetPosition, _CurrentPosition, _PositionOffset);
+    LOG("Target: %d  Current: %d  Offset: %d", targetPosition, currentPosition, _PositionOffset);
 #endif 
-  if ( (_PositionOffset >= -_BANDWIDTH) && (_PositionOffset <= _BANDWIDTH) )
-    { // postion = 0 + or - BANDWIDTH so don't move anymore!
+    // If within the bandwidth range, stop movement
+    if (abs(_PositionOffset) <= BANDWIDTH) {
 #ifdef MOVEMENTDEBUG
-    LOG(" offset = 0 (within bandwidth %1d) ", _BANDWIDTH);
+        LOG("Offset within bandwidth [%d]", BANDWIDTH);
 #endif
-    return 0; 
+        return 0;  // Position is within the acceptable range
     }
-  if ( _PositionOffset < 0 )
-  {
+    // Determine movement direction
+    if (_PositionOffset < 0)  {
 #ifdef MOVEMENTDEBUG
-   LOG(" offset < 0 ");
+        LOG("Offset < 0");
 #endif
-   return 1;    
-  }
-  else 
-  {
+        return 1;  // Move Down
+    }
 #ifdef MOVEMENTDEBUG
-   LOG(" offset > 0 ");
+    LOG("Offset > 0");
 #endif
-   return 2;     
-  }
-  // default --> error... stop!
-#ifdef MOVEMENTDEBUG
-  LOG(" BRAKE --> Offset comparison error!");
-#endif
-  return 0; 
+    return 2;  // Move Up
 }
 
-void Lifter::SetTargetPosition(int16_t Tpos)
-{
+
+void Lifter::SetTargetPosition(int16_t Tpos) {
   xSemaphoreTake(xSemaphore, portMAX_DELAY); 
-  _TargetPosition = Tpos;
+  targetPosition = Tpos;
   xSemaphoreGive(xSemaphore);
 }
 
-void Lifter::moveActuatorUp()
-  { 
-  // FORWARD
-  if (_CurrentPosition <= (_MINPOSITION + _BANDWIDTH) )
-    { // Stop further movement to avoid destruction...
-    _IsMovingUp = false;
-#ifdef MOVEMENTDEBUG
-    LOG(" Stop MovingUp ");
-#endif
+void Lifter::moveActuatorUp() { 
+  if (currentPosition <= (MINPOSITION + BANDWIDTH) ) { 
+    // Stop further movement to avoid destruction...
+    isMovingUp = false;
     brakeActuator();
     return;
-    }
-    // DO NOT REPEATEDLY set the same motor direction 
-    if (_IsMovingUp) {return;}
-    
-    digitalWrite(_actuatorOutPin1, LOW);                           
-    digitalWrite(_actuatorOutPin2, HIGH);
-    _IsMovingUp = true;
-    _IsMovingDown = false;
-    _IsBrakeOn = false;
-#ifdef MOVEMENTDEBUG
-    LOG(" Set MovingUp ");
-#endif
   }
-
-void Lifter::moveActuatorDown()
-  { 
-  // REVERSE
-  if (_CurrentPosition >= (_MAXPOSITION - _BANDWIDTH) )
-    { // Stop further movement to avoid destruction...
-    _IsMovingDown = false;
+  // DO NOT REPEATEDLY set the same motor direction 
+  if (isMovingUp) return;
+  // Moving in the opposite direction or not moving at all    
+  digitalWrite(PIN_ACTUATOR_1, LOW);                           
+  digitalWrite(PIN_ACTUATOR_2, HIGH);
+  isMovingUp = true;
+  isMovingDown = false;
+  isBrakeOn = false;
 #ifdef MOVEMENTDEBUG
-    LOG(" Stop MovingDown ");
+  LOG(" Set MovingUp ");
 #endif
+}
+
+void Lifter::moveActuatorDown() { 
+  if (currentPosition >= (MAXPOSITION - BANDWIDTH) ) {
+    // Stop further movement to avoid destruction...
+    isMovingDown = false;
     brakeActuator();
     return;
-    }
-    // DO NOT REPEATEDLY set the same motor direction
-    if (_IsMovingDown) {return;}
-    
-    // moving in the wrong direction or not moving at all
-    digitalWrite(_actuatorOutPin1, HIGH);                           
-    digitalWrite(_actuatorOutPin2, LOW);
-    _IsMovingDown = true;
-    _IsMovingUp = false;
-    _IsBrakeOn = false;
-#ifdef MOVEMENTDEBUG
-    LOG(" Set MovingDown ");
-#endif
   }
+  // DO NOT REPEATEDLY set the same motor direction
+  if (isMovingDown) return;   
+  // Moving in the opposite direction or not moving at all
+  digitalWrite(PIN_ACTUATOR_1, HIGH);                           
+  digitalWrite(PIN_ACTUATOR_2, LOW);
+  isMovingDown = true;
+  isMovingUp = false;
+  isBrakeOn = false;
+#ifdef MOVEMENTDEBUG
+  LOG(" Set MovingDown ");
+#endif
+}
 
-void Lifter::brakeActuator()
-  { 
-    // BRAKE
-    // DO NOT REPEATEDLY stop the motor
-    if (_IsBrakeOn) {return;}
-    digitalWrite(_actuatorOutPin1, LOW);
-    digitalWrite(_actuatorOutPin2, LOW);
-    _IsBrakeOn = true;
-    _IsMovingDown = false;
-    _IsMovingUp = false; 
-    // Consolidate present position
-    Fill_Moving_Average_Filter();
+void Lifter::brakeActuator() { 
+  // DO NOT REPEATEDLY stop the motor
+  if (isBrakeOn) return;
+  digitalWrite(PIN_ACTUATOR_1, LOW);
+  digitalWrite(PIN_ACTUATOR_2, LOW);
+  isBrakeOn = true;
+  isMovingDown = false;
+  isMovingUp = false; 
+  // Prime the Filter to consolidate present stable position
+  primeFilter(PRIME_COUNT);
 #ifdef MOVEMENTDEBUG
-    LOG(" Set Brake On ");
+  LOG(" Set Brake On ");
 #endif
-  }
+}
 
 void Lifter::xTaskControl(void) {
-  // Check "continuously" the Actuator Position and move Motor Up/Down until target position is reached
+  // Check the Actuator Position and move Motor Up/Down until target position is reached
   static int OnOffsetAction = 0;
-  const TickType_t xDelay = 110 / portTICK_PERIOD_MS; // Block for 110ms < 10Hz sample rate of VL6180X
+#if defined(RANGE_CONTINUOUS)
+  const TickType_t xDelay = 100 / portTICK_PERIOD_MS; // Block for 100ms to respect sample rate of VL6180X
+#else // Single Shot Mode
+  const TickType_t xDelay = 50 / portTICK_PERIOD_MS; // Block for 50ms
+#endif
+
   while(1) {
     if(xSemaphoreTake(xSemaphore, portMAX_DELAY)) {
-        // BLE channels can interrupt and consequently target position changes on-the-fly !!
-        // We do not want changes in TargetPosition during one of the following action!!!
-        OnOffsetAction = Lifter::GetOffsetPosition(); // calculate offset to target and determine action
-        xSemaphoreGive(xSemaphore);
+      // BLE channels can interrupt and consequently target position changes on-the-fly !!
+      // We do not want changes in TargetPosition during the following action!!!
+      OnOffsetAction = getOffsetPosition(); // Calculate offset to target and determine action
+      xSemaphoreGive(xSemaphore);
     }
-    switch (OnOffsetAction)
-            {
-              case 0 :
-                Lifter::brakeActuator();
-#ifdef MOVEMENTDEBUG
-                LOG(" -> Brake");
-#endif
-                break;
-              case 1 :
-                Lifter::moveActuatorUp();
-#ifdef MOVEMENTDEBUG
-                LOG(" -> Upward");
-#endif
-                break;
-              case 2 :
-                Lifter::moveActuatorDown();
-#ifdef MOVEMENTDEBUG
-                LOG(" -> Downward");
-#endif
-                break;
-              case 3 :
-                // Timeout --> OffsetPosition is undetermined --> do nothing and brake
-                Lifter::brakeActuator();
-#ifdef MOVEMENTDEBUG
-                LOG(" -> Timeout");
-#endif
-                break;
-            } // switch 
+    switch (OnOffsetAction) {
+      case 0 :
+        brakeActuator();
+        break;
+      case 1 :
+        moveActuatorUp();
+        break;
+       case 2 :
+         moveActuatorDown();
+         break;
+       case 3:  // Timeout occurred, handle error
+         LOG(">> ERROR << Sensor timeout!");
+         brakeActuator();
+         initVL6180X();  // Reinitialize ToF sensor
+         break;
+       default:  // OffsetPosition is undetermined --> do nothing and brake
+         LOG(">> ERROR << Unknown offset status!");
+         brakeActuator();
+         break;
+    } // switch 
     vTaskDelay(xDelay);
   } // while
 } // end

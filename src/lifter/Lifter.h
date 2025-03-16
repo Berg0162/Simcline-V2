@@ -3,26 +3,39 @@
 
 #include <Arduino.h>
 #include <VL6180X.h>
-#include "MovingAverageFilter.h"
+
+// Option to select one of two filters (only one should be active)
+// Comment/uncomment to choose the filter
+#define SMA_FILTER		// simple moving average (SMA) filter
+//#define EMA_FILTER		// exponential moving average (EMA) filter
+
+#if defined(SMA_FILTER)
+  #include "SMA_Filter.h"
+  #undef EMA_FILTER
+#elif defined(EMA_FILTER)
+  #include "EMA_Filter.h"
+#else
+  #error "No filter selected! Define either SMA_FILTER or EMA_FILTER."
+#endif
 
 class Lifter {
-
 private:
   VL6180X* sensor;
-  MovingAverageFilter* movingAverageFilter_Range;
-  bool _IsBrakeOn;
-  bool _IsMovingUp;
-  bool _IsMovingDown;
-  int _actuatorOutPin1;
-  int _actuatorOutPin2;
-  int16_t _TargetPosition;
-  int16_t _CurrentPosition;
-  int _BANDWIDTH;
-  int _MINPOSITION;
-  int _MAXPOSITION;
-  void InitVL6180X(void);
-  void Fill_Moving_Average_Filter(void);
-  int16_t GetVL6180X_Range_Reading();
+#ifdef SMA_FILTER  
+  SMA_Filter* SMAFilter;
+#endif
+#ifdef EMA_FILTER
+EMA_Filter* EMAFilter;
+#endif
+
+  bool isBrakeOn;
+  bool isMovingUp;
+  bool isMovingDown;
+  int16_t targetPosition;
+  int16_t currentPosition;
+  void initVL6180X(void);
+  void primeFilter(uint8_t maxCount);
+  int getOffsetPosition();
   SemaphoreHandle_t xSemaphore;
   TaskHandle_t ControlTaskHandle;
   static void startTaskControl(void* _this);
@@ -31,14 +44,13 @@ private:
 public:
   Lifter();
   ~Lifter();
-  boolean Init(void);
+  bool Init(void);
+  int16_t getVL6180XRangeReading(void);
   void SetTargetPosition(int16_t Tpos);
   bool TestBasicMotorFunctions();
-  int GetOffsetPosition();
   void moveActuatorUp();
   void moveActuatorDown();
   void brakeActuator();
-
   void StartControl(const BaseType_t);
 };
 #endif
