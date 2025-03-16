@@ -33,7 +33,12 @@
 // Include Simcline Library
 #include <Simcline.h>
 
-#include "handleVL6180X.h"
+// Include code for low level range reading with VL6180X
+#include <lifter/Lifter.h> 
+// Create instance of Lifter
+Lifter* lift = new Lifter();
+
+uint16_t currentReading; // Variable to hold VL6180X range reading
 
 void setup(void) {
   // Init USB connection first
@@ -45,7 +50,6 @@ void setup(void) {
   // Board-specific setup
   espBoard->setup();      
  
-
   // Initialize the connected display
   presentation->initDisplay();
 
@@ -55,16 +59,16 @@ void setup(void) {
   LOG("   Board: %s", BOARD_NAME);
   LOG(" Display: %s", IDISPLAY);
   LOG(" Library: %s", CODE_VERSION);
-  
-  InitVL6180X();
-  // fill the movingAverageFilter with actual values instead of default zero's....
-  // that blur operation in the early stages (of testing..)
-  Fill_Moving_Average_Filter();
+
+  // Initialize Lifter Class!
+  LOG("Initialize Basic VL6180X sensor!");
+  if(!lift->Init()) { // Lifter init failed....
+       presentation->ShowMessageWindow("Testing", "VL6180X", "Timeout!", 500);
+  }  
 }
 
 void loop(void) {
-  // Sampling rate is at about 10 Hz  
-  delay(100);
-  CurrentPosition = GetVL6180X_Range_Reading();  
-  LOG("Pos: %d", CurrentPosition); 
+  delay(100); // Respect sampling rate of about 10 Hz  
+  currentReading = lift->getVL6180XRangeReading();  
+  LOG("Pos: %d", currentReading); 
 }
