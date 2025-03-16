@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.1] - 2025-03-15
+### Fixed
+
+### Changed
+Revisited and updated Lifter Class
+- More reliable Actuator and VL8106X testing
+- Optional selection of SMA and EMA filter for range readings
+- Improved responsiveness of Actuator control
+Updated Test_Board_plus_VL6180X
+- Incorporated use of Lifter Class
+
+### Added
+
 ## [1.0.0] - 2025-03-04
 ### Fixed
 
