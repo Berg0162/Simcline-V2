@@ -10,6 +10,7 @@ Revisited and updated Lifter Class
 - More reliable Actuator and VL8106X testing
 - Optional selection of SMA and EMA filter for range readings
 - Improved responsiveness of Actuator control
+
 Updated Test_Board_plus_VL6180X
 - Incorporated use of Lifter Class
 
