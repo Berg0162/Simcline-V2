@@ -41,13 +41,13 @@ If you select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for 
 # Electronic Components and Wiring for version 2.0<br>
 
 <img src="../images/XIAOESP32S3_Sense_Wiring.png"  alt="Circuitry version 2.0">
-In this project is chosen for the following 5 compact active components that are slightly different from the earlier SIMCLINE project and that can finally all be mounted inside the components box:<br>
+In this project is chosen for the following 5 compact active components that are slightly different from the earlier SIMCLINE project and that can finally all be mounted inside the components box, (designed for use with the Adafruit Feather formfactor) the thump-sized XIAO ESP32S3 needs your special care to mount stably inside:<br>
 
 <b>Adafruit DRV8871 DC Motor Driver</b><br>
 A small one channel motor driver for 12 V (6.5 - 48 V) and 3,6 Amperes max. This board enables the processor to set the Actuator motor in up or down movement. It transforms logical digital levels (Go Up, Go Down and Stop) from the Feather ESP32 to switching of 12 Volt at 3,6 Amperes max., the levels at which the Actuator works. Notice that default the board comes limited to 2,6 Amperes and you need to add a resistor to set for max current level. Install Vertical Through Hole Male PCB Header Pins on the board; this will allow correct mounting of the board inside the components box!<br>
 
 <b>Seeed Studio XIAO ESP32S3</b><br>
-During about one year we have gained a lot of experience with the very stable and reliable <b>Seeed Studio XIAO ESP32S3 Sense</b> - with onboard the ESP32 WROOM module.
+During one year we have gained a lot of experience with the very stable and reliable <b>Seeed Studio XIAO ESP32S3 Sense</b> - in different projects. Without the video camera the board does not need an extra heatsink is my experience!
 - Powerful MCU Board: Incorporate the ESP32S3 32-bit, dual-core, Xtensa processor chip operating up to 240 MHz, mounted multiple development ports, Arduino / MicroPython supported
 - Advanced Functionality: intergating additional digital microphone (NOT USED)
 - Great Memory for more Possibilities: Offer 8MB PSRAM and 8MB FLASH (16MB in Plus version), supporting SD card slot for external 32GB FAT memory (only for XIAO ESP32S3)
