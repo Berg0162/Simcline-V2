@@ -8,7 +8,8 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 Support for XIAO ESP32S3 has been documented
-- Added 
+- Added docs/XIAO_ESP32S3_Sense.md plus supporting images
+
 ## [1.0.1] - 2025-03-16
 ### Fixed
 
