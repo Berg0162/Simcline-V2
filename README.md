@@ -107,7 +107,7 @@ The default Simcline-V2 configuration settings for Smart-MITM when using <b>any 
 Optionally:
 + Users with a <b>Adafruit Feather ESP32 V2</b> can setup their board and display now! See: [Setup Adafruit Feather ESP32 V2 plus Oled display](docs/Adafruit%20Feather%20ESP32-V2.md)<br>
 + Users with a <b>Lilygo esp32s3 T-Display</b> can setup the board and display now! See: [Setup Lilygo esp32s3 T-Display](docs/LILYGO%20ESP32S3%20T-Display.md)<br>
-+ Users with a <b>XIAO ESP32S3</b> can setup their board and display now! See: [Setup XIAO ESP32S3 plus Oled display](docs/XIAO%20ESP32S3%20Sense.md)
++ Users with a <b>XIAO ESP32S3</b> can setup their board and display now! See: [Setup XIAO ESP32S3 plus Oled display](docs/XIAO ESP32S3 Sense.md)
 
 Mandatory:
 + Users of <b>Legacy Wahoo KICKR</b> trainers (<b>NOT supporting FTMS</b>) must make changes now! See: [Setup for Legacy Wahoo KICKR](docs/Setup_Legacy_Wahoo_KICKR.md).
