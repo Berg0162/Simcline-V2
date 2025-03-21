@@ -19,7 +19,7 @@ The <b>ESP32</b> family has a series of low-cost and low-power System on a Chip 
 
 Notice that other members of the ESP32 (particularly <b>ESP32S3</b>) will do the job perfectly, when the development boards come with extra flash and psram memory! See: &nbsp;[FAQ #7](docs/Frequently_Asked_Questions.md#7). &nbsp; <br>
 - For example SIMCLINE works successfully with the <b>Lilygo esp32s3 T-Display</b> board, however that Lilygo-board needs another size component box! See: [Lilygo esp32s3 T-Display](docs/LILYGO%20ESP32S3%20T-Display.md) for settings, wiring scheme and more.<br> 
-- Another attractive example is the Seeed Studio XIAO ESP32S3 (Sense) that has been tested to work fine in service of the SIMCLINE 2.0 with the present library. Due to its thumb-size, it fits definitely in the component box, however it needs some special care to mount it stably. For settings, wiring scheme and more see: [Seeed Studio XIAO ESP32S3](docs/XIAO_ESP32S3_Sense.md)<br>
+- Another attractive example is the <b>Seeed Studio XIAO ESP32S3 (plus Oled display)</b> that has been tested to work fine in service of the SIMCLINE 2.0 with the present library. Due to its thumb-size, it fits definitely in the component box, however it needs some special care to mount it stably. For settings, wiring scheme and more, see: [Seeed Studio XIAO ESP32S3](docs/XIAO_ESP32S3_Sense.md)<br>
 
 Simcline-V2 library builds on the experience, knowledge and code of Simcline projects since <b>2020</b>. The original Simcline code has been revisited and redesigned completely for better stability, robustness and modularity. It was transformed to a C++ Object model that handles the many BLE services and hides most of the Simcline's internal operation. The Simcline community is very diverse when it comes to programming skills. The present Simcline-V2 library matches this much better! It also meets the urge for a greater variety in ESP32 boards and displays to work with.<br>
 
@@ -98,7 +98,7 @@ All Bluetooth Smart FTMS indoor trainers expose your efforts on the bike in 2 ad
 
 # Load Smart-MITM application in Arduino IDE 2
 Within the Arduino IDE 2 select on the top bar menu: `File > Examples > Simcline-V2 > Smart-MITM`<br>
-The default Simcline-V2 configuration settings for Smart-MITM are: 
+The default Simcline-V2 configuration settings for Smart-MITM when using <b>any ESP32 board</b> are: 
 + Display: <b>NODISPLAY</b>
 + ESP32 board: <b>YOUR_ESP32_BOARD</b>
 + NimBLE: <b>FTMS</b> and <b>CSC</b>
@@ -107,6 +107,7 @@ The default Simcline-V2 configuration settings for Smart-MITM are:
 Optionally:
 + Users with a <b>Adafruit Feather ESP32 V2</b> can setup their board and display now! See: [Setup Adafruit Feather ESP32 V2](docs/Adafruit%20Feather%20ESP32-V2.md)<br>
 + Users with a <b>Lilygo esp32s3 T-Display</b> can setup the board and display now! See: [Setup Lilygo esp32s3 T-Display](docs/LILYGO%20ESP32S3%20T-Display.md)<br>
++ Users with a <b>XIAO ESP32S3 plus Oled display</b> can setup their board and display now! See: [Setup XIAO ESP32S3](docs/XIAO_ESP32S3_Sense.md)
 
 Mandatory:
 + Users of <b>Legacy Wahoo KICKR</b> trainers (<b>NOT supporting FTMS</b>) must make changes now! See: [Setup for Legacy Wahoo KICKR](docs/Setup_Legacy_Wahoo_KICKR.md).
