@@ -1,6 +1,6 @@
-# <img src="https://github.com/Berg0162/simcline/blob/master/images/SC_logo.png" width="64" height="64" alt="SIMCLINE Icon"> &nbsp; SIMCLINE for Bluetooth Smart trainers <br> based on the Seeed Studio XIAO ESP32S3 Sense board with OLED display.
+# <img src="https://github.com/Berg0162/simcline/blob/master/images/SC_logo.png" width="64" height="64" alt="SIMCLINE Icon"> &nbsp; SIMCLINE for Bluetooth Smart trainers <br> based on the Seeed Studio XIAO ESP32S3 board with OLED display.
 
-# Setup XIAO ESP32S3 Sense for Simcline-V2
+# Setup XIAO ESP32S3 for Simcline-V2
 The board and display to work with can be activated in Simcline-V2 with the right settings, see folder: <b>/Simcline-V2/src/config</b><br>
 1) Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V2/src/config/configBoard.h`
 ```C++
@@ -25,18 +25,18 @@ The board and display to work with can be activated in Simcline-V2 with the righ
 <b>Warning</b>: When a new version of Simcline-V2 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V2` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
 
 ## Arduino IDE 2.x
-The present code is developed on Arduino IDE 2.2. Notice that you will need an Arduino IDE that is tailored for this specific <b>Seeed Studio XIAO ESP32S3 Sense</b> processor! Please follow the installation instructions for the [Seeed Studio XIAO ESP32S3 Sense](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/)<br>
+The present code is developed on Arduino IDE 2.2. Notice that you will need an Arduino IDE that is tailored for this specific <b>Seeed Studio XIAO ESP32S3 </b> processor! Please follow the installation instructions for the [Seeed Studio XIAO ESP32S3](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/)<br>
 
 ## Before you start
-If you select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for the <b>Seeed Studio XIAO ESP32S3 Sense</b> processor and the project are the following:
+If you select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for the <b>Seeed Studio XIAO ESP32S3</b> processor and the project are the following:
 <p align=center>
-<img src="../images/XIAO_ESP32S3_Tools_Settings.png" align="left" width="400" height="650" alt="XIAO ESP32S3 Sense Tools Menu">
+<img src="../images/XIAO_ESP32S3_Tools_Settings.png" align="left" width="400" height="650" alt="XIAO ESP32S3 Tools Menu">
 </p>
 <br clear="left">
 
-# XIAO ESP32S3 Sense pinout
+# XIAO ESP32S3 pinout
 
-<img src="../images/XIAOESP32S3_Pin_Config.jpg"  alt="XIAO ESP32S3 Sense pinout">
+<img src="../images/XIAOESP32S3_Pin_Config.jpg"  alt="XIAO ESP32S3 pinout">
 
 # Electronic Components and Wiring for version 2.0<br>
 
@@ -46,14 +46,14 @@ In this project is chosen for the following 5 compact active components that are
 <b>Adafruit DRV8871 DC Motor Driver</b><br>
 A small one channel motor driver for 12 V (6.5 - 48 V) and 3,6 Amperes max. This board enables the processor to set the Actuator motor in up or down movement. It transforms logical digital levels (Go Up, Go Down and Stop) from the Feather ESP32 to switching of 12 Volt at 3,6 Amperes max., the levels at which the Actuator works. Notice that default the board comes limited to 2,6 Amperes and you need to add a resistor to set for max current level. Install Vertical Through Hole Male PCB Header Pins on the board; this will allow correct mounting of the board inside the components box!<br>
 
-<b>Seeed Studio XIAO ESP32S3 Sense</b><br>
+<b>Seeed Studio XIAO ESP32S3</b><br>
 During about one year we have gained a lot of experience with the very stable and reliable <b>Seeed Studio XIAO ESP32S3 Sense</b> - with onboard the ESP32 WROOM module.
 - Powerful MCU Board: Incorporate the ESP32S3 32-bit, dual-core, Xtensa processor chip operating up to 240 MHz, mounted multiple development ports, Arduino / MicroPython supported
-- Advanced Functionality (for Sense): Detachable OV2640 camera sensor for 1600*1200 resolution, compatible with OV5640 camera sensor, intergating additional digital microphone
+- Advanced Functionality: intergating additional digital microphone (NOT USED)
 - Great Memory for more Possibilities: Offer 8MB PSRAM and 8MB FLASH (16MB in Plus version), supporting SD card slot for external 32GB FAT memory (only for XIAO ESP32S3)
 - Outstanding RF performance: Support 2.4GHz Wi-Fi and BLE dual wireless communication, support 100m+ remote communication when connected with U.FL antenna
 - Thumb-sized Compact Design: 21 x 17.8mm, adopting the classic form factor of XIAO, suitable for space limited projects like wearable devices
-[Seeed Studio XIAO ESP32S3 Sense](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/) <br>
+[Seeed Studio XIAO ESP32S3](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/) <br>
 
 <b>OLED display blue/white 128x64 pixels (0,96 Inch, I2C)</b><br>
 Small display board has a critical overall board size of 25 mm * 27 mm (!); (See for example: [Webshop](https://www.pcboard.ca/oled-128x64)). Display area itself is: 25 mm x 14 mm. Shows cycling data and diagnostic info that is gathered during operation by the Feather ESP32 to inform the SIMCLINE user about relevant information. NOTICE: a) Many different formfactors are offered at webshops; b) Install Vertical Through Hole Male PCB Header Pins on the board; this will allow correct mounting of the board inside the components box!<br>
