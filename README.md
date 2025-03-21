@@ -97,17 +97,17 @@ All Bluetooth Smart FTMS indoor trainers expose your efforts on the bike in 2 ad
 + The <b>Simcline MITM</b> code is connecting both sides at the same time: a full-blown working bridge<br clear="left">
 
 # Load Smart-MITM application in Arduino IDE 2
-Within the Arduino IDE 2 select on the top bar menu: `File > Examples > Simcline-V2 > Smart-MITM`<br>
-The default Simcline-V2 configuration settings for Smart-MITM when using <b>any ESP32 board</b> are: 
+Within the Arduino IDE 2.x select on the top bar menu: `File > Examples > Simcline-V2 > Smart-MITM`<br>
+The default Simcline-V2 configuration settings for Smart-MITM when using <b>any ESP32 board (without display attached)</b> are: 
 + Display: <b>NODISPLAY</b>
 + ESP32 board: <b>YOUR_ESP32_BOARD</b>
 + NimBLE: <b>FTMS</b> and <b>CSC</b>
 + Debug:  <b>Defined</b>
 
 Optionally:
-+ Users with a <b>Adafruit Feather ESP32 V2</b> can setup their board and display now! See: [Setup Adafruit Feather ESP32 V2](docs/Adafruit%20Feather%20ESP32-V2.md)<br>
++ Users with a <b>Adafruit Feather ESP32 V2</b> can setup their board and display now! See: [Setup Adafruit Feather ESP32 V2 plus Oled display](docs/Adafruit%20Feather%20ESP32-V2.md)<br>
 + Users with a <b>Lilygo esp32s3 T-Display</b> can setup the board and display now! See: [Setup Lilygo esp32s3 T-Display](docs/LILYGO%20ESP32S3%20T-Display.md)<br>
-+ Users with a <b>XIAO ESP32S3 plus Oled display</b> can setup their board and display now! See: [Setup XIAO ESP32S3](docs/XIAO_ESP32S3_Sense.md)
++ Users with a <b>XIAO ESP32S3</b> can setup their board and display now! See: [Setup XIAO ESP32S3 plus Oled display](docs/XIAO%20ESP32S3%20Sense.md)
 
 Mandatory:
 + Users of <b>Legacy Wahoo KICKR</b> trainers (<b>NOT supporting FTMS</b>) must make changes now! See: [Setup for Legacy Wahoo KICKR](docs/Setup_Legacy_Wahoo_KICKR.md).
