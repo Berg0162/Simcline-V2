@@ -1,7 +1,14 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [1.0.2] - 2025-03-##
+### Fixed
 
+### Changed
+
+### Added
+Support for XIAO ESP32S3 has been documented
+- Added 
 ## [1.0.1] - 2025-03-16
 ### Fixed
 
