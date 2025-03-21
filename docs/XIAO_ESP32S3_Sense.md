@@ -25,12 +25,12 @@ The board and display to work with can be activated in Simcline-V2 with the righ
 <b>Warning</b>: When a new version of Simcline-V2 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V2` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
 
 ## Arduino IDE 2.x
-The present code is developed on Arduino IDE 2.2. Notice that you will need an Arduino IDE that is tailored for this specific <b>XIAO_ESP32S3</b> processor! Please follow the installation instructions for the [Seeed Studio XIAO ESP32S3](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/)<br>
+The present code is developed on Arduino IDE 2.2. Notice that you will need an Arduino IDE that is tailored for this specific <b>Seeed Studio XIAO ESP32S3</b> processor! Please follow the installation instructions for the [Seeed Studio XIAO ESP32S3](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/)<br>
 
 ## Before you start
-If you select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for the <b>Seeed Studio XIAO ESP32S3</b> processor and the project are the following:
+If you select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for the <b>XIAO_ESP32S3</b> processor and the project are the following:
 <p align=center>
-<img src="../images/XIAO_ESP32S3_Tools_Settings.png" align="left" width="400" height="650" alt="XIAO ESP32S3 Tools Menu">
+<img src="../images/XIAO_ESP32S3_Tools_Settings.png" align="left" width="400" height="650" alt="XIAO_ESP32S3 Tools Menu">
 </p>
 <br clear="left">
 
