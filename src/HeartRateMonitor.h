@@ -16,14 +16,14 @@ HRM();
 static HRM* instance;                          // Singleton class instance
 OPS* operations;
 // Server HRM Service -----------------------------------------------------------------------------
-NimBLEService *server_HeartRate_Service;
-NimBLECharacteristic *server_HR_Measurement_Chr;           // Notify Write
+NimBLEService *server_HeartRate_Service = nullptr;
+NimBLECharacteristic *server_HR_Measurement_Chr = nullptr; // Notify Write
 NimBLECharacteristic *server_HR_Location_Chr = nullptr;    // Read
 
 // Client HRM Service -----------------------------------------------------------------------------
-NimBLERemoteService* pRemote_HeartRate_Service;
-const NimBLERemoteCharacteristic* pRemote_HR_Measurement_Chr;
-const NimBLERemoteCharacteristic* pRemote_HR_Location_Chr;
+NimBLERemoteService* pRemote_HeartRate_Service = nullptr;
+NimBLERemoteCharacteristic* pRemote_HR_Measurement_Chr = nullptr;
+NimBLERemoteCharacteristic* pRemote_HR_Location_Chr = nullptr;
 uint8_t client_HR_Location_Value  = { 0x01 };     // Chest
 
 void client_HR_Measurement_Notify_Callback(NimBLERemoteCharacteristic* pBLERemoteCharacteristic, \

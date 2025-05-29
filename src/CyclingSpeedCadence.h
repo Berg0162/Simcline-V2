@@ -21,18 +21,18 @@ CSC();
 static CSC* instance;                         // Singleton class instance
 OPS* operations;
 // Server Cycling Speed and Cadence Service -----------------------------------------------------
-NimBLEService* server_CyclingSpeedCadence_Service;  
-NimBLECharacteristic* server_CSC_Measurement_Chr;               //     Notify, Read
+NimBLEService* server_CyclingSpeedCadence_Service = nullptr;  
+NimBLECharacteristic* server_CSC_Measurement_Chr = nullptr;     //     Notify, Read
 NimBLECharacteristic* server_CSC_Feature_Chr = nullptr;         //     Read
 NimBLECharacteristic* server_CSC_Location_Chr  = nullptr;       //     Read
 
 // Client Cycling Speed and Cadence Service -----------------------------------------------------
-NimBLERemoteService*        pRemote_CyclingSpeedCadence_Service;
-const NimBLERemoteCharacteristic* pRemote_CSC_Measurement_Chr;         // Notify, Read
-const NimBLERemoteCharacteristic* pRemote_CSC_Feature_Chr;             // Read
+NimBLERemoteService* pRemote_CyclingSpeedCadence_Service = nullptr;
+NimBLERemoteCharacteristic* pRemote_CSC_Measurement_Chr = nullptr;         // Notify, Read
+NimBLERemoteCharacteristic* pRemote_CSC_Feature_Chr = nullptr;             // Read
 uint16_t client_CSC_Feature_Flags = (CSC_FEATURE_WHEEL_REV_DATA | CSC_FEATURE_CRANK_REV_DATA | CSC_FEATURE_MULTIPLE_SENSOR_LOC);
-const NimBLERemoteCharacteristic* pRemote_CSC_Location_Chr;            // Read
-uint8_t client_CSC_Location_Value = {0x0C};                      // --> rear wheel !
+NimBLERemoteCharacteristic* pRemote_CSC_Location_Chr = nullptr;            // Read
+uint8_t client_CSC_Location_Value = {0x0C};  // --> rear wheel !
 
 void client_CSC_Measurement_Notify_Callback(NimBLERemoteCharacteristic* pBLERemoteCharacteristic, \
                                                                     uint8_t* pData, size_t length, bool isNotify);

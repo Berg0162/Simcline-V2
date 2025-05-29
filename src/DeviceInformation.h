@@ -17,25 +17,25 @@ DIS();
 static DIS* instance; // Singleton class instance
 OPS* operations;
 // Server Service Device Information --------------------------------------------------
-NimBLEService *server_DeviceInformation_Service;
+NimBLEService *server_DeviceInformation_Service = nullptr;
 NimBLECharacteristic *server_DIS_ModelNumber_Chr  = nullptr;      // Read
 NimBLECharacteristic *server_DIS_SerialNumber_Chr  = nullptr;     // Read
 NimBLECharacteristic *server_DIS_ManufacturerName_Chr = nullptr;  // Read
 /*
-//NimBLECharacteristic *server_DIS_Firmware_Chr;          // Read
+//NimBLECharacteristic *server_DIS_Firmware_Chr = nullptr;        // Read
 //std::string client_DIS_Firmware_Str;
-//NimBLECharacteristic *server_DIS_Hardware_Chr;          // Read
+//NimBLECharacteristic *server_DIS_Hardware_Chr = nullptr;        // Read
 //std::string client_DIS_Hardware_Str;
-//NimBLECharacteristic *server_DIS_Software_Chr;          // Read
+//NimBLECharacteristic *server_DIS_Software_Chr = nullptr;        // Read
 //std::string client_DIS_Software_Str;
 */
 // Client Device Information Service       --------------------------------------------------
-NimBLERemoteService*  pRemote_DeviceInformation_Service; 
-const NimBLERemoteCharacteristic* pRemote_DIS_ManufacturerName_Chr;   // Read
+NimBLERemoteService* pRemote_DeviceInformation_Service = nullptr; 
+NimBLERemoteCharacteristic* pRemote_DIS_ManufacturerName_Chr = nullptr;  // Read
 std::string client_DIS_Manufacturer_Str = "Espressif";
-const NimBLERemoteCharacteristic* pRemote_DIS_ModelNumber_Chr;       // Read
+NimBLERemoteCharacteristic* pRemote_DIS_ModelNumber_Chr = nullptr;       // Read
 std::string client_DIS_ModelNumber_Str = "ESP32";
-const NimBLERemoteCharacteristic* pRemote_DIS_SerialNumber_Chr;      // Read
+NimBLERemoteCharacteristic* pRemote_DIS_SerialNumber_Chr = nullptr;      // Read
 std::string client_DIS_SerialNumber_Str = "123";
 
 public:

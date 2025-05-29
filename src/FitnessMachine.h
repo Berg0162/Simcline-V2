@@ -64,40 +64,40 @@ class FTMS {
 //NOT private: allow FTMSXS to access variables protected:
 private:
 FTMS(); 
-static FTMS* instance;                                      // Singleton class instance
+static FTMS* instance;                                          // Singleton class instance
 OPS* operations;
-ftmcp_data_ut server_FTM_Control_Point_Data;                // Fitness Machine Control Point Data member
+ftmcp_data_ut server_FTM_Control_Point_Data;                    // Fitness Machine Control Point Data member
 // Server Fitness Machine Service -----------------------------------------------------------------
-NimBLEService        *server_FitnessMachine_Service;        // FTM Service
-NimBLECharacteristic *server_FTM_Feature_Chr = nullptr;     //  Fitness Machine Feature, mandatory, read
-NimBLECharacteristic *server_FTM_Status_Chr;                //  Fitness Machine Status, mandatory, notify
-NimBLECharacteristic *server_FTM_IndoorBikeData_Chr;        //  Indoor Bike Data, optional, notify
-NimBLECharacteristic *server_FTM_ControlPoint_Chr = nullptr;//  Fitness Machine Control Point, optional, write & indicate
+NimBLEService* server_FitnessMachine_Service = nullptr;         // FTM Service
+NimBLECharacteristic* server_FTM_Feature_Chr = nullptr;         //  Fitness Machine Feature, mandatory, read
+NimBLECharacteristic* server_FTM_Status_Chr = nullptr;          //  Fitness Machine Status, mandatory, notify
+NimBLECharacteristic* server_FTM_IndoorBikeData_Chr = nullptr;  //  Indoor Bike Data, optional, notify
+NimBLECharacteristic* server_FTM_ControlPoint_Chr = nullptr;    //  Fitness Machine Control Point, optional, write & indicate
 #ifdef ENABLE_TRAININGSTATUS
-NimBLECharacteristic *server_FTM_TrainingStatus_Chr;        //  Training Status, optional, read & notify
+NimBLECharacteristic* server_FTM_TrainingStatus_Chr = nullptr;  //  Training Status, optional, read & notify
 #endif
-NimBLECharacteristic *server_FTM_SupportedResistanceLevelRange_Chr = nullptr; // Supported Resistance Level, read, optional
-NimBLECharacteristic *server_FTM_SupportedPowerRange_Chr = nullptr;   // Supported Power Levels, read, optional
+NimBLECharacteristic* server_FTM_SupportedResistanceLevelRange_Chr = nullptr; // Supported Resistance Level, read, optional
+NimBLECharacteristic* server_FTM_SupportedPowerRange_Chr = nullptr;   // Supported Power Levels, read, optional
 // -----------------------------------------------------------------------------------------------
 
 // Client Fitness Machine Service -----------------------------------------------------------------
-NimBLERemoteService* pRemote_FitnessMachine_Service;        // FTM Service
+NimBLERemoteService* pRemote_FitnessMachine_Service = nullptr;      // FTM Service
 // Service characteristics exposed by FTM Service
-const NimBLERemoteCharacteristic* pRemote_FTM_SupportedResistanceLevelRange_Chr; // Supported Resistance Level, read, optional
+NimBLERemoteCharacteristic* pRemote_FTM_SupportedResistanceLevelRange_Chr = nullptr; // Supported Resistance Level, read, optional
 //MITM
 std::string client_FTM_SupportedResistanceLevelRange_Str; 
-const NimBLERemoteCharacteristic* pRemote_FTM_SupportedPowerRange_Chr;  // Supported Power Levels, read, optional
+NimBLERemoteCharacteristic* pRemote_FTM_SupportedPowerRange_Chr = nullptr;  // Supported Power Levels, read, optional
 //MITM
 std::string client_FTM_SupportedPowerRange_Str; 
-const NimBLERemoteCharacteristic* pRemote_FTM_Feature_Chr;        //  Fitness Machine Feature, mandatory, read
+NimBLERemoteCharacteristic* pRemote_FTM_Feature_Chr = nullptr;        //  Fitness Machine Feature, mandatory, read
 //MITM
 std::string client_FTM_Feature_Str; 
 #ifdef ENABLE_TRAININGSTATUS
-const NimBLERemoteCharacteristic* pRemote_FTM_TrainingStatus_Chr; //  Training Status, optional, read & notify
+NimBLERemoteCharacteristic* pRemote_FTM_TrainingStatus_Chr = nullptr; //  Training Status, optional, read & notify
 #endif
-const NimBLERemoteCharacteristic* pRemote_FTM_Status_Chr;         //  Fitness Machine Status, mandatory, notify
-const NimBLERemoteCharacteristic* pRemote_FTM_IndoorBikeData_Chr; //  Indoor Bike Data, optional, notify
-const NimBLERemoteCharacteristic* pRemote_FTM_ControlPoint_Chr;   //  Fitness Machine Control Point, optional, write & indicate
+NimBLERemoteCharacteristic* pRemote_FTM_Status_Chr = nullptr;         //  Fitness Machine Status, mandatory, notify
+NimBLERemoteCharacteristic* pRemote_FTM_IndoorBikeData_Chr = nullptr; //  Indoor Bike Data, optional, notify
+NimBLERemoteCharacteristic* pRemote_FTM_ControlPoint_Chr = nullptr;   //  Fitness Machine Control Point, optional, write & indicate
 
 // FTM_ControlPoint Write With Response xTask for transferring training App data to the trainer
 void static xTaskClientWriteWithResponse(void* parameter);
@@ -134,7 +134,7 @@ void serverFTMTrainingStatusOnSubscribe(NimBLECharacteristic* pCharacteristic, N
 boolean isServerFTMTrainingStatusNotifyEnabled = false;
 void server_FTM_TrainingStatus_Chr_Notify(uint8_t* pData, size_t length);
 #endif
-void serverFTMControlPointOnWrite(NimBLECharacteristic *pCharacteristic, NimBLEConnInfo& connInfo);
+void serverFTMControlPointOnWrite(NimBLECharacteristic* pCharacteristic, NimBLEConnInfo& connInfo);
 long cpWriteTime;
 void serverFTMControlPointOnSubscribe(NimBLECharacteristic* pCharacteristic, NimBLEConnInfo& connInfo, uint16_t subValue);
 boolean isServerFTMControlPointIndicateEnabled = false;

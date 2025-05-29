@@ -16,9 +16,9 @@ NUS();
 static NUS* instance;                          // Singleton class instance
 OPS* operations;
 // Server NORDIC UART SERVICE a.k.a. NUS -----------------------------------------------
-NimBLEService* server_NordicUart_Service; 
-NimBLECharacteristic* server_NUS_Rxd_Chr;        // Write No Response (Receiving Data)
-NimBLECharacteristic* server_NUS_Txd_Chr;        // Read Notify (Sending Data)
+NimBLEService* server_NordicUart_Service = nullptr; 
+NimBLECharacteristic* server_NUS_Rxd_Chr = nullptr;  // Write No Response (Receiving Data)
+NimBLECharacteristic* server_NUS_Txd_Chr = nullptr;  // Read Notify (Sending Data)
 
 public:
 ~NUS();

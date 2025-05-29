@@ -57,19 +57,19 @@ private:
   wahoocp_data_ut server_Wahoo_Control_Point_Data;  // Wahoo Control Point Data variable
 
   // Client Cycling Power Service --------------------------------------------------------
-  NimBLERemoteService* pRemote_CyclingPower_Service;
-  const NimBLERemoteCharacteristic* pRemote_CP_Measurement_Chr;                     // Notify, Read
-  const NimBLERemoteCharacteristic* pRemote_CP_Feature_Chr;                         // Read
+  NimBLERemoteService* pRemote_CyclingPower_Service = nullptr;
+  NimBLERemoteCharacteristic* pRemote_CP_Measurement_Chr = nullptr;           // Notify, Read
+  NimBLERemoteCharacteristic* pRemote_CP_Feature_Chr = nullptr;               // Read
   uint32_t client_CP_Feature_Flags = { 0b00000000000000010000011010001011 };  // Relevant Cycling Power features
-  const NimBLERemoteCharacteristic* pRemote_CP_Location_Chr;                        // Read
+  NimBLERemoteCharacteristic* pRemote_CP_Location_Chr = nullptr;              // Read
   uint8_t client_CP_Location_Value = { 0x0C };                                // rear wheel !
 
   // Server Cycling Power Service ---------------------------------------------------------------
-  NimBLEService* server_CyclingPower_Service;
-  NimBLECharacteristic* server_CP_Measurement_Chr;             // Notify, Read
+  NimBLEService* server_CyclingPower_Service = nullptr; 
+  NimBLECharacteristic* server_CP_Measurement_Chr = nullptr;   // Notify, Read
   NimBLECharacteristic* server_CP_Feature_Chr = nullptr;       // Read
   NimBLECharacteristic* server_CP_Location_Chr = nullptr;      // Read
-  NimBLECharacteristic* server_CP_ControlPoint_Chr;            // Indicate, Write -> Optional
+  NimBLECharacteristic* server_CP_ControlPoint_Chr = nullptr;  // Indicate, Write -> Optional
 
   void client_CP_Measurement_Notify_Callback(NimBLERemoteCharacteristic* pBLERemoteCharacteristic, \
                                                                         uint8_t* pData, size_t length, bool isNotify);
@@ -95,7 +95,7 @@ private:
 public:
   ~CPS();
   static CPS* getInstance();  // Singleton access method
-  const NimBLERemoteCharacteristic* pRemote_CP_ControlPoint_Chr;                    // Indicate, Write -> Optional
+  NimBLERemoteCharacteristic* pRemote_CP_ControlPoint_Chr = nullptr;  // Indicate, Write -> Optional
   void serverCPControlPointOnWrite(NimBLECharacteristic* pCharacteristic, NimBLEConnInfo& connInfo); 
   void serverCPControlPointOnSubscribe(NimBLECharacteristic* pCharacteristic, NimBLEConnInfo& connInfo, uint16_t subValue);
   boolean isServerCPControlPointIndicateEnabled = false;

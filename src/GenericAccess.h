@@ -14,9 +14,9 @@ private:
 // constructor
 GAS();
 static GAS* instance; // Singleton class instance
-NimBLERemoteService* pRemote_GenericAccess_Service;
-const NimBLERemoteCharacteristic* pRemote_GA_Appearance_Chr; // Read
-const NimBLERemoteCharacteristic* pRemote_GA_DeviceName_Chr;// Read, Write
+NimBLERemoteService* pRemote_GenericAccess_Service = nullptr;
+NimBLERemoteCharacteristic* pRemote_GA_Appearance_Chr = nullptr; // Read
+NimBLERemoteCharacteristic* pRemote_GA_DeviceName_Chr = nullptr; // Read, Write
 std::string client_GA_DeviceName_Str;
 
 public:
