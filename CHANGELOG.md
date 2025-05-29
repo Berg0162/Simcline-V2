@@ -1,9 +1,10 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [1.0.2] - 2025-03-##
+## [1.0.2] - 2025-05-29
 ### Fixed
-
+Since the release of NimBLE-Arduio 2.3.0, the compiler complained about const-type of pChar->readValue(),
+as a consequence `const NimBLERemoteCharacteristic*` was changed to a non-const pointer.
 ### Changed
 
 ### Added
