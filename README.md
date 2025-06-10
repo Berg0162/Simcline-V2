@@ -56,7 +56,7 @@ From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetoot
 |Minoura |Bluetooth Smart FTMS on all 2020 smart trainers.|
 |Saris |Bluetooth Smart FTMS on all 2020 smart trainers.|
 |STAC |Bluetooth Smart FTMS on all 2020 smart trainers.|
-|Tacx |Bluetooth Smart FTMS on all 2020 smart trainers.|
+|Tacx |Bluetooth Smart FTMS on all 2020 smart trainers <b>and</b> legacy Tacx (ANT+) FE-C over BLE |
 |Wahoo |Bluetooth Smart FTMS on all 2020 smart trainers <b>and</b> legacy Wahoo Bluetooth Smart Control.|
 |Zwift Hub|Bluetooth Smart FTMS with HRM.&nbsp;[FAQ #3](docs/Frequently_Asked_Questions.md#3)|
 
@@ -110,7 +110,8 @@ Optionally:
 + Users with a <b>XIAO ESP32S3</b> can setup their board and display now! See: [Setup XIAO ESP32S3 plus Oled display](docs/XIAO_ESP32S3_Sense.md)<br>
 
 Mandatory:
-+ Users of <b>Legacy Wahoo KICKR</b> trainers (<b>NOT supporting FTMS</b>) must make changes now! See: [Setup for Legacy Wahoo KICKR](docs/Setup_Legacy_Wahoo_KICKR.md).
++ Users of <b>Legacy Wahoo KICKR</b> smart trainers (<b>NOT supporting FTMS</b>) must make changes now! See: [Setup for Legacy Wahoo KICKR](docs/Setup_Legacy_Wahoo_KICKR.md).
++ Users of <b>Legacy Tacx FE-C</b> smart trainers (<b>NOT supporting FTMS</b>) must make changes now! See: [Setup for Legacy Tacx FE-C](docs/Setup_Legacy_Tacx_FEC.md).
 
 <b>Smart-MITM</b> is default in Debug mode: using Serial Monitor (logging on the PC-screen) to show you what is happening!<br>
 
