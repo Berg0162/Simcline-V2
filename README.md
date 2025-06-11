@@ -6,7 +6,7 @@ Without user intervention the SIMCLINE will replicate inclines and declines depi
 The SIMCLINE auto connects at power up with a Smart trainer and let's relive the ascents and descents from favorite rides or routes while training indoors. The physical reach is: 20% maximum incline and -10% maximum decline. However, the reach that the rider is comfortable with can be adjusted! The SIMCLINE pairs directly to the Smart trainer and with your PC/Laptop/Tablet with (Zwift) training App for a connection that notifies the SIMCLINE to simulate autonomous the (change in) physical grade of the road during an indoor ride. During operation an OLED display shows the road grade in digits and in graphics. <br clear="left"> <br>
 Notice that the description on how to build SIMCLINE consists of two parts:
 
-+ <b>Mechanical SIMCLINE 2.0</b><br>
++ <b>Mechanical SIMCLINE 2.0</b><br> 
 <img src="https://www.instructables.com/assets/img/instructables-logo-v2.png" width="32" height="48" align="left" alt="Instructables"> &nbsp; [SIMCLINE 2.0 Instructables](https://www.instructables.com/SIMCLINE-20-Easy-Simulation-of-Road-Incline/) 
 <br clear="left">
 
