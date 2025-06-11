@@ -57,7 +57,7 @@ Simcline-V2 <b>NimBLE</b> configuration options:
 // FE-C ANT+ over Bluetooth: This is Tacx’s (legacy) proprietary method of controlling Tacx 
 // trainers, and includes power and speed/cadence data – still supported by Zwift a.o.
 //		  NOTICE --> Most pre-2020 Tacx trainers support this instead of FTMS!!! 
-#define ENABLE_TACXFEC
+//#define ENABLE_TACXFEC
 
 
 ```
