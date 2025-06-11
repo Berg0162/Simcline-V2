@@ -47,9 +47,19 @@ Simcline-V2 <b>NimBLE</b> configuration options:
 // Uncomment to allow/enable the MITM transfer of Wahoo Trainer Control data from trainer 
 // to training App directly. 
 // Bluetooth Smart Wahoo Trainer Control: This is Wahoo’s (legacy) proprietary method of 
-// controlling trainers, and includes speed/cadence data – still supported by Zwift.
+// controlling trainers, and includes speed/cadence data – still supported by Zwift a.o.
 //		  NOTICE --> Most pre-2020 Wahoo trainers support this instead of FTMS!!!
 //#define ENABLE_WAHOOCPS
+
+// ----------------------------------------------------------------------------------------
+// Uncomment to allow/enable the MITM transfer of Tacx FE-C (Fitness Equipment Cycling) data 
+// from trainer to training App directly.
+// FE-C ANT+ over Bluetooth: This is Tacx’s (legacy) proprietary method of controlling Tacx 
+// trainers, and includes power and speed/cadence data – still supported by Zwift a.o.
+//		  NOTICE --> Most pre-2020 Tacx trainers support this instead of FTMS!!! 
+#define ENABLE_TACXFEC
+
+
 ```
 
 # configSimcline.h

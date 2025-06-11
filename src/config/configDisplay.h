@@ -3,8 +3,8 @@
 
 // ------------------------------------------------------------------------------------------------
 // Define the display, that is part of your system setup
-//#define NODISPLAY
-#define OLEDSSD1306_128x64
+#define NODISPLAY
+//#define OLEDSSD1306_128x64
 //#define LILYGO_T_DISPLAY_S3
 //#define YOURDISPLAY
 //#define SERIALDISPLAY

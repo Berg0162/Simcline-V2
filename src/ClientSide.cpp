@@ -33,7 +33,9 @@
 #ifdef ENABLE_CSC
   #include "CyclingSpeedCadence.h"
 #endif
-
+#ifdef ENABLE_TACXFEC
+  #include "FitnessEquipmentCycling.h"
+#endif
 // Initialize the static members
 NimBLEClient* ClientSide::pClient = nullptr;
 ClientSide* ClientSide::instance = nullptr;
@@ -181,6 +183,11 @@ bool ClientSide::clientConnectServer(void) {
     if( !HRM::getInstance()->client_HeartRate_Connect(pClient) )
       return hasConnectPassed = false;
 #endif
+#ifdef ENABLE_TACXFEC
+    if( !FEC::getInstance()->client_FitnessEquipmentCycling_Connect(pClient) )
+      return hasConnectPassed = false;
+#endif
+
     // Must do when Connect and Reconnect
     operations->Trainer.IsConnected = true;
     // In case of a trainer RECONNECT and Laptop is (still) connected -> subscribe to all!
@@ -267,6 +274,9 @@ void ClientSide::xTaskClientSubscribeAll(void *parameter) {
 #ifdef ENABLE_HRM
   HRM::getInstance()->client_HR_Subscribe();
 #endif
+#ifdef ENABLE_TACXFEC
+  FEC::getInstance()->client_FEC_Subscribe();
+#endif
   clientInstance->hasSubscribedToAll = true; // Set true after all have been subscribed to !!
   LOG("Client Subscribed to Peripheral (Trainer)!");
   vTaskDelete(clientInstance->xTaskClientSubscribeUnsubscribeHandle);
@@ -284,6 +294,9 @@ void ClientSide::xTaskClientUnSubscribeAll(void *parameter) {
 #endif
 #ifdef ENABLE_HRM
   HRM::getInstance()->client_HR_Unsubscribe();
+#endif
+#ifdef ENABLE_TACXFEC
+  FEC::getInstance()->client_FEC_Unsubscribe();
 #endif
   LOG("Client Unsubscribed from Peripheral (Trainer)!");
   vTaskDelete(clientInstance->xTaskClientSubscribeUnsubscribeHandle);

@@ -24,18 +24,35 @@
 // Uncomment to allow/enable the MITM transfer of Wahoo Trainer Control data from trainer 
 // to training App directly. 
 // Bluetooth Smart Wahoo Trainer Control: This is Wahoo’s (legacy) proprietary method of 
-// controlling trainers, and includes speed/cadence data – still supported by Zwift.
+// controlling trainers, and includes speed/cadence data – still supported by Zwift a.o.
 //		  NOTICE --> Most pre-2020 Wahoo trainers support this instead of FTMS!!!
 //#define ENABLE_WAHOOCPS
 
 // ----------------------------------------------------------------------------------------
-// FTMS and Wahoo CPS (Control-Protocol-Service) mutually exclude each other! Be Aware!!!
-#ifdef ENABLE_FTMS
-#undef ENABLE_WAHOOCPS
-#else
-#ifdef ENABLE_WAHOOCPS
-#undef ENABLE_HRM      // WahooCPS excludes the use of HRM baked in!!!
+// Uncomment to allow/enable the MITM transfer of Tacx FE-C (Fitness Equipment Cycling) data 
+// from trainer to training App directly.
+// FE-C ANT+ over Bluetooth: This is Tacx’s (legacy) proprietary method of controlling Tacx 
+// trainers, and includes power and speed/cadence data – still supported by Zwift a.o.
+//		  NOTICE --> Most pre-2020 Tacx trainers support this instead of FTMS!!! 
+//#define ENABLE_TACXFEC
+
+// ----------------------------------------------------------------------------------------
+// FTMS, FEC, and Wahoo CPS (Control-Protocol-Service) mutually exclude each other! Be Aware!!!
+// Error if more than one is defined
+#if (defined(ENABLE_FTMS) && defined(ENABLE_WAHOOCPS)) || \
+    (defined(ENABLE_FTMS) && defined(ENABLE_TACXFEC))   || \
+    (defined(ENABLE_WAHOOCPS) && defined(ENABLE_TACXFEC))
+  #error "ENABLE_FTMS, ENABLE_WAHOOCPS, and ENABLE_TACXFEC are mutually exclusive! Only one must be defined!"
 #endif
+
+// ----------------------------------------------------------------------------------------
+// Enforce behavior based on which one is enabled
+// Error if wrong combination is defined
+#if (defined(ENABLE_WAHOOCPS) && defined(ENABLE_HRM))
+  #error "Legacy Wahoo CPS excludes the use of HRM baked in!"
+#endif
+#if (defined(ENABLE_TACXFEC) && defined(ENABLE_HRM))
+  #error "Legacy Tacx FEC excludes the use of HRM baked in!"
 #endif
 
 // ----------------------------------------------------------------------------------------

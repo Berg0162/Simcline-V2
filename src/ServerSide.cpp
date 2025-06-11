@@ -10,6 +10,7 @@
 
 #define UUID16_SVC_CYCLING_POWER              NimBLEUUID((uint16_t)0x1818)
 #define UUID16_SVC_FITNESS_MACHINE            NimBLEUUID((uint16_t)0x1826)
+#define UUID128_SVC_TACX_FEC                  NimBLEUUID("6E40FEC1-B5A3-F393-E0A9-E50E24DCCA9E")
 
 #include "Utilities.h"
 // Include operations control settings class
@@ -31,7 +32,9 @@
 #ifdef ENABLE_CSC
 #include "CyclingSpeedCadence.h"
 #endif
-
+#ifdef ENABLE_TACXFEC
+#include "FitnessEquipmentCycling.h"
+#endif
 // Initialize the static members
 NimBLEServer* ServerSide::pServer = nullptr;
 ServerSide* ServerSide::instance = nullptr;
@@ -193,7 +196,7 @@ void ServerSide::init(void) {
   NimBLEDevice::setSecurityAuth(false, true, true);  // NO BONDING at ESP32 side
   NimBLEDevice::setSecurityPasskey(123456);
   NimBLEDevice::setSecurityIOCap(BLE_HS_IO_DISPLAY_ONLY);
-  // BLE_OWN_ADDR_PUBLIC Uses the hardware static address Zwift only accepts public address!
+  // Set the ESP-board hardware static address to PUBLIC
   NimBLEDevice::setOwnAddrType(BLE_OWN_ADDR_PUBLIC);
 
   pServer = NimBLEDevice::createServer();
@@ -224,6 +227,10 @@ void ServerSide::init(void) {
   LOG("Configuring the Server Heart Rate Service");  
   HRM::getInstance()->server_setupHRM(pServer);
 #endif
+#ifdef ENABLE_TACXFEC
+  LOG("Configuring the Server Fitness Equipment Cycling Service");  
+  FEC::getInstance()->server_setupFEC(pServer);
+#endif
   // Start the GATT server. Required to be called after setup of all services and 
   // characteristics / descriptors for the NimBLE host to register them.
   LOG("Server is setup and started!"); 
@@ -245,14 +252,23 @@ void ServerSide::setupAdvertising(void) {
     pAdvertising->addServiceUUID(UUID16_SVC_CYCLING_POWER);
     LOG("Setting Service in Advertised data to    [CPS]");
 #ifdef ENABLE_FTMS
-    pAdvertising->addServiceUUID(UUID16_SVC_FITNESS_MACHINE);
-    LOG("Setting Service in Advertised data to    [FTMS]");
+    if( pAdvertising->addServiceUUID(UUID16_SVC_FITNESS_MACHINE) )
+      LOG("Setting Service in Advertised data to    [FTMS]");
 #endif
-    pAdvertising->setAppearance(GAS::getInstance()->client_GA_Appearance_Value);
-    LOG("Setting Appearance in Advertised data to [%d]", GAS::getInstance()->client_GA_Appearance_Value);
-    pAdvertising->setName(THISDEVICENAME);
-    LOG("Setting DeviceName in Advertised data to [%s]", THISDEVICENAME);
-    pAdvertising->addTxPower(); // Add the transmission power level to the advertisement packet.
+#ifdef ENABLE_TACXFEC
+    // Put 128-bit UUID in Scan Response
+    NimBLEAdvertisementData scanResp;
+    scanResp.addServiceUUID(UUID128_SVC_TACX_FEC);
+    pAdvertising->setScanResponseData(scanResp);
+    LOG("Setting Service in Scan Response to      [FEC]");
+#endif
+    if( pAdvertising->setAppearance(GAS::getInstance()->client_GA_Appearance_Value) )
+      LOG("Setting Appearance in Advertised data to [%d]", GAS::getInstance()->client_GA_Appearance_Value);
+    if( pAdvertising->setName(THISDEVICENAME) )
+      LOG("Setting DeviceName in Advertised data to [%s]", THISDEVICENAME);
+    // Add the transmission power level to the advertisement packet.
+    if( pAdvertising->addTxPower() ) 
+      LOG("Setting TxPower in Advertised data");
     pAdvertising->enableScanResponse(true); // Respond to active scans
     pAdvertising->setMinInterval(AdvertiseMinInterval); 
     pAdvertising->setMaxInterval(AdvertiseMaxInterval); 

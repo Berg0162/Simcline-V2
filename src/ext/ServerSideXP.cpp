@@ -18,6 +18,9 @@
 #ifdef ENABLE_FTMS
 #include <FitnessMachine.h>
 #endif
+#ifdef ENABLE_TACXFEC
+#include <FitnessEquipmentCycling.h>
+#endif
 #ifdef ENABLE_HRM
 #include <HeartRateMonitor.h>
 #endif
