@@ -1,6 +1,16 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [1.0.3] - 2025-06-11
+### Fixed
+
+### Changed
+
+### Added
+Added support for Legacy Tacx Smart Trainers with only proprietary **(ANT+) FE-C over BLE protocol**
+- New class added for FitnessEquipmentCycling (FEC) and integrated with Server- and Client-side
+- ENABLE_TACXFEC selection added in `src/config/configNimBLE.h`
+
 ## [1.0.2] - 2025-05-29
 ### Fixed
 Since the release of NimBLE-Arduio 2.3.0, the compiler complained about const-type of pChar->readValue(),
