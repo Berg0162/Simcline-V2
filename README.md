@@ -1,4 +1,6 @@
 # <img src="./images/SC_logo.png" width="64" height="64" alt="SIMCLINE Icon"> &nbsp; SIMCLINE-V2 for Smart Trainers
+
+# Call for Feedback [See](https://github.com/Berg0162/Simcline-V2/issues/2#issue-3218158396)
 # Simulation of Changing Road Inclination for Indoor Cycling<br>
 <img src="./images/Simcline_2_0.jpg" width="300" height="300" ALIGN="left" alt="Mechanical SIMCLINE 2">
 The SIMCLINE physically adjusts the bike position to mimic hilly roads, climbing and descending. This allows the rider to naturally change position on the bike, engage climbing muscles, and improve pedaling technique to become a more efficient and powerful climber.<br>
