@@ -58,39 +58,50 @@ protected:
   void onMTUChange(uint16_t MTU, NimBLEConnInfo& connInfo) override {
     serverInstance->serverConnectionCallbacksOnMTUChange(MTU, connInfo);
   }
+  void onConnParamsUpdate(NimBLEConnInfo &connInfo) {
+    serverInstance->serverConnectionCallbacksonConnParamsUpdate(connInfo);
+  }
   void onAuthenticationComplete(NimBLEConnInfo& connInfo) override {
       serverInstance->serverSecurityCallbacksOnAuthenticationComplete(connInfo);
   }
 };
 
 void ServerSide::serverConnectionCallbacksOnConnect(NimBLEServer* pServer, NimBLEConnInfo& connInfo) {
-    // Get some connection parameters of the peer device.
-    const uint16_t serverConnectionHandle = connInfo.getConnHandle();
-    NimBLEAddress remoteAddress = connInfo.getIdAddress();
     pAdvertising->stop();
-    const uint16_t peer_MTU = pServer->getPeerMTU(serverConnectionHandle);
-    pServer->updateConnParams(serverConnectionHandle, ConnectionMinInterval, ConnectionMaxInterval, \
-                                  ConnectionLatency, ConnectionTimeout);
+    const uint16_t server_ConnectionHandle = connInfo.getConnHandle();
+    // Issue a request for using Server's connection parameters
+    pServer->updateConnParams(server_ConnectionHandle, ConnectionMinInterval, ConnectionMaxInterval, \
+                                                                ConnectionLatency, ConnectionTimeout);
+    LOG("Server sends an Update Connection Parameters Request!");
     delay(10); // Allow time to settle
-    LOG("Server connects to Central (Laptop/Phone) MAC Address: [%s] MTU: [%d] Conn Handle: [%d]", \
-                                      UTILS::getInstance()->toString(remoteAddress).c_str(), peer_MTU, serverConnectionHandle);    
-    LOG(" -> Updated Connection Parameters: Min Interval: [%d] Max Interval: [%d] Latency: [%d] Supervision Timeout: [%d]",\
-                                  ConnectionMinInterval, ConnectionMaxInterval, ConnectionLatency, ConnectionTimeout);
 #ifdef EXTENDEDDATALEN
-    pServer->setDataLen(serverConnectionHandle, ExtendedDataLen); // Send Extended Data Len Request to the peer (Zwift/Laptop)
+    pServer->setDataLen(server_ConnectionHandle, ExtendedDataLen); // Send Extended Data Len Request to the peer
     LOG("Server sends an Extended Data Len Request!");
     delay(10); // Allow some time to settle....
 #endif
+#ifdef DEBUG
+    // Get some connection parameters
+    NimBLEAddress remoteAddress = connInfo.getIdAddress();
+    const uint16_t server_MTU = connInfo.getMTU();
+    const uint16_t 	server_ConnInterval = connInfo.getConnInterval();
+    const uint16_t 	server_ConnTimeout = connInfo.getConnTimeout();
+    const uint16_t 	server_ConnLatency = connInfo.getConnLatency();
+    LOG("Server connects to Central (Laptop/Phone) MAC Address: [%s] Conn Handle: [%d]", \
+            UTILS::getInstance()->toString(remoteAddress).c_str(), server_ConnectionHandle);    
+    LOG(" -> Present Connection Parameters: Interval: [%d] Latency: [%d] Timeout: [%d]  (MTU: %d)",\
+                            server_ConnInterval, server_ConnLatency, server_ConnTimeout, server_MTU);
+#endif
+
     // ------------------------ Which Client has been exactly connected? ---------------------------------
     // [1] Smartphone is connecting ----------------------------------------------------------------------
     if(remoteAddress.isRpa() ) { // Check for typical Phone RPA
-      NimBLEDevice::startSecurity(serverConnectionHandle);
+      NimBLEDevice::startSecurity(server_ConnectionHandle);
       LOG("Handle Smartphone with Resolvable Private Address!");
       operations->Smartphone.PeerAddress = remoteAddress;
-      operations->Smartphone.conn_handle = serverConnectionHandle;
+      operations->Smartphone.conn_handle = server_ConnectionHandle;
       operations->Smartphone.IsConnected = true;
       LOG("Central (%s/Simcline App) has to Subscribe to Characteristics and start..", \
-                     operations->Smartphone.PeerName.c_str());
+                                                operations->Smartphone.PeerName.c_str());
       Presentation::getInstance()->ShowMessageWindow("Server", "Phone", "Connected!", 0);
       return; // We are done here!
     }
@@ -104,26 +115,39 @@ void ServerSide::serverConnectionCallbacksOnConnect(NimBLEServer* pServer, NimBL
         LOG(">>> ERROR Forced Server Disconnect: Unknown Laptop Mac Address!");
   	    pServer->advertiseOnDisconnect(false); // Set server auto-restart advertise OFF
         forcedDisconnect = true;
-        pServer->disconnect(serverConnectionHandle); // Disconnect the UNKNOWN Device       
+        pServer->disconnect(server_ConnectionHandle); // Disconnect the UNKNOWN Device       
         return; // We are done, this is a fatal error state! 
       }
     }
     // [4] Known Laptop MAC address!
-    operations->Laptop.conn_handle = serverConnectionHandle;       
+    operations->Laptop.conn_handle = server_ConnectionHandle;       
     operations->Laptop.IsConnected = true;
-    LOG("Central (%s/Zwift) has to Subscribe to Characteristics and start..", \
-                    operations->Laptop.PeerName.c_str());
+    LOG("Central (%s/Zwift) has to Subscribe to Characteristics and start..", operations->Laptop.PeerName.c_str());
     Presentation::getInstance()->ShowMessageWindow("Server", "Laptop", "Connected!", 0);
     if(operations->Trainer.IsConnected)
       ClientSide::getInstance()->clientSubscribeToAll(true); // Tell the client to send data now! 
 };
 
 void ServerSide::serverConnectionCallbacksOnMTUChange(uint16_t MTU, NimBLEConnInfo& connInfo) {
+#ifdef DEBUG
     // Get all connection parameters of the peer device
     uint16_t serverConnectionHandle = connInfo.getConnHandle();
-#ifdef DEBUG
-    LOG("Central (%s/Zwift) updated MTU [%d] for connection ID: %d", operations->Laptop.PeerName.c_str(), MTU, serverConnectionHandle); 
+    LOG("Central (%s/Zwift) updated MTU [%d] Conn Handle: %d", operations->Laptop.PeerName.c_str(), MTU, \
+                                                                                  serverConnectionHandle); 
 #endif      
+};
+
+void ServerSide::serverConnectionCallbacksonConnParamsUpdate(NimBLEConnInfo& connInfo) {
+#ifdef DEBUG
+    // Get the NEW connection parameters after Server's update request!
+    const uint16_t server_MTU = connInfo.getMTU();
+    uint16_t server_ConnectionHandle = connInfo.getConnHandle();
+    const uint16_t 	server_ConnInterval = connInfo.getConnInterval();
+    const uint16_t 	server_ConnTimeout = connInfo.getConnTimeout();
+    const uint16_t 	server_ConnLatency = connInfo.getConnLatency();
+    LOG("Updated Connection Parameters: Interval: [%d] Latency: [%d] Timeout: [%d]  (MTU: %d) Conn Handle: %d", \
+                server_ConnInterval, server_ConnLatency, server_ConnTimeout, server_MTU, server_ConnectionHandle);
+#endif
 };
 
 void ServerSide::serverConnectionCallbacksOnDisconnect(NimBLEServer* pServer, NimBLEConnInfo& connInfo, int reason) {
@@ -136,7 +160,7 @@ void ServerSide::serverConnectionCallbacksOnDisconnect(NimBLEServer* pServer, Ni
       LOG("Server disconnected from Central (%s) Conn handle: [%d] Mac Address: [%s]", operations->Laptop.PeerName.c_str(), \
 			              serverConnectionHandle, UTILS::getInstance()->toString(remoteAddress).c_str());
 #ifdef CONFIG_NIMBLE_CPP_ENABLE_RETURN_CODE_TEXT
-      LOG(" -> Failed Reason [%d][%s]", reason, NimBLEUtils::returnCodeToString(reason));
+      LOG(" -> Reason [%d] %s", reason, NimBLEUtils::returnCodeToString(reason));
 #endif
       Presentation::getInstance()->ShowMessageWindow("Laptop", "Lost!", "Advertise!", 0);
       if(operations->Trainer.IsConnected) 
@@ -168,7 +192,6 @@ void ServerSide::serverSecurityCallbacksOnAuthenticationComplete(NimBLEConnInfo&
 
 // Constructor
   ServerSide::ServerSide() {  
-    //pServerCallbacks = new server_Connection_Callbacks(this);
     operations = OPS::getInstance(); 
 }
 
@@ -196,6 +219,8 @@ void ServerSide::init(void) {
   NimBLEDevice::setSecurityAuth(false, true, true);  // NO BONDING at ESP32 side
   NimBLEDevice::setSecurityPasskey(123456);
   NimBLEDevice::setSecurityIOCap(BLE_HS_IO_DISPLAY_ONLY);
+  // Optional: set the transmit power, default is 3db
+  NimBLEDevice::setPower(9); // +9db
   // Set the ESP-board hardware static address to PUBLIC
   NimBLEDevice::setOwnAddrType(BLE_OWN_ADDR_PUBLIC);
 
@@ -246,8 +271,6 @@ void ServerSide::startAdvertising(void) {
 
 void ServerSide::setupAdvertising(void) {
     // Prepare for advertising
-    // Optional: set the transmit power, default is 3db
-    NimBLEDevice::setPower(9); // +9db 
     pAdvertising = NimBLEDevice::getAdvertising(); 
     pAdvertising->addServiceUUID(UUID16_SVC_CYCLING_POWER);
     LOG("Setting Service in Advertised data to    [CPS]");
@@ -258,9 +281,10 @@ void ServerSide::setupAdvertising(void) {
 #ifdef ENABLE_TACXFEC
     // Put 128-bit UUID in Scan Response
     NimBLEAdvertisementData scanResp;
-    scanResp.addServiceUUID(UUID128_SVC_TACX_FEC);
-    pAdvertising->setScanResponseData(scanResp);
-    LOG("Setting Service in Scan Response to      [FEC]");
+    if(scanResp.addServiceUUID(UUID128_SVC_TACX_FEC))
+      LOG("Setting Service in Scan Response to      [FEC]");
+    if(pAdvertising->setScanResponseData(scanResp))
+      LOG("Setting Scan Response Data in Advertised data");
 #endif
     if( pAdvertising->setAppearance(GAS::getInstance()->client_GA_Appearance_Value) )
       LOG("Setting Appearance in Advertised data to [%d]", GAS::getInstance()->client_GA_Appearance_Value);

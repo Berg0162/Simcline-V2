@@ -18,6 +18,36 @@
 // Include operations control settings class
 #include "Operations.h"
 
+constexpr size_t kPacketSize = 13;
+
+// Generic ANT+ packet
+typedef struct {  // — no padding
+    uint8_t HEADER[4];  // 4 bytes
+    uint8_t BODY[8];    // 8 bytes
+    uint8_t CHCKSM;     // 1 byte
+} packet_data_t;
+
+typedef union {
+    packet_data_t values;
+    uint8_t bytes[kPacketSize];
+} packet_data_ut;
+
+// Data Page 51 (0x33) – Track Resistance (inside BODY[0..7])
+typedef struct {   // — no padding
+    uint8_t pageNumber;      // BODY[0] Data Page Number
+    uint8_t reserved1;       // BODY[1] 0xFF (reserved for future use)
+    uint8_t reserved2;       // BODY[2] 0xFF (reserved for future use)
+    uint8_t reserved3;       // BODY[3] 0xFF (reserved for future use)
+    uint8_t reserved4;       // BODY[4] 0xFF (reserved for future use)
+    uint8_t gradeLSB;        // BODY[5] Grade (Slope) LSB
+    uint8_t gradeMSB;        // BODY[6] Grade (Slope) MSB
+    uint8_t crr;  			     // BODY[7] Coefficient of Rolling Resistance
+} page_0x33_payload_t;
+
+enum FECPageType : uint8_t {
+    TRACK_RESISTANCE = 0x33  // Data Page 51 (0x33) – Track Resistance
+};
+
 ///////////////////////////////////////////////
 /////////// TACX FE-C ANT+ over BLE ///////////
 ///////////////////////////////////////////////
@@ -72,26 +102,44 @@ void FEC::serverFECRxdOnSubscribe(NimBLECharacteristic* pCharacteristic, NimBLEC
 
 void FEC::serverFECTxdOnWrite(NimBLECharacteristic *pCharacteristic, NimBLEConnInfo& connInfo) {
   std::string FEC_Txd_Data = server_FEC_Txd_Chr->getValue();
-  //size_t TxdDatalen = FEC_Txd_Data.length(); // Packet length is 13 bytes: header 4, body 8 and checksum 1
+  // Generic Packet size is 13 bytes (header 4, body 8 and checksum 1)
+  if (FEC_Txd_Data.length() != kPacketSize) {
+    LOG("Invalid packet size: expected %d, got %d", kPacketSize, FEC_Txd_Data.length());
+    return;
+  }
+  
   // Transfer to the client side first
   if(pRemote_FEC_Txd_Chr)
-    pRemote_FEC_Txd_Chr->writeValue(FEC_Txd_Data, false);
-  // Decode Rec'd FEC_Txd_Data and interpret
-  uint8_t pageValue = static_cast<uint8_t>(FEC_Txd_Data[4]); // Extract page number
+    pRemote_FEC_Txd_Chr->writeValue(FEC_Txd_Data, false); // NO Response
+
+  // Decode Rec'd FEC_Txd_Data packet and interpret
+  packet_data_ut server_Data;
+  memcpy(server_Data.bytes, FEC_Txd_Data.data(), kPacketSize);
+  const auto& body = server_Data.values.BODY;	// Create an alias (reference)
+  uint8_t pageValue = body[0]; 		  			    // Extract data page number
+  
 #ifdef DEBUG
-  std::string FEC_Txd_Body = FEC_Txd_Data.substr(4, 8); // skip header -> 8 bytes for body
-  // Convert body to HEX presentation
+  // Parse Generic ANT+ packet for documentation only
+  std::string FEC_Txd_Header = FEC_Txd_Data.substr(0, 4); // 4 bytes for header
+  std::string FEC_Txd_Body = FEC_Txd_Data.substr(4, 8);   // 8 bytes for body
+  // Convert header and body to HEX presentation
+  std::string hexHeader = UTILS::getInstance()->toHexString(FEC_Txd_Header);
   std::string hexBody = UTILS::getInstance()->toHexString(FEC_Txd_Body);
-  LOG(" -> Server Rec'd FEC Txd Data Page %d (0x%02X) Body [%s]", pageValue, pageValue, hexBody.c_str());
+  LOG(" -> Server Rec'd FEC Txd Data Page: %d(0x%02X) - [%s][%s][0x%02X]", \
+		    pageValue, pageValue, hexHeader.c_str(), hexBody.c_str(), server_Data.values.CHCKSM);
 #endif
+
   switch(pageValue) {
-    case 0x33 : // Data Page 51 (0x33) – Track Resistance
-      uint8_t lsb_gradeValue = static_cast<uint8_t>(FEC_Txd_Data[9]);   // Extract
-      uint8_t msb_gradeValue = static_cast<uint8_t>(FEC_Txd_Data[10]);  // Extract
-      long RawgradeValue = lsb_gradeValue + msb_gradeValue*256;         // Combine
-      float gradePercentValue = float((RawgradeValue - 20000))/100.0;   // Resolution 0.01
-      operations->setNewGrade(gradePercentValue);
-      LOG("    RawgradeValue: %05d Grade percentage: %6.2f%%", RawgradeValue, gradePercentValue);
+    case TRACK_RESISTANCE : 
+	  // Interpret data page 0x33 content -> Overlay first the specific page 0x33 struct
+	  const page_0x33_payload_t* page33 = reinterpret_cast<const page_0x33_payload_t*>(&body); 
+	  uint16_t rawGrade = (static_cast<uint16_t>(page33->gradeMSB) << 8) | page33->gradeLSB;
+    float gradePercentValue = (static_cast<float>(rawGrade - 20000))/100.0;   // Units: 0.01
+    operations->setNewGrade(gradePercentValue);
+#ifdef DEBUG
+	  float crr = (static_cast<float>(page33->crr))*5/100000.0;  // Units: 5x0.000001 - Range: 0.0 – 0.0127
+    LOG("    Raw Grade: %05d Grade Percentage: %6.2f%% crr: %6.4f", rawGrade, gradePercentValue, crr);
+#endif 
   }
 };
 

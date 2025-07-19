@@ -48,13 +48,6 @@ public:
     // Constructor to accept a pointer to the ClientSide class instance
     client_Connection_Callbacks(ClientSide* instance) : clientInstance(instance) {}
 protected: 
-  void onConnectfail(NimBLEClient* pClient, int reason) {
-#ifdef DEBUG
-#ifdef CONFIG_NIMBLE_CPP_ENABLE_RETURN_CODE_TEXT
-    LOG(" -> Failed Reason [%d][%s]", reason, NimBLEUtils::returnCodeToString(reason));
-#endif  
-#endif  
-  }
   void onConnect(NimBLEClient* pClient) override {
       clientInstance->clientConnectionCallbacksOnConnect(pClient);
   }
@@ -149,20 +142,24 @@ void ClientSide::clientScanCallbacksOnResult(const NimBLEAdvertisedDevice* adver
 
 bool ClientSide::clientConnectServer(void) {
     // Handle first time connect AND a reconnect. One fixed Peripheral (trainer) to account for!
+    LOG("Found a connectable Trainer: now connect!");
     if(pClient == nullptr) { // First time -> create new pClient and service database!
       pClient = NimBLEDevice::createClient(); 
       pClient->setClientCallbacks(new client_Connection_Callbacks(this));
-      // First Time Connect to the FTMS Trainer (Server/Peripheral)
-      hasConnectPassed = pClient->connect(trainerDevice, true);   // Delete attribute objects and Create service database
+      // Set Client's Preferred Connection Parameters
+      pClient->setConnectionParams(ConnectionMinInterval, ConnectionMaxInterval, ConnectionLatency, ConnectionTimeout, \
+                                                                                                ScanInterval, ScanWindow);
+      // First Time Connect to the FTMS Trainer (Server/Peripheral) -> Delete attribute objects and Create service database
+      hasConnectPassed = pClient->connect(trainerDevice, true, false, false); // NO CLIENT INITIATED MTU EXCHANGE 
     } else if(pClient == NimBLEDevice::getDisconnectedClient()) { // Allow for a streamlined reconnect
-        // Reconnect to the disconnected FTMS Trainer (Server/Peripheral)
-        hasConnectPassed = pClient->connect(trainerDevice, false);  // Just refresh the service database 
+        // Reconnect to the disconnected FTMS Trainer (Server/Peripheral) -> Just refresh the service database 
+        hasConnectPassed = pClient->connect(trainerDevice, false, false, false); // NO CLIENT INITIATED MTU EXCHANGE
       } 
 
     if(!hasConnectPassed) 
       return hasConnectPassed; // Connect failed!
 
-    LOG("Now checking all Services and Characteristics!");
+    LOG("✅ Now checking all Services and Characteristics!");
     LOG("If Mandatory Services Fail --> the Client will disconnect!");
     // Discover all relevant Services and Char's
     if( !GAS::getInstance()->client_GenericAccess_Connect(pClient) )
@@ -210,21 +207,22 @@ void ClientSide::clientConnectionCallbacksOnConnect(NimBLEClient* pClient) {
     // Get some connection parameters of the peer device.
     const uint16_t clientConnectionHandle = pClient->getConnHandle();
     operations->Trainer.conn_handle = clientConnectionHandle;
-    pClient->updateConnParams(ConnectionMinInterval, ConnectionMaxInterval, ConnectionLatency, ConnectionTimeout);
-    delay(10);    // Allow some time to settle....
 #ifdef EXTENDEDDATALEN
     if( pClient->setDataLen(ExtendedDataLen) ) // Send Extended Data Len Request to the peer (Trainer)
-      LOG("Successful Extended Data Len Request!");
+      LOG("Client did a Successful Extended Data Len Request!");
     delay(10);    // Allow some time to settle....
 #endif
     Presentation::getInstance()->ShowMessageWindow("Client", "Trainer", "Connected!", 0);
 #ifdef DEBUG
     const uint16_t client_MTU = pClient->getConnInfo().getMTU();
+    const uint16_t 	client_ConnInterval = pClient->getConnInfo().getConnInterval();
+    const uint16_t 	client_ConnTimeout = pClient->getConnInfo().getConnTimeout();
+    const uint16_t 	client_ConnLatency = pClient->getConnInfo().getConnLatency();
     const NimBLEAddress remoteAddress = pClient->getConnInfo().getIdAddress();
-    LOG("Client connected to Peripheral (Trainer) with Name: [%s] MAC Address: [%s]  MTU: [%d] Handle: [%d]", \
-                  trainerDevice->getName().c_str(), UTILS::getInstance()->toString(remoteAddress).c_str(), client_MTU, clientConnectionHandle);
-    LOG(" -> Updated Connection Parameters: Min Interval: [%d] Max Interval: [%d] Latency: [%d] Supervision Timeout: [%d]",\
-                        ConnectionMinInterval, ConnectionMaxInterval, ConnectionLatency, ConnectionTimeout); 
+    LOG("Client connected to Peripheral (Trainer) with Name: [%s] MAC Address: [%s] Conn Handle: [%d]", \
+                  trainerDevice->getName().c_str(), UTILS::getInstance()->toString(remoteAddress).c_str(), clientConnectionHandle);
+    LOG(" -> Connection Parameters: Interval: [%d] Latency: [%d] Timeout: [%d] MTU: [%d]",\
+                        client_ConnInterval, client_ConnLatency, client_ConnTimeout, client_MTU); 
 #endif
 };
 
@@ -257,7 +255,7 @@ void ClientSide::xTaskClientStartScanning(void *parameter) {
     if(!clientInstance->pNimBLEScan->isScanning()) {
         // Start scanning for undetermined time span -> 0
         // isContinue = false -> clear previous scan results, restart = false -> NO restart if in progress!
-        clientInstance->pNimBLEScan->start(0, false, false);  
+        clientInstance->pNimBLEScan->start(0, false, false); // NO AUTO RESTART !! 
     }
     vTaskDelete(clientInstance->xTaskClientStartScanningHandle);
 };
@@ -319,8 +317,6 @@ void ClientSide::startScanning(void) {
   // have detected a new device. Set scan intervals and specify that we want active scanning 
   pNimBLEScan = NimBLEDevice::getScan();
   pNimBLEScan->setScanCallbacks(new clientScanCallbacks(this));
-  pNimBLEScan->setInterval(ScanInterval);
-  pNimBLEScan->setWindow(ScanWindow);
   pNimBLEScan->setActiveScan(true); // Get scan responses
   #ifdef ENABLE_FTMS
   LOG("Client Starts Scanning for Peripheral (Trainer) with CPS and FTMS!");

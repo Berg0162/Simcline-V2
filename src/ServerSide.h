@@ -26,6 +26,7 @@ static NimBLEServer* pServer;                    // Pointer to NimBLEServer inst
 virtual void serverConnectionCallbacksOnConnect(NimBLEServer* pServer, NimBLEConnInfo& connInfo);    // Allow ServerXP to override
 virtual void serverConnectionCallbacksOnDisconnect(NimBLEServer* pServer, NimBLEConnInfo& connInfo, int reason); // Allow ServerXP to override
 void serverConnectionCallbacksOnMTUChange(uint16_t MTU, NimBLEConnInfo& connInfo);
+void serverConnectionCallbacksonConnParamsUpdate(NimBLEConnInfo& connInfo);
 void serverSecurityCallbacksOnAuthenticationComplete(NimBLEConnInfo& connInfo); 
 void init(void);
 void startAdvertising(void);

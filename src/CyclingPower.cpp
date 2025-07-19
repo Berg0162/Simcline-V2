@@ -168,7 +168,6 @@ void CPS::serverCPControlPointOnWrite(NimBLECharacteristic *pCharacteristic, Nim
 #else 
   // Handling when ENABLE_WAHOOCPS is defined
   // Transfer the contents of data to server_Wahoo_Control_Point_Data.bytes
-  //memset(server_Wahoo_Control_Point_Data.bytes, 0, sizeof(server_Wahoo_Control_Point_Data.bytes));    overbodig
   memcpy(server_Wahoo_Control_Point_Data.bytes, xTaskClientWriteWithResponseData.data(), cpDatalen);
 
   #ifdef DEBUG_CPS_CONTROLPOINT
