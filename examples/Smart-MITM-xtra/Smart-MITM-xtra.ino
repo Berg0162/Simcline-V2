@@ -100,12 +100,16 @@ void setup() {
   LOG("   Board: %s", BOARD_NAME);
   LOG(" Display: %s", IDISPLAY);
   LOG(" Library: %s", CODE_VERSION);
-#ifdef ENABLE_WAHOOCPS
-  LOG("  NimBLE: Wahoo CPS");
+#if defined(ENABLE_WAHOOCPS)
+  LOG(" Enabled: WAHOOCPS");
   //Show Name and SW version on TFT
   presentation->ShowMessageWindow("MITM", "Wahoo CPS", CODE_VERSION, 500);
-#else
-  LOG("  NimBLE: CPS and FTMS"); 
+#elif defined(ENABLE_TACXFEC)
+  LOG(" Enabled: CPS and TACXFEC");
+  //Show Name and SW version on TFT
+  presentation->ShowMessageWindow("MITM", "Tacx FEC", CODE_VERSION, 500);
+#elif defined(ENABLE_FTMS)
+  LOG(" Enabled: CPS and FTMS");
   //Show Name and SW version on TFT
   presentation->ShowMessageWindow("MITM", "FTMS", CODE_VERSION, 500);
 #endif

@@ -90,11 +90,13 @@ void setup() {
   LOG("   Board: %s", BOARD_NAME);
   LOG(" Display: %s", IDISPLAY);
   LOG(" Library: %s", CODE_VERSION);
-#ifdef ENABLE_WAHOOCPS
-  LOG("  NimBLE: Wahoo CPS");
-#else
-  LOG("  NimBLE: CPS and FTMS"); 
-#endif
+ #if defined(ENABLE_WAHOOCPS)
+  LOG(" Enabled: WAHOOCPS");
+ #elif defined(ENABLE_TACXFEC)
+  LOG(" Enabled: CPS and TACXFEC");
+ #elif defined(ENABLE_FTMS)
+  LOG(" Enabled: CPS and FTMS");
+ #endif
  #ifdef ENABLE_HRM
   LOG(" Enabled: HRM");
 #endif
