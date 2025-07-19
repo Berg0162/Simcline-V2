@@ -1,9 +1,11 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [1.0.4] - 2025-07-18
+## [1.0.4] - 2025-07-20
 ### Fixed
-
+ - NimBLE-Arduino turned out to be vulnerable to _race conditions_ if both client and server initiate the same GATT procedure.
+BLE peripherals/trainers expect the client to initiate MTU exchange at connection time, however some (like **Tacx Neo 2T**, with Zwift-oriented firmware update) initiate it proactively! Fixed this (potential) connection conflict in `ClientSide` class and inserted more robust `updateConnParameters` handling in `ServerSide` class.
+ - Improved the presentation of some setup settings (from `configNimBLE.h`) in MITM/Simcline code Examples
 ### Changed
 
 ### Added
