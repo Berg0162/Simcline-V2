@@ -125,7 +125,7 @@ void ServerSide::serverConnectionCallbacksOnConnect(NimBLEServer* pServer, NimBL
     LOG("Central (%s/Zwift) has to Subscribe to Characteristics and start..", operations->Laptop.PeerName.c_str());
     Presentation::getInstance()->ShowMessageWindow("Server", "Laptop", "Connected!", 0);
     if(operations->Trainer.IsConnected)
-      ClientSide::getInstance()->clientSubscribeToAll(true); // Tell the client to send data now! 
+      ClientSide::getInstance()->clientSubscribeToAll(true); // Tell the client to send data now!
 };
 
 void ServerSide::serverConnectionCallbacksOnMTUChange(uint16_t MTU, NimBLEConnInfo& connInfo) {

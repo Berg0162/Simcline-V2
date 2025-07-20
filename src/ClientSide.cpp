@@ -54,6 +54,9 @@ protected:
   void onDisconnect(NimBLEClient* pClient, int reason) override {
       clientInstance->clientConnectionCallbacksOnDisconnect(pClient, reason);
   }
+  void onMTUChange(NimBLEClient* pClient, uint16_t MTU) override {
+      clientInstance->clientConnectionCallbacksonMTUChange(pClient, MTU);
+  }
   bool onConnParamsUpdateRequest(NimBLEClient* pClient, ble_gap_upd_params *params) {
 #ifdef DEBUG
       LOG(" -> Client Rec'd Connection Parameter Update Request!");
@@ -204,14 +207,19 @@ void ClientSide::xTaskClientConnectServer(void *parameter) {
 };
 
 void ClientSide::clientConnectionCallbacksOnConnect(NimBLEClient* pClient) {
-    // Get some connection parameters of the peer device.
-    const uint16_t clientConnectionHandle = pClient->getConnHandle();
-    operations->Trainer.conn_handle = clientConnectionHandle;
+    // Client initiates request to set the desired MTU immediately after connecting.
+    if ( pClient->exchangeMTU() ) {
+      LOG("Client Initiates MTU Exchange Request!");
+      delay(20); // Give some time to settle
+    }
 #ifdef EXTENDEDDATALEN
     if( pClient->setDataLen(ExtendedDataLen) ) // Send Extended Data Len Request to the peer (Trainer)
       LOG("Client did a Successful Extended Data Len Request!");
-    delay(10);    // Allow some time to settle....
+    delay(20);    // Allow some time to settle....
 #endif
+    // Get some connection parameters
+    const uint16_t clientConnectionHandle = pClient->getConnHandle();
+    operations->Trainer.conn_handle = clientConnectionHandle;
     Presentation::getInstance()->ShowMessageWindow("Client", "Trainer", "Connected!", 0);
 #ifdef DEBUG
     const uint16_t client_MTU = pClient->getConnInfo().getMTU();
@@ -250,11 +258,19 @@ void ClientSide::clientConnectionCallbacksOnDisconnect(NimBLEClient* pClient, in
     }
 };
 
+void ClientSide::clientConnectionCallbacksonMTUChange(NimBLEClient* pClient, uint16_t MTU) {
+#ifdef DEBUG
+    // Get some connection parameters
+    const uint16_t clientConnectionHandle = pClient->getConnHandle();
+    LOG("Updated Connection MTU [%d] Conn Handle: %d", MTU, clientConnectionHandle); 
+#endif
+};
+
 void ClientSide::xTaskClientStartScanning(void *parameter) {
     ClientSide* clientInstance = (ClientSide *)parameter;
     if(!clientInstance->pNimBLEScan->isScanning()) {
         // Start scanning for undetermined time span -> 0
-        // isContinue = false -> clear previous scan results, restart = false -> NO restart if in progress!
+        // isContinue = false -> clear previous scan results, restart = false 
         clientInstance->pNimBLEScan->start(0, false, false); // NO AUTO RESTART !! 
     }
     vTaskDelete(clientInstance->xTaskClientStartScanningHandle);

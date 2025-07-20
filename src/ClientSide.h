@@ -31,9 +31,10 @@ TaskHandle_t xTaskClientSubscribeUnsubscribeHandle = NULL;
 public:
 ~ClientSide();
 static ClientSide* getInstance();
-static NimBLEClient* pClient;                    // Pointer to NimBLEClient instance
+static NimBLEClient* pClient; // Pointer to NimBLEClient instance
 void clientConnectionCallbacksOnConnect(NimBLEClient* pClient);
 void clientConnectionCallbacksOnDisconnect(NimBLEClient* pClient, int reason);
+void clientConnectionCallbacksonMTUChange(NimBLEClient* pClient,uint16_t 	MTU);
 bool clientConnectServer(void);
 void clientScanCallbacksOnResult(const NimBLEAdvertisedDevice* advertisedDevice);
 void startScanning(void);
