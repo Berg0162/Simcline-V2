@@ -9,6 +9,17 @@
 #define ENABLE_FTMS
 
 // ----------------------------------------------------------------------------------------
+// Uncomment to allow/enable the MITM transfer of Zwift Virtual Shifting (ZVS) data between 
+// trainer and training App. ZVS is a proprietary Zwift BLE service used for virtual gear 
+// shifting and trainer control instead of physically moving your chain across cogs.
+//		  NOTICE --> Requires a trainer with firmware that explicitly supports ZVS!
+//#define ENABLE_ZVS
+#if (defined(ENABLE_ZVS))
+// Uncomment to allow/enable the Legacy ZVS Service for your trainer
+//#define TRAINER_WITH_LEGACY_ZVS_SERVICE
+#endif
+
+// ----------------------------------------------------------------------------------------
 // Uncomment to allow/enable the MITM transfer of Cycling Speed and Cadence data from trainer 
 // to training App directly. Useful when trainer allows direct pairing of builtin CSC sensor, 
 //		  NOTICE --> NOT all (legacy) trainers support CSC!!!
@@ -37,12 +48,15 @@
 //#define ENABLE_TACXFEC
 
 // ----------------------------------------------------------------------------------------
-// FTMS, FEC, and Wahoo CPS (Control-Protocol-Service) mutually exclude each other! Be Aware!!!
+// FTMS, ZVS, FEC, and Wahoo CPS (Control-Protocol-Service) mutually exclude each other! Be Aware!!!
 // Error if more than one is defined
 #if (defined(ENABLE_FTMS) && defined(ENABLE_WAHOOCPS)) || \
     (defined(ENABLE_FTMS) && defined(ENABLE_TACXFEC))   || \
+	(defined(ENABLE_FTMS) && defined(ENABLE_ZVS))   || \
+	(defined(ENABLE_ZVS) && defined(ENABLE_WAHOOCPS)) || \
+    (defined(ENABLE_ZVS) && defined(ENABLE_TACXFEC))   || \
     (defined(ENABLE_WAHOOCPS) && defined(ENABLE_TACXFEC))
-  #error "ENABLE_FTMS, ENABLE_WAHOOCPS, and ENABLE_TACXFEC are mutually exclusive! Only one must be defined!"
+  #error "ENABLE_FTMS, ENABLE_ZVS, ENABLE_WAHOOCPS, and ENABLE_TACXFEC are mutually exclusive! Only one must be defined!"
 #endif
 
 // ----------------------------------------------------------------------------------------
