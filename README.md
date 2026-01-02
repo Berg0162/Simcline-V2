@@ -1,6 +1,10 @@
 # <img src="./images/SC_logo.png" width="64" height="64" alt="SIMCLINE Icon"> &nbsp; SIMCLINE-V2 for Smart Trainers
 
-# Call for Feedback [See](https://github.com/Berg0162/Simcline-V2/issues/2#issue-3218158396)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Berg0162/Simcline-V2?sort=semver)](https://github.com/Berg0162/Simcline-V2/releases)
+[![Platform: ESP32](https://img.shields.io/badge/platform-ESP32-orange)](https://www.espressif.com/en/products/socs/esp32)
+[![GitHub issues](https://img.shields.io/github/issues/Berg0162/Simcline-V2)](https://github.com/Berg0162/Simcline-V2/issues)
+[![GitHub Discussions](https://img.shields.io/github/discussions/Berg0162/Simcline-V2)](https://github.com/Berg0162/Simcline-V2/discussions)
 
 # Simulation of Changing Road Inclination for Indoor Cycling<br>
 <img src="./images/Simcline_2_0.jpg" width="300" height="300" ALIGN="left" alt="Mechanical SIMCLINE 2">
