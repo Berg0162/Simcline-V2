@@ -14,14 +14,14 @@ Zwift Virtual Shifting exists in two distinct BLE service implementations, depen
    Some older trainers received an initial Zwift Virtual Shifting implementation via a proprietary 128-bit BLE service, identified by the UUID:  
    `00000001-19ca-4651-86e5-fa29dcdd09d1`
 
-Many trainers that were originally marketed as *“Zwift enabled”* never received the 2025 firmware update and therefore remain limited to the legacy ZVS service—or do not support Virtual Shifting at all.
+Many trainers that were originally marketed as *“Zwift Ready”* never received the 2025 firmware update and therefore remain limited to the legacy ZVS service—or do not support Virtual Shifting at all.
 
 > **Important:** Simcline-V2 supports both Zwift Virtual Shifting implementations, but you must configure the correct ZVS firmware version for your trainer. Always verify which ZVS service your trainer firmware provides.
 
 > Notice: Trainer age alone is not sufficient — ZVS support depends entirely on the installed firmware.
 
 # configNimBLE.h
-Make configNimBLE.h settings to comply with your **ZVS enabled** trainer.
+Make configNimBLE.h settings to comply with your **ZVS Ready** trainer.
 
 + Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V2/src/config/configNimBLE.h`
 
