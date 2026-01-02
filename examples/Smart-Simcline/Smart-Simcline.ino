@@ -119,8 +119,11 @@ void setup() {
   LOG(" Enabled: CPS and FTMS");
   //Show Name and SW version on TFT
   presentation->ShowMessageWindow("MITM", "FTMS", CODE_VERSION, 500);
+#elif defined(ENABLE_ZVS)
+  LOG(" Enabled: CPS and ZVS");
+  presentation->ShowMessageWindow("MITM", "ZVS", CODE_VERSION, 500);
 #endif
- #ifdef ENABLE_HRM
+#ifdef ENABLE_HRM
   LOG(" Enabled: HRM");
 #endif
 #ifdef ENABLE_CSC

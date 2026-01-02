@@ -96,6 +96,8 @@ void setup() {
   LOG(" Enabled: CPS and TACXFEC");
  #elif defined(ENABLE_FTMS)
   LOG(" Enabled: CPS and FTMS");
+ #elif defined(ENABLE_ZVS)
+  LOG(" Enabled: CPS and ZVS");
  #endif
  #ifdef ENABLE_HRM
   LOG(" Enabled: HRM");
