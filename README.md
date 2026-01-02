@@ -63,6 +63,43 @@ From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetoot
 |Wahoo |Bluetooth Smart FTMS on all 2020 smart trainers <b>and</b> legacy Wahoo Bluetooth Smart Control.|
 |Zwift Hub|Bluetooth Smart FTMS with HRM.&nbsp;[FAQ #3](docs/Frequently_Asked_Questions.md#3)|
 
+# Zwift Virtual Shifting (VS): an Emerging De-Facto Standard
+
+Virtual Shifting has rapidly become a dominant hardware trend for indoor cycling in 2025. While it currently complements—rather than fully replaces—traditional mechanical cassettes, its adoption is accelerating across both trainers and control devices.
+
+Virtual Shifting allows riders to “change gears” on a smart trainer without interacting with the bicycle’s drivetrain. Instead of physically moving the chain across sprockets, software simulates different gear ratios and dynamically adjusts trainer resistance. From the rider’s perspective, shifting is now handled entirely by the trainer and the training platform, rather than by mechanical components on the bike.
+
+---
+
+## Current Market Standing
+
+**Industry Adoption**  
+Major manufacturers including **Elite**, **JetBlack**, **Wahoo**, and **Garmin (Tacx)** now support Virtual Shifting on their latest trainer models, often marketed as *“Zwift Ready”*.
+
+- Garmin (Tacx) considered the 2025 Virtual Shifting firmware update so significant that, in their most recent firmware releases, the traditional **FTMS service has been replaced by the Zwift Virtual Shifting service**.
+
+**Ecosystem Lock-In**  
+Although platforms such as [Rouvy](https://rouvy.com/virtual-shifting) have added support, Virtual Shifting remains largely tied to the **Zwift BLE protocol**. Most other training platforms still rely on a physical cassette for gear changes.
+
+**Legacy Hardware Constraints**  
+Support for Virtual Shifting is firmware-dependent. Many older trainers (e.g. Tacx Neo, Zwift Hub One, Wahoo KICKR v5, and others) cannot be updated to support Virtual Shifting and therefore remain limited to conventional shifting via FTMS.
+
+---
+
+## Simcline-V2 and Zwift Virtual Shifting
+
+Within the **Zwift BLE protocol**, the current road inclination —just as with FTMS— is transmitted to the trainer. This data can be intercepted by a **Man-In-The-Middle (MITM)** implementation and redirected to a secondary target: the mechanical Simcline device.
+
+From a Simcline-V2 perspective, the principle is unchanged:
+
+- FTMS and Zwift Virtual Shifting both transport trainer-related data over BLE.
+- Zwift Virtual Shifting is simply an additional BLE service with a different data model.
+- Inclination data remains available and can be processed in exactly the same way as with FTMS.
+
+The latest Simcline-V2 version therefore adds support for **Zwift Virtual Shifting**, enabling Simcline actuation when Virtual Shifting is active.
+
+> **Important:** Zwift Virtual Shifting support requires a trainer running the firmware that explicitly supports the Zwift Virtual Shifting protocol.
+
 # Man-In-The-Middle (MITM) software pattern<br>
 <img src= "./images/FTMS_MITM.jpg" align="left" width="1000" height="500" alt="Man in the Middle"><br>
 <b>Man-In-The-Middle</b> is a powerful software engineering pattern that is applied in many software designs. Unfortunately it is also known for a negative application in communication traffic: MITM is a common type of cybersecurity attack that allows attackers to eavesdrop on the communication between two targets.
