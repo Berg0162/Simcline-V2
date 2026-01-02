@@ -69,8 +69,6 @@ Virtual Shifting has rapidly become a dominant hardware trend for indoor cycling
 
 Virtual Shifting allows riders to “change gears” on a smart trainer without interacting with the bicycle’s drivetrain. Instead of physically moving the chain across sprockets, software simulates different gear ratios and dynamically adjusts trainer resistance. From the rider’s perspective, shifting is now handled entirely by the trainer and the training platform, rather than by mechanical components on the bike.
 
----
-
 ## Current Market Standing
 
 **Industry Adoption**  
@@ -84,17 +82,15 @@ Although platforms such as [Rouvy](https://rouvy.com/virtual-shifting) have adde
 **Legacy Hardware Constraints**  
 Support for Virtual Shifting is firmware-dependent. Many older trainers (e.g. Tacx Neo, Zwift Hub One, Wahoo KICKR v5, and others) cannot be updated to support Virtual Shifting and therefore remain limited to conventional shifting via FTMS.
 
----
-
 ## Simcline-V2 and Zwift Virtual Shifting
 
 Within the **Zwift BLE protocol**, the current road inclination —just as with FTMS— is transmitted to the trainer. This data can be intercepted by a **Man-In-The-Middle (MITM)** implementation and redirected to a secondary target: the mechanical Simcline device.
 
 From a Simcline-V2 perspective, the principle is unchanged:
 
-- FTMS and Zwift Virtual Shifting both transport trainer-related data over BLE.
-- Zwift Virtual Shifting is simply an additional BLE service with a different data model.
-- Inclination data remains available and can be processed in exactly the same way as with FTMS.
+- **FTMS** and **Zwift Virtual Shifting** both transport trainer-related data over BLE.
+- Zwift Virtual Shifting is simply an **additional BLE service** with a different data model.
+- Inclination data remains available and can be processed in exactly the same way as with **FTMS**.
 
 The latest Simcline-V2 version therefore adds support for **Zwift Virtual Shifting**, enabling Simcline actuation when Virtual Shifting is active.
 
