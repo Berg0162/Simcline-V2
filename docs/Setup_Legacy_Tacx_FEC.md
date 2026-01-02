@@ -23,6 +23,17 @@ Make configNimBLE.h settings to comply with your <b>Legacy Tacx FE-C</b> smart t
 //#define ENABLE_FTMS
 
 // ----------------------------------------------------------------------------------------
+// Uncomment to allow/enable the MITM transfer of Zwift Virtual Shifting (ZVS) data between 
+// trainer and training App. ZVS is a proprietary Zwift BLE service used for virtual gear 
+// shifting and trainer control instead of physically moving your chain across cogs.
+//		  NOTICE --> Requires a trainer with firmware that explicitly supports ZVS!
+//#define ENABLE_ZVS
+#if (defined(ENABLE_ZVS))
+// Uncomment to allow/enable the Legacy ZVS Service for your trainer
+//#define TRAINER_WITH_LEGACY_ZVS_SERVICE
+#endif
+
+// ----------------------------------------------------------------------------------------
 // Uncomment to allow/enable the MITM transfer of Cycling Speed and Cadence data from trainer 
 // to training App directly. Useful when trainer allows direct pairing of builtin CSC sensor, 
 //		  NOTICE --> NOT all (legacy) trainers support CSC!!!
