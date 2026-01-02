@@ -1,6 +1,17 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [1.1.0] - 2026-01-03
+### Fixed
+
+### Changed
+
+### Added
+Added code support for the **Zwift Virtual Shifting** BLE Service.
+- New class added *VirtualShifting* (ZVS) and integrated with Server- and Client-side
+- **ENABLE_ZVS** selection added in `src/config/configNimBLE.h`
+- Added explanation and instructions `docs/Setup_Zwift_Virtual_Shifting.md`
+ 
 ## [1.0.4] - 2025-07-20
 ### Fixed
  - NimBLE-Arduino turned out to be vulnerable to _race conditions_ if both client and server initiate the same GATT procedure.
