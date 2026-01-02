@@ -98,7 +98,7 @@ From a Simcline-V2 perspective, the principle is unchanged:
 
 The latest Simcline-V2 version therefore adds support for **Zwift Virtual Shifting**, enabling Simcline actuation when Virtual Shifting is active.
 
-> **Important:** Zwift Virtual Shifting support requires a trainer running the firmware that explicitly supports the Zwift Virtual Shifting protocol.
+> **Important:** Zwift Virtual Shifting support requires a trainer running the firmware that explicitly supports the **Zwift Virtual Shifting** protocol.
 
 # Man-In-The-Middle (MITM) software pattern<br>
 <img src= "./images/FTMS_MITM.jpg" align="left" width="1000" height="500" alt="Man in the Middle"><br>
