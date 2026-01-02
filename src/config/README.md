@@ -70,8 +70,8 @@ Simcline-V2 <b>NimBLE</b> configuration options:
 //		  NOTICE --> Most pre-2020 Tacx trainers support this instead of FTMS!!! 
 //#define ENABLE_TACXFEC
 
-
 ```
+> **ENABLE_FTMS, ENABLE_ZVS, ENABLE_WAHOOCPS, and ENABLE_TACXFEC are mutually exclusive! Only one must be defined!**
 
 # configSimcline.h
 Simcline-V2 <b>Mechanical SIMCLINE 2.0</b> configuration options:
