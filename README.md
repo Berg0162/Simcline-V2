@@ -115,6 +115,7 @@ Optionally:
 Mandatory:
 + Users of <b>Legacy Wahoo KICKR</b> smart trainers (<b>NOT supporting FTMS</b>) must make changes now! See: [Setup for Legacy Wahoo KICKR](docs/Setup_Legacy_Wahoo_KICKR.md).
 + Users of <b>Legacy Tacx FE-C</b> smart trainers (<b>NOT supporting FTMS</b>) must make changes now! See: [Setup for Legacy Tacx FE-C](docs/Setup_Legacy_Tacx_FEC.md).
++ Users of <b>Zwift Enabled</b> smart trainers must make changes now! See: [Setup Vitual Shifting](docs/Setup_Zwift_Virtual_Shifting.md)
 
 <b>Smart-MITM</b> is default in Debug mode: using Serial Monitor (logging on the PC-screen) to show you what is happening!<br>
 
