@@ -100,10 +100,9 @@ The latest Simcline-V2 version therefore adds support for **Zwift Virtual Shifti
 
 > **Important:** Zwift Virtual Shifting support requires a trainer running the firmware that explicitly supports the **Zwift Virtual Shifting** protocol.
 
-## Vitual Shifting Dependency
-⚠️ULEB128 → Unsigned little endian base 128 implementation for encoding and decoding ZVS-data-streams
-
-uleb128
+## ⚠️Virtual Shifting Code Dependency
+To run the optional Virtual Shifting BLE Service, **Simcline-V2** needs installation of the **ULEB128 Library** → Unsigned little endian base 128 implementation for encoding and decoding ZVS-data-streams
+  - [uleb128](https://github.com/bolderflight/uleb128)
 
 # Man-In-The-Middle (MITM) software pattern<br>
 <img src= "./images/FTMS_MITM.jpg" align="left" width="1000" height="500" alt="Man in the Middle"><br>
