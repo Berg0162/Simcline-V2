@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 
 ### Changed
-
+- Documentation regarding ZVS integration
 ### Added
 Added code support for the **Zwift Virtual Shifting** BLE Service.
 - New class added *VirtualShifting* (ZVS) and integrated with Server- and Client-side
