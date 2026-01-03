@@ -11,6 +11,7 @@
 #define UUID16_SVC_CYCLING_POWER              NimBLEUUID((uint16_t)0x1818)
 #define UUID16_SVC_FITNESS_MACHINE            NimBLEUUID((uint16_t)0x1826)
 #define UUID128_SVC_TACX_FEC                  NimBLEUUID("6E40FEC1-B5A3-F393-E0A9-E50E24DCCA9E")
+#define ZWIFT_VIRTUAL_SHIFTING_SERVICE        NimBLEUUID((uint16_t)0xFC82)
 
 #include "Utilities.h"
 // Include operations control settings class
@@ -23,6 +24,9 @@
 #include "CyclingPower.h"
 #ifdef ENABLE_FTMS
 #include "FitnessMachine.h"
+#endif
+#ifdef ENABLE_ZVS
+#include "VirtualShifting.h"
 #endif
 #include "NordicUart.h"
 #include "ClientSide.h"
@@ -242,6 +246,10 @@ void ServerSide::init(void) {
   LOG("Configuring the Server Fitness Machine Service");
   FTMS::getInstance()->server_setupFTMS(pServer);
 #endif
+#ifdef ENABLE_ZVS
+  LOG("Configuring the Server Virtual Shifting Service");
+  ZVS::getInstance()->server_setupZVS(pServer);
+#endif
   LOG("Configuring the Server Nordic Uart Service"); 
   NUS::getInstance()->server_setupNUS(pServer);
 #ifdef ENABLE_CSC
@@ -265,8 +273,8 @@ void ServerSide::init(void) {
 }
 
 void ServerSide::startAdvertising(void) {
-    LOG("Server is advertising!"); 
-    pAdvertising->start();
+    if(pAdvertising->start()) LOG("Server is advertising!"); 
+    else LOG("Server failed to start advertising!");
 };
 
 void ServerSide::setupAdvertising(void) {
@@ -277,6 +285,10 @@ void ServerSide::setupAdvertising(void) {
 #ifdef ENABLE_FTMS
     if( pAdvertising->addServiceUUID(UUID16_SVC_FITNESS_MACHINE) )
       LOG("Setting Service in Advertised data to    [FTMS]");
+#endif
+#ifdef ENABLE_ZVS
+    if( pAdvertising->addServiceUUID(ZWIFT_VIRTUAL_SHIFTING_SERVICE) )
+      LOG("Setting Service in Advertised data to    [ZVS]");
 #endif
 #ifdef ENABLE_TACXFEC
     // Put 128-bit UUID in Scan Response

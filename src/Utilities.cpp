@@ -233,3 +233,44 @@ bool UTILS::isValid(const std::string& macString) {
     }
     return true;
 }
+
+// Known gear ratios for gears 1 to 24
+const std::vector<float> UTILS::knownRatios = {0.75, 0.87, 0.99, 1.11, 1.23, 1.38, 1.53, 1.68, 1.86, 2.04, 2.22, 2.40, 2.61, 2.82, \
+                                              3.03, 3.24, 3.49, 3.74, 3.99, 4.24, 4.54, 4.84, 5.14, 5.49};
+
+int UTILS::getGearNumberFromRatio(float gearRatio) {
+    const float epsilon = 0.01; // tolerance for floating-point comparison
+    for (size_t i = 0; i < knownRatios.size(); ++i) {
+        if (std::fabs(gearRatio - knownRatios[i]) < epsilon) {
+            return static_cast<int>(i + 1); // gears are 1-based
+        }
+    }
+    return 0; // Not found
+}
+
+std::string UTILS::getHexString(const uint8_t* data, size_t length) {
+  static char hexNumber[3];
+  std::string hexString = "[";
+  for (size_t index = 0; index < length; index++) {
+    sprintf(hexNumber, "%02X", data[index]);
+    hexString.append(hexNumber);
+    if (index < (length - 1)) {
+      hexString.append(" ");
+    }
+  }
+  hexString.append("]");
+  return hexString;
+}
+
+std::string UTILS::getHexString(const std::string& str) {
+      return getHexString( reinterpret_cast<const uint8_t*>(str.data()), static_cast<uint8_t>(str.length()) );
+}
+
+std::string UTILS::getHexString(std::vector<uint8_t> data) {
+  return getHexString(data.data(), data.size());
+}
+
+std::string UTILS::getHexString(std::vector<uint8_t>* data) {
+  return getHexString(data->data(), data->size());
+}
+

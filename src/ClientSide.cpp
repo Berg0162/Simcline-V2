@@ -27,6 +27,16 @@
 #else 
   #define SELECTSERVICE NimBLEUUID((uint16_t)0x1818)
 #endif
+
+#ifdef ENABLE_ZVS
+#include "VirtualShifting.h"
+  #ifdef TRAINER_WITH_LEGACY_ZVS_SERVICE
+    #define SELECTSERVICE NimBLEUUID((uint16_t)0x1826)
+  #else
+    #define SELECTSERVICE NimBLEUUID((uint16_t)0xFC82)
+  #endif
+#endif
+
 #ifdef ENABLE_HRM
   #include "HeartRateMonitor.h"
 #endif
@@ -175,6 +185,10 @@ bool ClientSide::clientConnectServer(void) {
     if( !FTMS::getInstance()->client_FitnessMachine_Connect(pClient) )
       return hasConnectPassed = false;
 #endif
+#ifdef ENABLE_ZVS
+    if( !ZVS::getInstance()->client_VirtualShifting_Connect(pClient) )
+      return hasConnectPassed = false;
+#endif
 #ifdef ENABLE_CSC
     if( !CSC::getInstance()->client_CyclingSpeedCadence_Connect(pClient) )
       return hasConnectPassed = false; 
@@ -282,6 +296,9 @@ void ClientSide::xTaskClientSubscribeAll(void *parameter) {
 #ifdef ENABLE_FTMS
   FTMS::getInstance()->client_FTMS_Subscribe();
 #endif
+#ifdef ENABLE_ZVS
+  ZVS::getInstance()->client_ZVS_Subscribe();
+#endif
 #ifdef ENABLE_CSC
   CSC::getInstance()->client_CSC_Subscribe(); 
 #endif 
@@ -302,6 +319,9 @@ void ClientSide::xTaskClientUnSubscribeAll(void *parameter) {
   CPS::getInstance()->client_CP_Unsubscribe();
 #ifdef ENABLE_FTMS
   FTMS::getInstance()->client_FTMS_Unsubscribe();
+#endif
+#ifdef ENABLE_ZVS
+  ZVS::getInstance()->client_ZVS_Unsubscribe();
 #endif
 #ifdef ENABLE_CSC 
   CSC::getInstance()->client_CSC_Unsubscribe();
@@ -334,14 +354,16 @@ void ClientSide::startScanning(void) {
   pNimBLEScan = NimBLEDevice::getScan();
   pNimBLEScan->setScanCallbacks(new clientScanCallbacks(this));
   pNimBLEScan->setActiveScan(true); // Get scan responses
-  #ifdef ENABLE_FTMS
+#if defined(ENABLE_FTMS)
   LOG("Client Starts Scanning for Peripheral (Trainer) with CPS and FTMS!");
-  #else
+#elif defined(ENABLE_ZVS)
+  LOG("Client Starts Scanning for Peripheral (Trainer) with CPS and ZVS!");
+#else
   LOG("Client Starts Scanning for Peripheral (Trainer) with CPS!");
-  #endif
+#endif
   // Create dedicated xTask and start scanning
   xTaskCreatePinnedToCore(this->xTaskClientStartScanning, "Start Scanning", 4096, (void *)this, 10, \
-                          &this->xTaskClientStartScanningHandle, xTaskCoreID0);  
+                          &this->xTaskClientStartScanningHandle, xTaskCoreID0); 
 }
 
 

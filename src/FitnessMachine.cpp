@@ -184,7 +184,9 @@ void FTMS::xTaskClientWriteWithResponse(void *parameter) {
   while(true) {
       vTaskSuspend(ftmsInstance->xTaskClientWriteWithResponseHandle); // At the beginning ensures: task only runs when resumed.
       if(ftmsInstance->xTaskClientWriteWithResponseDataReady) {
-          if(!ftmsInstance->pRemote_FTM_ControlPoint_Chr->writeValue(ftmsInstance->xTaskClientWriteWithResponseData, true)) 
+          // Copy to this scope as it will be handled asynchronously by another core and NimBLE may only write garbage
+          std::string localCopy = ftmsInstance->xTaskClientWriteWithResponseData; 
+          if (!ftmsInstance->pRemote_FTM_ControlPoint_Chr->writeValue(localCopy, true))
               LOG(">>> Error: Client FTMS_CP Failed to Write-with-Response!");
           ftmsInstance->xTaskClientWriteWithResponseDataReady = false; // Indicate: ready for next data transfer
       }

@@ -126,7 +126,9 @@ void CPS::xTaskClientWriteWithResponse(void* parameter) {
   while(true) { 
       vTaskSuspend(cpsInstance->xTaskClientWriteWithResponseHandle);  // Suspend now until resumed by callback
       if(cpsInstance->xTaskClientWriteWithResponseDataReady) {
-          if(!cpsInstance->pRemote_CP_ControlPoint_Chr->writeValue(cpsInstance->xTaskClientWriteWithResponseData, true))
+          // Copy to this scope as it will be handled asynchronously by another core and NimBLE may only write garbage
+          std::string localCopy = cpsInstance->xTaskClientWriteWithResponseData; 
+          if(!cpsInstance->pRemote_CP_ControlPoint_Chr->writeValue(localCopy, true))
               LOG(">>> CPS CP Error: Failed to write characteristic -> Return Code = 0x06");
           cpsInstance->xTaskClientWriteWithResponseDataReady = false; // Ready for next data transfer
       } 

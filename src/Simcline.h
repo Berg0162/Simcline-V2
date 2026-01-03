@@ -5,7 +5,7 @@
 #include <string.h>
 #include <Wire.h>
 
-static const char* CODE_VERSION = "1.0.4";
+static const char* CODE_VERSION = "1.1.0";
 
 // SIMCLINE HEADER FILE----------------------------------------------------------------------------
 // Include these debug utility macros in all cases!

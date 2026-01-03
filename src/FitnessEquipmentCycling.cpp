@@ -209,7 +209,7 @@ bool FEC::client_FitnessEquipmentCycling_Connect(NimBLEClient* pClient) {
     // Obtain a reference to the remote FEC service.
     pRemote_FitnessEquipmentCycling_Service = pClient->getService(UUID_TACX_FEC_PRIMARY_SERVICE);
     if (pRemote_FitnessEquipmentCycling_Service == nullptr) {
-      LOG("Cycling Speed Cadence Service: Not Found!");
+      LOG("Fitness Equipment Cycling Service: Not Found!");
       return false;
     }
     LOG("Client_FitnessEquipmentCycling_Service: Found!");
@@ -230,7 +230,7 @@ bool FEC::client_FitnessEquipmentCycling_Connect(NimBLEClient* pClient) {
     }
     LOG("Client_FEC_Txd_Chr: Found!");
     if(!pRemote_FEC_Txd_Chr->canWrite()) {
-      LOG("Mandatory Client_FEC_Rxd_Chr: Cannot Write!");
+      LOG("Mandatory Client_FEC_Txd_Chr: Cannot Write!");
       return false;
     }
     return true;    
