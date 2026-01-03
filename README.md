@@ -107,6 +107,7 @@ We have applied the very principle: the Simcline is strategicly positioned in be
 
 # How to start?<br>
 + Install the [Arduino IDE 2](https://www.arduino.cc/en/software#experimental-software)
++ Install [uleb128](https://github.com/bolderflight/uleb128), when you intend to run Simcline-V2 with **Zwift Virtual Shifting**  
 + Install your [ESP32 board](https://randomnerdtutorials.com/installing-esp32-arduino-ide-2-0/) in the Arduino environment
 + Install [Adafruit OLED and GFX Libraries](https://makeabilitylab.github.io/physcomp/advancedio/oled-libraries.html)
 + Install the ESP32 NimBLE-Arduino library (<b>Version 2.#.#</b>), in <b>Arduino IDE</b> go to `Sketch menu` -> `Include Library` -> `Manage Libraries`, search for NimBLE-Arduino and install. [Ref](https://github.com/h2zero/NimBLE-Arduino#arduino-installation)
@@ -152,7 +153,7 @@ Optionally:
 Mandatory:
 + Users of <b>Legacy Wahoo KICKR</b> smart trainers (<b>NOT supporting FTMS</b>) must make changes now! See: [Setup for Legacy Wahoo KICKR](docs/Setup_Legacy_Wahoo_KICKR.md).
 + Users of <b>Legacy Tacx FE-C</b> smart trainers (<b>NOT supporting FTMS</b>) must make changes now! See: [Setup for Legacy Tacx FE-C](docs/Setup_Legacy_Tacx_FEC.md).
-+ Users of <b>Zwift Enabled</b> smart trainers must make changes now! See: [Setup Vitual Shifting](docs/Setup_Zwift_Virtual_Shifting.md)
++ Users of <b>Zwift Enabled</b> smart trainers must make changes now! See: [Setup Virtual Shifting](docs/Setup_Zwift_Virtual_Shifting.md)
 
 <b>Smart-MITM</b> is default in Debug mode: using Serial Monitor (logging on the PC-screen) to show you what is happening!<br>
 
