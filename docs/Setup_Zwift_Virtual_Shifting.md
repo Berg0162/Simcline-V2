@@ -20,6 +20,26 @@ Many trainers that were originally marketed as *“Zwift Ready”* never receive
 
 > Notice: Trainer age alone is not sufficient — ZVS support depends entirely on the installed firmware.
 
+# Dependencies
+**ESP32 MCU Hardware**
+
++ **Supported MCU's** with **NimBLE-Arduino**
+    - Espressif: ESP32, ESP32C3, ESP32S3
+
+**Software**
+
+**Simcline-V2** plus **Virtual-Shifting BLE Service** rely on the following Arduino libraries:
++ Arduino core for ESP32
+  - [Arduino core for ESP32](https://github.com/espressif/arduino-esp32)
+
++ NimBLE-Arduino (v2.x) → for Bluetooth Low Energy communication.
+  - [NimBLE-Arduino version 2.x](https://github.com/h2zero/NimBLE-Arduino)
+
++ **ULEB128 → Unsigned little endian base 128 implementation for encoding and decoding ZVS-data-streams**
+  - [uleb128](https://github.com/bolderflight/uleb128)
+
+You can install these directly through the Arduino IDE Library Manager or by cloning the repos to your Arduino/libraries folder.
+
 # configNimBLE.h
 Make configNimBLE.h settings to comply with your **ZVS Ready** trainer.
 
