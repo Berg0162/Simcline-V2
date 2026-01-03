@@ -100,6 +100,11 @@ The latest Simcline-V2 version therefore adds support for **Zwift Virtual Shifti
 
 > **Important:** Zwift Virtual Shifting support requires a trainer running the firmware that explicitly supports the **Zwift Virtual Shifting** protocol.
 
+## Vitual Shifting Dependency
+⚠️ULEB128 → Unsigned little endian base 128 implementation for encoding and decoding ZVS-data-streams
+
+uleb128
+
 # Man-In-The-Middle (MITM) software pattern<br>
 <img src= "./images/FTMS_MITM.jpg" align="left" width="1000" height="500" alt="Man in the Middle"><br>
 <b>Man-In-The-Middle</b> is a powerful software engineering pattern that is applied in many software designs. Unfortunately it is also known for a negative application in communication traffic: MITM is a common type of cybersecurity attack that allows attackers to eavesdrop on the communication between two targets.
