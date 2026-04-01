@@ -98,11 +98,37 @@ void ZVS::serverVSSYNCRXOnWrite(NimBLECharacteristic* pCharacteristic, NimBLECon
 
 void ZVS::decodeLegacyZVSRequest(const std::vector<uint8_t>& data) {
     // Basic sanity check
-    if (data.empty() || data[0] != 0x3F) {
-        return; // Not a Zwift VS Legacy request
+    if (data.size() < 5) {
+        return; // Not a Zwift VS Legacy request to decode
     }
+    // Accept either Wahoo Kickr or Zwift Hub legacy request
+    if (data[0] != 0x3F && data[0] != 0x04) {
+        return;
+    }
+    
+    // Zwift Hub: Set Simulation Parameter
+    if (data[0] == 0x04 && data[1] == 0x22 && data[3] == 0x10) {
+        float zwiftGrade = 0.0f;
+        // 8-bit grade [04 22 02 10 69]
+        if (data[2] == 0x02 && data.size() >= 5) {
+            uint8_t value = data[4];
+            zwiftGrade = (float)value * 0.025f;
+        }
+        // 16-bit grade [04 22 03 10 97 01]
+        if (data[2] == 0x03 && data.size() >= 6) {
+            uint16_t value = data[4] | (data[5] << 8);
+            zwiftGrade = (float)value * 0.0025f;
+        }
+        LOG(" -> Zwift Road Grade: %.2f", zwiftGrade);
+        operations->setNewGrade(zwiftGrade); // grade in percentage resolution 0.01
+        return;
+    }
+    // Zwift Hub done!
+    
+    // Restrict further decoding to ID (0x3F)
+    if (data[0] != 0x3F) return;
+    // Wahoo Kickr a.o.: Set Simulation Parameter and Set Gear Ratio
     size_t offset = 1; // Skip request ID (0x3F)
-
     while (offset < data.size()) {
         uint8_t tag = data[offset++];
         // Defensive bounds check
