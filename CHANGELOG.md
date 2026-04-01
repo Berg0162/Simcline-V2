@@ -1,6 +1,10 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [1.1.0] - 2026-01-04
+### Fixed
+- Legacy trainer **Zwift Hub One** is using a deviating ZVS protocol.
+- Added (auto-detect) support for this one-off **Hub One ZVS protocol**!
 ## [1.1.0] - 2026-01-03
 ### Fixed
 
