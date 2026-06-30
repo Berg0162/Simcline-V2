@@ -40,7 +40,7 @@ If you select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for 
 
 # Electronic Components and Wiring for version 2.0<br>
 
-<img src="../images/XIAOESP32S3_Sense_Wiring.png"  alt="Circuitry version 2.0">
+<img src="../images/XIAOESP32S3_Sense_Wiring.jpg"  alt="Circuitry version 2.0">
 In this setup is chosen for the wellknown 4 compact active components plus XIAO ESP32S3 that are used in the SIMCLINE project and that can finally all be mounted inside the components box (designed for use with the Adafruit Feather formfactor). NOTICE: the thump-sized XIAO ESP32S3 needs your special care to be mounted stably inside:<br>
 
 <b>Adafruit DRV8871 DC Motor Driver</b><br>
