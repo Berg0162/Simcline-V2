@@ -1,6 +1,11 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [1.1.2] - 2026-07-##
+### Changed
+- Operations -> Inserted new member: **getNewGradeIfChanged()** and a few tweaks of **semaphore handling**
+- Relevant examples were modified to use **getNewGradeIfChanged()** in **checkMITMdataChanged()** 
+- Lifter -> Inserted **sanity checks** and deleted obsolete **primeFilter()** from **brakeActuator()**  
 ## [1.1.1] - 2026-01-04
 ### Fixed
 - Legacy trainer **Zwift Hub One** is using a deviating ZVS protocol.
