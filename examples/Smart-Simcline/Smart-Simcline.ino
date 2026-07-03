@@ -123,7 +123,7 @@ void setup() {
   LOG(" Enabled: CPS and ZVS");
   presentation->ShowMessageWindow("MITM", "ZVS", CODE_VERSION, 500);
 #endif
-#ifdef ENABLE_HRM
+ #ifdef ENABLE_HRM
   LOG(" Enabled: HRM");
 #endif
 #ifdef ENABLE_CSC
@@ -138,16 +138,18 @@ void setup() {
   if(lift->Init()) { 
     // Test Actuator and VL8106X for proper functioning
     LOG("Test Actuator Motor Functions!");
-    presentation->ShowMessageWindow("Testing", "Up & Down", "Functions", 0);
+    presentation->ShowMessageWindow("Testing", "Lifting", "Functions", 0);
     if( lift->TestBasicMotorFunctions() ) {
-      presentation->ShowMessageWindow("Testing", "Functions", "Done!", 500);
-      LOG("Simcline Basic Motor Funtions are working!");
-      // Is working properly --> Start Motor Control Task, running on core 1
-      lift->StartControl(xTaskCoreID1); //Run on Core #1
-      IsBasicMotorFunctions = true;
-      // Put Simcline in neutral: 0% flat road position
-      operations->levelGrade();
-    } else { // Test Failed
+        presentation->ShowMessageWindow("Testing", "Functions", "Done!", 500);
+        LOG("Simcline Basic Motor Funtions are working!");
+        // Is working properly --> Start Motor Control Task, running on core 1
+        if(lift->StartControl(xTaskCoreID1)) { //Run on Core #1
+            IsBasicMotorFunctions = true;
+            // Put Simcline in neutral: 0% flat road position
+            operations->levelGrade();
+        }
+    } 
+    if(!IsBasicMotorFunctions) { // Test Failed OR start control failed!
         presentation->ShowMessageWindow("Testing", "Functions", "Failed!", 500);
         LOG("Simcline >> ERROR << Basic Motor Funtions are NOT working!!");
     }
@@ -157,7 +159,9 @@ void setup() {
 
   LOG("Create Central Control Loop!");
   // Start a Central Control task to check for buttons pressed, connection status and change of road grade
-  xTaskCreatePinnedToCore(xControlLoop, "xControlLoop", 8192, NULL, 5, &xControlLoopHandle, xTaskCoreID1); //Run on Core #1
+  xTaskCreatePinnedToCore(xControlLoop, "xControlLoop", 8192, NULL, 5, \
+                                        &xControlLoopHandle, xTaskCoreID1); //Run on Core #1
+  delay(100); // Allow some time to settle
   presentation->ShowMessageWindow("Pairing!", "Trainer", "Laptop", 0);
 
   LOG("Starting NimBLE MITM!");
@@ -166,8 +170,8 @@ void setup() {
 } // End of setup.
 
 void checkMITMdataChanged(void) { 
-      if(operations->isGradeChanged()) {
-          float grade = operations->getNewGrade();
+      float grade;
+      if(operations->getNewGradeIfChanged(grade)) {
           int16_t targetPosition = operations->GetNewTargetPosition(grade);
           if(IsBasicMotorFunctions) {  
               lift->SetTargetPosition(targetPosition);
@@ -182,7 +186,7 @@ void checkMITMdataChanged(void) {
 // Zwift changes road grade NOT at a constant pace but only when relevant!
 // Interval time does rarely fall below 800 ms.
 void xControlLoop(void *arg) {
-  const TickType_t xDelay = 900 / portTICK_PERIOD_MS; // Block for 900ms
+  const TickType_t xDelay = 800 / portTICK_PERIOD_MS; // Block for 800ms
   while(1) {
     checkMITMdataChanged();
     vTaskDelay(xDelay);

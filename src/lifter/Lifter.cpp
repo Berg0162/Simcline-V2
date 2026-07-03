@@ -13,7 +13,8 @@
 
 // ------------------------------------------------------------------------------------------------
 // Include these debug utility macros in all cases!
-#include "../config/configDebug.h"
+//#include "../config/configDebug.h"
+#include "config/configDebug.h"
 
 #ifdef DEBUG
 //  Restrict activating one or more of the following << EXTRA >> debug directives --> process intensive 
@@ -21,10 +22,12 @@
 //#define MOVEMENTDEBUG  // If defined allows for debugging Lifter actions in more detail
 #endif
 
-#include "../config/configBoard.h"
+//#include "../config/configBoard.h"
+#include "config/configBoard.h"
 
 // Include the mechanical and logical configuration settings of the Simcline
-#include "../config/configSimcline.h"
+//#include "../config/configSimcline.h"
+#include "config/configSimcline.h"
 
 /* Select setup VL6180X Range Continuous or Range Single Shot, read the fine manual for details
  *                https://www.pololu.com/file/0J961/VL6180X.pdf
@@ -103,7 +106,7 @@ void Lifter::primeFilter(uint8_t maxCount) {
 #endif
     } 
 #ifdef MOVEMENTDEBUG
-  LOG("Primed filter: %s", logBuffer.c_str()); // Send final log buffer
+  LOG("Lifter: Primed filter: %s", logBuffer.c_str()); // Send final log buffer
 #endif
 }
 
@@ -127,15 +130,15 @@ void Lifter::initVL6180X(void) {
   delay(300);
   // start range continuous mode with a period of 100 ms
   sensor->startRangeContinuous(100);
-  LOG("VL6180X Range Continuous Mode Selected");
+  LOG("Lifter: VL6180X Range Continuous Mode Selected");
 #else
-  LOG("VL6180X Single Shot Mode Selected");
+  LOG("Lifter: VL6180X Single Shot Mode Selected");
 #endif
   sensor->setTimeout(500);
 }
 
 bool Lifter::Init(void) {
-  LOG("Pin #1: %d | Pin #2: %d | Bandwidth: %d | MinPos: %d | MaxPos: %d", \
+  LOG("Lifter: Pin #1: %d | Pin #2: %d | Bandwidth: %d | MinPos: %d | MaxPos: %d", \
               PIN_ACTUATOR_1, PIN_ACTUATOR_2, BANDWIDTH, MINPOSITION, MAXPOSITION);
   // Initialize VL6180X
   initVL6180X();
@@ -153,23 +156,23 @@ bool Lifter::Init(void) {
           sensorOK = true;
           break;
       }
-      LOG("VL6180X Timeout, retrying... (%d retries left)", retries);
+      LOG("Lifter: VL6180X Timeout, retrying... (%d retries left)", retries);
       delay(100);
   } // while
 
   if (!sensorOK) {
-      LOG(">> ERROR << VL6180X failed after retries. Check wiring and power!");
+      LOG("Lifter: >> ERROR << VL6180X failed after retries. Check wiring and power!");
       return false;
   }
 
   // Change default zero values in filter to tempPosition
 #if defined(SMA_FILTER)
   SMAFilter->presetFilter(static_cast<float>(tempPosition));
-  LOG("SMA Filter Activated!");
+  LOG("Lifter: SMA Filter Activated!");
 #endif
 #if defined(EMA_FILTER)
   EMAFilter->presetFilter(static_cast<float>(tempPosition));
-  LOG("EMA Filter Activated!");
+  LOG("Lifter: EMA Filter Activated!");
 #endif
 
   // Prime the Filter with stable readings and set currentPosition
@@ -178,7 +181,7 @@ bool Lifter::Init(void) {
   // Set Target position equal to Current Position
   targetPosition = currentPosition;
 
-  LOG("ToF VL6180X Initialized!");
+  LOG("Lifter: ToF VL6180X Initialized!");
   return true;
 }
 
@@ -194,10 +197,10 @@ int16_t Lifter::getVL6180XRangeReading(void) {
     // Handle timeout error
     if (sensor->timeoutOccurred()) {
         timeoutCount++;
-        LOG(">> ERROR << VL6180X Timeout! Attempt %d/%d", timeoutCount, timeoutThreshold);
+        LOG("Lifter: >> ERROR << VL6180X Timeout! Attempt %d/%d", timeoutCount, timeoutThreshold);
         // Reset the sensor only if timeouts keep happening
         if (timeoutCount >= timeoutThreshold) {
-            LOG("Too many timeouts! Resetting VL6180X...");
+            LOG("Lifter: Too many timeouts! Resetting VL6180X...");
             brakeActuator();  // Stop movement
             initVL6180X();    // Reset ToF sensor
             timeoutCount = 0; // Reset timeout counter
@@ -208,7 +211,7 @@ int16_t Lifter::getVL6180XRangeReading(void) {
     timeoutCount = 0;
     // Sanity check: Filter out extreme values
     if (tempPosition < MINPOSITION || tempPosition > MAXPOSITION) {
-        LOG(">> WARNING << VL6180X reported out-of-range value: %d (valid: %d-%d)", \
+        LOG("Lifter: >> WARNING << VL6180X reported out-of-range value: %d (valid: %d-%d)", \
                                                           tempPosition, MINPOSITION, MAXPOSITION);
         return currentPosition;  // Ignore bad reading
     }
@@ -232,28 +235,27 @@ bool Lifter::TestBasicMotorFunctions() {
  
     // Prime the Filter to get a stable starting position
     primeFilter(PRIME_COUNT);
-    LOG("Start position: %d", currentPosition);
+    LOG("Lifter: Start position: %d", currentPosition);
     if (currentPosition < MINPOSITION || currentPosition > MAXPOSITION) {
-      LOG(">> ERROR << VL6180X Out of Range at start!!");
+      LOG("Lifter: >> ERROR << VL6180X Out of Range at start!!");
       return false;
     }
     // Movement detection: 3 times in a row in limited time!
     upPos = currentPosition;
-    LOG("Moving UP...");
+    LOG("Lifter: Moving UP...");
     moveActuatorUp();
     delay(250); // Give actuator time to respond
     startTime = millis(); // Get the start time
     while ((millis()-startTime) < 3000) { // Max timeout of 3 sec
         currentPosition = getVL6180XRangeReading();
         if (currentPosition <= (MINPOSITION + BANDWIDTH)) { // Check we do not reach the ceiling
-            LOG(">> WARNING << Reached MINPOSITION limit: %d", currentPosition);
+            LOG("Lifter: >> WARNING << Reached MINPOSITION limit: %d", currentPosition);
             brakeActuator();
             return false;
         }
         if (currentPosition < upPos) {  // Confirm an upward movement
             upPos = currentPosition;
             moveCount++;
-            //LOG("moveCount: %d Raw: %d Filtered: %d", moveCount, tempPosition, currentPosition);
         } else moveCount = 0; // Reset!
         if (moveCount >= 3) {
           endTime = millis();
@@ -267,10 +269,10 @@ bool Lifter::TestBasicMotorFunctions() {
     } // while
     brakeActuator();
     if (moveCount < 3) {
-        LOG(">> ERROR << VL6180X did not detect an UP movement!");
+        LOG("Lifter: >> ERROR << VL6180X did not detect an UP movement!");
         return false;
     }
-    LOG("3 Consecutive UP movements detected in: %d ms", (endTime-startTime));
+    LOG("Lifter: 3 Consecutive UP movements detected in: %d ms", (endTime-startTime));
     return true;
 }
 
@@ -284,26 +286,26 @@ int Lifter::getOffsetPosition() {
     currentPosition = tempPosition;  // Now safe to update
     int16_t _PositionOffset = targetPosition - currentPosition;
 #ifdef MOVEMENTDEBUG
-    LOG("Target: %d  Current: %d  Offset: %d", targetPosition, currentPosition, _PositionOffset);
+    LOG("Lifter: Target: %d  Current: %d  Offset: %d", targetPosition, currentPosition, _PositionOffset);
 #endif 
     // If within the bandwidth range, stop movement
     if (abs(_PositionOffset) <= BANDWIDTH) {
 #ifdef MOVEMENTDEBUG
-        LOG("Offset within bandwidth [%d]", BANDWIDTH);
+        LOG("Lifter: Offset within bandwidth [%d]", BANDWIDTH);
 #endif
         return 0;  // Position is within the acceptable range
     }
     // Determine movement direction
     if (_PositionOffset < 0)  {
 #ifdef MOVEMENTDEBUG
-        LOG("Offset < 0");
+        LOG("Lifter: Offset < 0");
 #endif
-        return 1;  // Move Down
+        return 1;  // Move UP
     }
 #ifdef MOVEMENTDEBUG
-    LOG("Offset > 0");
+    LOG("Lifter: Offset > 0");
 #endif
-    return 2;  // Move Up
+    return 2;  // Move Down
 }
 
 
@@ -329,7 +331,7 @@ void Lifter::moveActuatorUp() {
   isMovingDown = false;
   isBrakeOn = false;
 #ifdef MOVEMENTDEBUG
-  LOG(" Set MovingUp ");
+  LOG("Lifter: Set MovingUp ");
 #endif
 }
 
@@ -349,7 +351,7 @@ void Lifter::moveActuatorDown() {
   isMovingUp = false;
   isBrakeOn = false;
 #ifdef MOVEMENTDEBUG
-  LOG(" Set MovingDown ");
+  LOG("Lifter: Set MovingDown ");
 #endif
 }
 
@@ -361,10 +363,8 @@ void Lifter::brakeActuator() {
   isBrakeOn = true;
   isMovingDown = false;
   isMovingUp = false; 
-  // Prime the Filter to consolidate present stable position
-  primeFilter(PRIME_COUNT);
 #ifdef MOVEMENTDEBUG
-  LOG(" Set Brake On ");
+  LOG("Lifter: Set Brake On ");
 #endif
 }
 
@@ -380,7 +380,7 @@ void Lifter::xTaskControl(void) {
   while(1) {
     if(xSemaphoreTake(xSemaphore, portMAX_DELAY)) {
       // BLE channels can interrupt and consequently target position changes on-the-fly !!
-      // We do not want changes in TargetPosition during the following action!!!
+      // We do not want changes in TargetPosition during getOffsetPosition()!!!
       OnOffsetAction = getOffsetPosition(); // Calculate offset to target and determine action
       xSemaphoreGive(xSemaphore);
     }
@@ -391,18 +391,18 @@ void Lifter::xTaskControl(void) {
       case 1 :
         moveActuatorUp();
         break;
-       case 2 :
-         moveActuatorDown();
-         break;
-       case 3:  // Timeout occurred, handle error
-         LOG(">> ERROR << Sensor timeout!");
-         brakeActuator();
-         initVL6180X();  // Reinitialize ToF sensor
-         break;
-       default:  // OffsetPosition is undetermined --> do nothing and brake
-         LOG(">> ERROR << Unknown offset status!");
-         brakeActuator();
-         break;
+      case 2 :
+        moveActuatorDown();
+        break;
+      case 3:  // Timeout occurred, handle error
+        LOG("Lifter: >> ERROR << Sensor timeout!");
+        brakeActuator();
+        initVL6180X();  // Reinitialize ToF sensor
+        break;
+      default:  // OffsetPosition is undetermined --> do nothing and brake
+        LOG("Lifter: >> ERROR << Unknown offset status!");
+        brakeActuator();
+        break;
     } // switch 
     vTaskDelay(xDelay);
   } // while
@@ -414,8 +414,19 @@ void Lifter::startTaskControl(void* _this) {
     static_cast<Lifter*>(_this)->xTaskControl();
 }
 
-void Lifter::StartControl(const BaseType_t xTaskCoreID) {
-     xSemaphore = xSemaphoreCreateBinary();
-     xTaskCreatePinnedToCore(this->startTaskControl, "xTaskControl", 4096, this, 10, &ControlTaskHandle, xTaskCoreID);
+bool Lifter::StartControl(const BaseType_t xTaskCoreID) {
+    BaseType_t xReturned;
+    xSemaphore = xSemaphoreCreateBinary();
+    if (xSemaphore == NULL) {
+      LOG("Lifter: >> ERROR << Unable to create xSemaphore!");
+      return false;
+    }
+    xReturned = xTaskCreatePinnedToCore(this->startTaskControl, \
+                                  "xTaskControl", 4096, this, 10, &ControlTaskHandle, xTaskCoreID);
+    if( xReturned != pdPASS ) {
+      LOG("Lifter: >> ERROR << Unable to create xTaskControl!");
+      return false;
+    }
      xSemaphoreGive(xSemaphore);
+     return true;
 }

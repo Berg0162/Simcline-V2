@@ -138,18 +138,18 @@ void setup() {
 } // End of setup
 
 void checkMITMdataChanged(void) {
-      if(operations->isGradeChanged()) {
-          float grade = operations->getNewGrade();
-          presentation->ShowRoadGrade(grade);
-      }
-      presentation->ShowIconsOnTopBar(operations->isTrainerConnected(), operations->isLaptopConnected(), operations->isSmartphoneConnected());
+    float grade;
+    if(operations->getNewGradeIfChanged(grade)) {
+      presentation->ShowRoadGrade(grade);
+    }
+    presentation->ShowIconsOnTopBar(operations->isTrainerConnected(), operations->isLaptopConnected(), operations->isSmartphoneConnected());
 }
 
 // Central Control task to check for BLE connection status and change of road grade
 // Zwift changes road grade NOT at a constant pace but only when relevant!
 // Interval time does rarely fall below 800 ms.
 void xControlLoop(void *arg) {
-  const TickType_t xDelay = 900 / portTICK_PERIOD_MS; // Block for 900ms
+  const TickType_t xDelay = 800 / portTICK_PERIOD_MS; // Block for 800ms
   while(1) {
     checkMITMdataChanged();
     vTaskDelay(xDelay);

@@ -87,18 +87,18 @@ void setup() {
   if(lift->Init()) { 
     // Test Actuator and VL8106X for proper functioning
     LOG("Test Actuator Motor Functions!");
-    presentation->ShowMessageWindow("Testing", "Up & Down", "Functions", 100);
+    presentation->ShowMessageWindow("Testing", "Lifting", "Functions", 100);
     if( lift->TestBasicMotorFunctions() ) {
-      presentation->ShowMessageWindow("Testing", "Functions", "Done!", 500);
-      LOG("Simcline Basic Motor Funtions are working!");
-      // Is working properly --> Start Motor Control Task, running on core #0
-      lift->StartControl(xTaskCoreID0);
-      IsBasicMotorFunctions = true;
-      // Put Simcline in 5% road grade position 
-      //operations->setNewGrade(5.0);
-      // Put Simcline in neutral: 0% flat road position
-      operations->levelGrade();
-    } else { // Test Failed
+        presentation->ShowMessageWindow("Testing", "Functions", "Done!", 500);
+        LOG("Simcline Basic Motor Funtions are working!");
+        // Is working properly --> Start Motor Control Task, running on core 1
+        if(lift->StartControl(xTaskCoreID1)) { //Run on Core #1
+            IsBasicMotorFunctions = true;
+            // Put Simcline in neutral: 0% flat road position
+            operations->levelGrade();
+        }
+    } 
+    if(!IsBasicMotorFunctions) { // Test Failed OR start control failed!
         presentation->ShowMessageWindow("Testing", "Functions", "Failed!", 500);
         LOG("Simcline >> ERROR << Basic Motor Funtions are NOT working!!");
     }
@@ -111,6 +111,7 @@ void setup() {
   LOG("Create Central Control Loop!");
   // Start a Central Control task to check for change of road grade and user input
   xTaskCreatePinnedToCore(xControlLoop, "xControlLoop", 8192, NULL, 5, &xControlLoopHandle, xTaskCoreID1); //Core #1
+  delay(100); // Allow some time to settle  
   presentation->ShowMessageWindow("Ready!", "for", "Input", 0);
   delay(1000);
 
@@ -120,8 +121,8 @@ void setup() {
 } // End of setup.
 
 void checkMITMdataChanged(void) {
-  if(operations->isGradeChanged()) {
-    grade = operations->getNewGrade();
+  float grade;
+  if(operations->getNewGradeIfChanged(grade)) {
     targetPosition = operations->GetNewTargetPosition(grade);
     if(IsBasicMotorFunctions) {  
       lift->SetTargetPosition(targetPosition);

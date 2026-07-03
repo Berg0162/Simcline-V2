@@ -123,11 +123,11 @@ void setup() {
 // Zwift changes road grade NOT at a constant pace but only when relevant!
 // Interval time does rarely fall below 800 ms.
 void xControlLoop(void *arg) {
-  const TickType_t xDelay = 900 / portTICK_PERIOD_MS; // Block for 900ms
+  const TickType_t xDelay = 800 / portTICK_PERIOD_MS; // Block for 800ms
   while(1) {
-    if(operations->isGradeChanged()) {
-          float grade = operations->getNewGrade();
-          presentation->ShowRoadGrade(grade);
+    float grade;
+    if(operations->getNewGradeIfChanged(grade)) {
+      presentation->ShowRoadGrade(grade);
     }
     vTaskDelay(xDelay);
   }

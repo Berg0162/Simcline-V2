@@ -118,7 +118,14 @@ void OPS::setEnableUnknownDev(void) {
 }
 
 void OPS::setGradeChanged(boolean changed) {
-  xSemaphoreTake(xGradeChangeMutex, portMAX_DELAY);
+  if(xGradeChangeMutex == nullptr) {
+    return;
+  }
+
+  if(xSemaphoreTake(xGradeChangeMutex, 0) != pdTRUE) {
+    return;
+  }
+
   gradeChanged = changed;
   xSemaphoreGive(xGradeChangeMutex);
 }
@@ -193,6 +200,9 @@ void OPS::init(boolean storage) {
   RawgradeValue = 20000;
   // Create mutex for road grade (changed) protected exchange
   xGradeChangeMutex = xSemaphoreCreateMutex();
+  if(xGradeChangeMutex == nullptr) {
+    LOG("Operations: ERROR, Can't create xGradeChangeMutex");
+  }
   xSemaphoreGive(xGradeChangeMutex);
 
   // Assign connectable devices default values (defined in header file or from NVS)
@@ -228,14 +238,23 @@ void OPS::init(boolean storage) {
   Smartphone.conn_handle = BLE_HS_CONN_HANDLE_NONE;
 }
 
-boolean OPS::isGradeChanged(void) {
-  return gradeChanged;
-};
+bool OPS::getNewGradeIfChanged(float& gradeOut) {
+  if(xGradeChangeMutex == nullptr) {
+    return false;
+  }
 
-float OPS::getNewGrade(void) {
-  OPS::setGradeChanged(false);
-  return grade;
-};
+  if(xSemaphoreTake(xGradeChangeMutex, 0) != pdTRUE) {
+    LOG("Operations: getNewGradeIfChanged -> xSemaphoreTake Failed!");
+    return false;
+  }
+  bool changed = gradeChanged;
+  if(changed) {
+    gradeOut = grade;
+    gradeChanged = false;
+  }
+  xSemaphoreGive(xGradeChangeMutex);
+  return changed; 
+}
 
 #ifdef FILTERINITIALGRADES
 /* Zwift starts with a wake up stream of random grades between 2.0 and 5.0
@@ -266,6 +285,13 @@ float OPS::filterGrade(float currentGrade) {
 #endif
 
 void OPS::setNewGrade(float roadGrade) {
+  if(xGradeChangeMutex == nullptr) {
+    return;
+  }
+  if(xSemaphoreTake(xGradeChangeMutex, 0) != pdTRUE) {
+    LOG("Operations: setNewGrade -> xSemaphoreTake Failed!");
+    return;
+  }
 #ifdef FILTERINITIALGRADES
   if(isLaptopConnected()) // Filter only when Zwift is connected
     grade = filterGrade(roadGrade);
@@ -276,7 +302,8 @@ void OPS::setNewGrade(float roadGrade) {
   // Take into account the allowed Increase Percentage of the inclination
   // 100% has no effect, 50% means road grade value is divided by 2
   grade = grade * GradeChangeFactor/100;
-  OPS::setGradeChanged(true);
+  gradeChanged = true;
+  xSemaphoreGive(xGradeChangeMutex);
 };
 
 boolean OPS::isTrainerConnected(void) {

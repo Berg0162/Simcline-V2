@@ -15,7 +15,7 @@
 #elif defined(EMA_FILTER)
   #include "EMA_Filter.h"
 #else
-  #error "No filter selected! Define either SMA_FILTER or EMA_FILTER."
+  #error "Lifter: No filter selected! Define either SMA_FILTER or EMA_FILTER."
 #endif
 
 class Lifter {
@@ -51,6 +51,6 @@ public:
   void moveActuatorUp();
   void moveActuatorDown();
   void brakeActuator();
-  void StartControl(const BaseType_t);
+  bool StartControl(const BaseType_t);
 };
 #endif

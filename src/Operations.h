@@ -48,8 +48,7 @@ public:
     boolean isTrainerConnected(void);
     boolean isLaptopConnected(void);
     boolean isSmartphoneConnected(void);
-    boolean isGradeChanged(void);
-    float getNewGrade(void);
+    bool getNewGradeIfChanged(float& gradeOut);
     void setNewGrade(float grade);
     void setGradeChanged(boolean changed);
     void stepGrade(bool Up);
