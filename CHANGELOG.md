@@ -1,7 +1,7 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [1.1.2] - 2026-07-##
+## [1.1.2] - 2026-07-03
 ### Changed
 - Operations -> Inserted new member: **getNewGradeIfChanged()** and a few tweaks of **semaphore handling**
 - Relevant examples were modified to use **getNewGradeIfChanged()** in **checkMITMdataChanged()** 
