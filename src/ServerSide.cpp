@@ -83,9 +83,9 @@ void ServerSide::serverConnectionCallbacksOnConnect(NimBLEServer* pServer, NimBL
     LOG("Server sends an Extended Data Len Request!");
     delay(10); // Allow some time to settle....
 #endif
+    NimBLEAddress remoteAddress = connInfo.getIdAddress();
 #ifdef DEBUG
     // Get some connection parameters
-    NimBLEAddress remoteAddress = connInfo.getIdAddress();
     const uint16_t server_MTU = connInfo.getMTU();
     const uint16_t 	server_ConnInterval = connInfo.getConnInterval();
     const uint16_t 	server_ConnTimeout = connInfo.getConnTimeout();
