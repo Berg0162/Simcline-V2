@@ -3,8 +3,8 @@
 All notable changes to this project will be documented in this file.
 ## [1.1.3] - 2026-07-15
 ### Fixed
-- ServerSide.cpp -> Malfunctioning when **GlobalDebug** was disabled, due to misplaced **#define DEBUG**!
-- iBoard.h -> Malfunctioning when **GlobalDebug** was disabled!
+- ServerSide.cpp -> Malfunctioning when **GLOBAL_DEBUG** was disabled, due to misplaced **#define DEBUG**!
+- iBoard.h -> Malfunctioning when **GLOBAL_DEBUG** was disabled!
 ## [1.1.2] - 2026-07-03
 ### Changed
 - Operations -> Inserted new member: **getNewGradeIfChanged()** and a few tweaks of **semaphore handling**
