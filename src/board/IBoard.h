@@ -10,6 +10,7 @@ class IBoard {
     virtual void setup() = 0;
 
     void initUSB(long rate) {
+#ifdef DEBUG
 	// Initialize USB connection to the computer to catch debug messages
         Serial.setRxBufferSize(256); // Increase RX buffer size
         Serial.begin(rate);
@@ -17,6 +18,7 @@ class IBoard {
         while (!Serial) delay(10); 
         Serial.flush();
         delay(800); // Give Serial I/O time to settle
+#endif
     };
 
 #ifdef DEBUG 
