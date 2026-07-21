@@ -218,3 +218,5 @@ When you are pleased with the results sofar, you can consider to setup the compl
 
 + Embedded Control System <br>
 [Setup Simcline Control System](docs/Setup_SIMCLINE.md)<br>
+
+# See Also other [Github projects](https://github.com/Berg0162/) by the maker.
